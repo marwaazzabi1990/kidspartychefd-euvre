@@ -1,0 +1,11 @@
+.react-sharing-button--facebook {
+  background-color: #3b5998;
+}
+
+.react-sharing-button--facebook:hover {
+  background-color: #2d4373;
+}
+.pos_detail {
+  display: "flex";
+  justify-content: "space_";
+}

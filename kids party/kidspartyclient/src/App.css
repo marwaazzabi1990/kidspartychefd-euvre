@@ -1,0 +1,67 @@
+.pos_modal {
+  display: flex;
+  justify-content: space-around;
+}
+.detail_evenement {
+  margin-left: 10px;
+}
+
+.modal-open {
+  overflow: scroll;
+}
+.buton_action {
+  height: 90px;
+}
+.pos-Action {
+  display: flex;
+  justify-content: center;
+}
+.pos_conexion {
+  margin-left: 30px;
+}
+.bg-register {
+  background-image: url(https://image.freepik.com/photos-gratuite/rangees-sieges-rouges-dans-theatre_53876-64710.jpg);
+
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin-top: 80px;
+  margin-top: -10px;
+
+  height: 300px;
+
+  width: 100%;
+}
+.grid {
+  justify-content: space-between;
+  background-color: gray;
+  padding: 25px;
+  margin-top: -200px;
+  margin-left: 300px;
+  height: 100px;
+  width: 500px;
+
+  opacity: 0.5;
+}
+.lien-profesionnel {
+  color: black;
+  text-decoration: none;
+}
+.lien-profesionnel:hover {
+  color: black;
+  text-decoration: none;
+}
+.this {
+  font-size: 18px;
+
+  line-height: 24px;
+  margin-top: 200px;
+  margin-left: 100px;
+  margin-right: 100px;
+}
+.footer {
+  margin-bottom: 0;
+}
+
+.btn-moda-register {
+  color: red;
+}

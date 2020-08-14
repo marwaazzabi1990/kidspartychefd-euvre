@@ -1,0 +1,103 @@
+{
+  "Adminstrateur": [
+    {
+      " _id": 1,
+      "nom": "marwa",
+      "Email": "marwa@gmail.com",
+      "username": "marwa",
+      "role": "admin"
+    }
+  ],
+  "categorie": [
+    {
+      "id": 1,
+      "nom_categorie": "evenement"
+    },
+    {
+      "id": 2,
+      "nom_categorie": "sport"
+    },
+    {
+      "id": 3,
+      "nom_categorie": "evenement"
+    },
+    {
+      "id": 4,
+      "nom_categorie": "rondonnée"
+    },
+    {
+      "id": 5,
+      "nom_categorie": "théatra"
+    }
+  ],
+  "Evenement": [
+    {
+      "id": 2,
+      "titre": "club theatre",
+      "Date_Debut": "12/08/2020",
+      "Date_fin": "20/09/2020",
+      "Adresse": "Ben arous",
+      "description": "cest un evenement qui vise les enfants de l'age 5ans jusqu'a 10ans",
+      "prix": "gartuit",
+      "nombre_de_place": "1000",
+      "nombre_de_participant": "10",
+      "affiche": "https://image.freepik.com/photos-gratuite/composition-sport-elements-modernes_23-2147914166.jpg",
+      "nom_categorie": "evenement",
+      "nom_organzateur": "club theatre"
+    },
+    {
+      "id": 1,
+      "titre": "club theatre",
+      "Date_Debut": "12/08/2020",
+      "Date_fin": "20/09/2020",
+      "Adresse": "Ben arous",
+      "description": "cest un evenement qui vise les enfants de l'age 5ans jusqu'a 10ans",
+      "prix": "gartuit",
+      "nombre_de_place": "1000",
+      "nombre_de_participant": "10",
+      "affiche": "https://image.freepik.com/photos-gratuite/composition-sport-elements-modernes_23-2147914166.jpg",
+      "nom_categorie": "evenement",
+      "nom_organzateur": "kidsEvent"
+    },
+    {
+      "id": 3,
+      "titre": "club theatre",
+      "Date_Debut": "12/08/2020",
+      "Date_fin": "20/09/2020",
+      "Adresse": "Ben arous",
+      "description": "cest un evenement qui vise les enfants de l'age 5ans jusqu'a 10ans",
+      "prix": "gartuit",
+      "nombre_de_place": "1000",
+      "nombre_de_participant": "10",
+      "affiche": "https://image.freepik.com/photos-gratuite/composition-sport-elements-modernes_23-2147914166.jpg",
+      "nom_categorie": "evenement",
+      "nom_organzateur": "kidsEvent"
+    }
+  ],
+  "User": [
+    {
+      "nom": "KidsEvents",
+      "username": "kidsEvent",
+      "email": "kids@gmail.com",
+      "password": "1234",
+      "role": "proffesionnel",
+      "id": 1
+    },
+    {
+      "nom": "voyage",
+      "username": "voyagekids",
+      "email": "kidsvoyage@gmail.com",
+      "password": "1234789",
+      "role": "proffesionnel",
+      "id": 2
+    },
+    {
+      "id": 4,
+      "nom": "KidsParty",
+      "email": "kidsparty@gmail.com",
+      "username": "KidsParty",
+      "password": 1234,
+      "role": "admin"
+    }
+  ]
+}
