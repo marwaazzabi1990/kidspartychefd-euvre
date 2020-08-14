@@ -10,6 +10,10 @@ import Register from "./Users/Register";
 import Users from "./Users/users_professionnel";
 import Detail from "./evenement/Detail_Event";
 import {
+    getUser
+
+} from "../Action/AuthentificationAction"
+import {
     getEventsFromApi,
 
 } from "../Action/EventAction";
@@ -17,10 +21,16 @@ import {
 import "./acceuil.css";
 
 class Index extends Component {
+    componentDidMount() {
+
+        this.props.getUser();
+    }
 
     render() {
+        this.props.authetification && console.log(this.props.authetification.role)
         return (
-            <div>
+
+            < div >
                 <Router>
 
                     <div >
@@ -41,9 +51,9 @@ class Index extends Component {
                                 </NavItem>
                                 <NavItem>
                                     <Link>
-                                        <Link to="/users">
+                                        {this.props.authetification && this.props.authetification.role === "Admin" ? <Link to="/users">
                                             <NavLink >Utlisateurs</NavLink>
-                                        </Link>
+                                        </Link> : ""}
                                     </Link>
                                 </NavItem>
                                 <NavItem>
@@ -57,14 +67,14 @@ class Index extends Component {
 
 
                                 <NavItem >
-                                    <Link to="/connexion">
-                                        <NavLink >connexion</NavLink>
-                                    </Link>
+                                    {this.props.authetification ? <Link to="/connexion">
+                                        <NavLink >Log out</NavLink>
+                                    </Link> : <NavLink > <Link>connexion</Link></NavLink>}
                                 </NavItem>
                                 <NavItem >
-                                    <Link to="/inscription">
-                                        <NavLink className="navlinksidebar ">Inscription</NavLink>
-                                    </Link>
+                                    {this.props.authetification ? <Link to="/inscription">
+                                        <NavLink ></NavLink>
+                                    </Link> : <NavLink > <Link>Inscription</Link></NavLink>}
                                 </NavItem>
                             </Nav>
                         </div>
@@ -132,10 +142,12 @@ class Index extends Component {
 const mapStateToProps = (state) => ({
     event: state.event,
     categorie: state.categorie,
+    authetification: state.authetification.user
 });
 
 const mapDispatchToProps = (dispatch) => ({
     getAllEvents: () => dispatch(getEventsFromApi()),
+    getUser: () => dispatch(getUser())
 
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Index);

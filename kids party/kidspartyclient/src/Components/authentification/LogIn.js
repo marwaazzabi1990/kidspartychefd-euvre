@@ -3,9 +3,9 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { GoogleLogin } from 'react-google-login';
 import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBBtn } from 'mdbreact';
-import { getUsersFromApi } from "./../../Action/UserAction";
+import { login } from "./../../Action/AuthentificationAction";
 //import { addSessionInApi } from "./../../Action/SessionAction";
-import { Athentificate } from "../../Action/AuthentificationAction";
+
 
 class logIn extends Component {
     state = {
@@ -31,7 +31,7 @@ class logIn extends Component {
                                         <div className="text-center">
                                             <MDBBtn onClick={
                                                 () =>
-                                                    this.props.signin({
+                                                    this.props.login({
                                                         email: this.state.email,
                                                         password: this.state.password
 
@@ -55,9 +55,9 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    getAllUsers: () => dispatch(getUsersFromApi()),
+    // getAllUsers: () => dispatch(getUsersFromApi()),
     //  AddSession: (session) => dispatch(addSessionInApi(session)),
-    signin: (userInfo) => dispatch(Athentificate(userInfo)),
+    login: (userInfo) => dispatch(login(userInfo)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(logIn);

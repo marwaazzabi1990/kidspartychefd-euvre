@@ -7,7 +7,11 @@ import {
 } from "../../Action/EventAction.js";
 import {
     getCategorieFromApi
-} from "../../Action/CategorieAction.js"
+} from "../../Action/CategorieAction.js";
+import {
+    getUser
+
+} from "../../Action/AuthentificationAction"
 import { Carousel, InputGroup, FormControl, Form } from 'react-bootstrap';
 import { MDBRow, MDBContainer, MDBBtn, MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBCol } from 'mdbreact';
 
@@ -29,6 +33,7 @@ class Event_list extends Component {
     componentDidMount() {
         this.props.getAllEvents();
         this.props.getAllCategorie();
+        this.props.getUser();
 
     }
     filter = (e) => {
@@ -53,6 +58,8 @@ class Event_list extends Component {
         this.distinctDoubleCategorie();
         const { event } = this.props;
         //  const { categorie } = this.props;
+        this.props.authetification&&console.log(this.props.authetification.role)
+
         return (
             <div>
                 <div>
@@ -75,6 +82,8 @@ class Event_list extends Component {
                     {/*Filtre   zone */}
 
                 </div>
+
+
                 <div className="flexselect">
 
 
@@ -146,44 +155,48 @@ class Event_list extends Component {
                     </div>
                 </div>
 
+
                 {/*Card Event */}
 
-                <div className="pos_card">
+
+                < div className="pos_card" >
 
 
-                    {event
-                        .filter((elcategorie) =>
-                            this.state.Categorie === "" ? elcategorie : elcategorie.nom_categorie === this.state.Categorie
-                        ).filter((eladresse) =>
-                            this.state.Adresse === "" ? eladresse : eladresse.Adresse === this.state.Adresse
+                    {
+                        event
+                            .filter((elcategorie) =>
+                                this.state.Categorie === "" ? elcategorie : elcategorie.nom_categorie === this.state.Categorie
+                            ).filter((eladresse) =>
+                                this.state.Adresse === "" ? eladresse : eladresse.Adresse === this.state.Adresse
 
-                        ).filter((eltitre) =>
-                            this.state.titre === "" ? eltitre : eltitre.titre.includes(this.state.titre)
-                        )
-                        .map((el, i) => (
-                            <MDBCol >
-                                <MDBCard className="card-style">
-                                    <MDBCardImage className="image_card" src={"http://localhost:8080/" + el.affiche}
-                                        waves />
-                                    <MDBCardBody>
-                                        <MDBCardTitle>{el.titre}</MDBCardTitle>
-                                        <MDBCardText>{el.Adresse}</MDBCardText>
-                                        <MDBCardText>  {el.nom_categorie}</MDBCardText>
+                            ).filter((eltitre) =>
+                                this.state.titre === "" ? eltitre : eltitre.titre.includes(this.state.titre)
+                            )
+                            .map((el, i) => (
+                                <MDBCol >
+                                    <MDBCard className="card-style">
+                                        <MDBCardImage className="image_card" src={"http://localhost:8080/" + el.affiche}
+                                            waves />
+                                        <MDBCardBody>
+                                            <MDBCardTitle>{el.titre}</MDBCardTitle>
+                                            <MDBCardText>{el.Adresse}</MDBCardText>
+                                            <MDBCardText>  {el.nom_categorie}</MDBCardText>
 
-                                        <MDBCardText>{el.nombre_de_participant} <FaUsers /></MDBCardText>
-                                        <Link to={"/detail/" + el._id}>
-                                            {" "}
-                                            <button className="btn-card-detail">
-                                                Detail <i class="fas fa-info-circle"></i>
-                                            </button>
-                                        </Link>
-                                    </MDBCardBody>
+                                            <MDBCardText>{el.nombre_de_participant} <FaUsers /></MDBCardText>
+                                            <Link to={"/detail/" + el._id}>
+                                                {" "}
+                                                <button className="btn-card-detail">
+                                                    Detail <i class="fas fa-info-circle"></i>
+                                                </button>
+                                            </Link>
+                                        </MDBCardBody>
 
-                                </MDBCard>
+                                    </MDBCard>
 
-                            </MDBCol>
+                                </MDBCol>
 
-                        ))}</div >
+                            ))
+                    }</div >
 
             </div >
         )
@@ -193,11 +206,14 @@ class Event_list extends Component {
 const mapStateToProps = (state) => ({
     event: state.event,
     categorie: state.categorie,
+    authetification: state.authetification.user
+
 });
 
 const mapDispatchToProps = (dispatch) => ({
     getAllEvents: () => dispatch(getEventsFromApi()),
     getAllCategorie: () => dispatch(getCategorieFromApi()),
+    getUser: () => dispatch(getUser())
 
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Event_list);

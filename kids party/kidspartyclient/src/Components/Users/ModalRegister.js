@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { MDBContainer, MDBBtn, MDBModal, MDBModalBody, MDBModalHeader, MDBModalFooter } from 'mdbreact';
 
 import { Col, Row, Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import {
     addUserFromApi
 
@@ -216,7 +217,7 @@ class ModalRegister extends Component {
                         </MDBModalBody>
                         <MDBModalFooter>
                             <MDBBtn color="secondary" onClick={this.toggle(8)}>Close</MDBBtn>
-                            <MDBBtn color="primary"
+                             <MDBBtn color="primary"
                                 onClick={() => {
                                     this.props.AddUser({
                                         nom: this.state.nom,

@@ -9,6 +9,10 @@ export const ADD_USER = "ADD_USER";
 export const DELETE_USER = "DELETE_USER"
 export const GET_USER = "GET_USER"
 export const MODIF_USER = "MODIF_USER"
+export const REGISTER_FAIL = "REGISTER_FAIL"
+export const USER_LOADED = "USER_LOADED"
+export const LOGIN_SUCCESS = "LOGIN_SUCCESS  "
+export const LOGOUT = "LOGOUT"
 //categorie Types
 export const ADD_CATEGORIE = "ADD_CATEGORIE";
 export const DELETE_CATEGORIE = "DELETE_CATEGORIE";

@@ -18,6 +18,10 @@ export default function UserReducer(state = initialState, action) {
     if (action.type === DELETE_USER) {
         return state.filter((event) => event.id !== action.payload);
     }
+    const initialState = {
+        token: localStorage.getItem('token'),
+        user: null
+      };
 
     return state;
 }

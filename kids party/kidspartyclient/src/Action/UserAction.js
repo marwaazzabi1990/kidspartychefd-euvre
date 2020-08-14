@@ -35,11 +35,12 @@ export function addUserFromApi(element) {
             (res) => {
                 dispatch(AddUser(res.data));
                 // console.log(res.data);
-                window.location.reload(false);
+                //   window.location.reload(false);
+                window.location.pathname = "/connexion"
 
 
             }
-        );
+        )
 
 
 }
