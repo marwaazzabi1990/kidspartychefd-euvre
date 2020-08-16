@@ -145,11 +145,11 @@ class ModalRegister extends Component {
         return (
             <MDBContainer>
 
-                <MDBBtn className="float-right" color="danger" onClick={this.toggle(8)}>Inscrivez_vous</MDBBtn>
+                <MDBBtn className="but-register " color="danger" onClick={this.toggle(8)}>Inscrivez_vous</MDBBtn>
 
                 <MDBModal isOpen={this.state.modal8} toggle={this.toggle(8)} fullHeight position="left" >
                     <Form onSubmit={this.handelSubmit}>
-                        <MDBModalHeader toggle={this.toggle(8)} className="btn-moda-register">Inscription</MDBModalHeader>
+                        <MDBModalHeader toggle={this.toggle(8)} className="header_modal">Inscription</MDBModalHeader>
                         <MDBModalBody>
 
                             <Row form>
@@ -217,7 +217,7 @@ class ModalRegister extends Component {
                         </MDBModalBody>
                         <MDBModalFooter>
                             <MDBBtn color="secondary" onClick={this.toggle(8)}>Close</MDBBtn>
-                             <MDBBtn color="primary"
+                            <MDBBtn color="primary"
                                 onClick={() => {
                                     this.props.AddUser({
                                         nom: this.state.nom,

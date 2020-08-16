@@ -12,8 +12,12 @@
 .pos_card {
   margin-top: 40px;
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
   justify-content: space-around;
+  border-radius: 5px;
+  box-shadow: 5px 5px 2px 1px rgba(0, 0, 255, 0.2);
+  margin-left: 30px;
 }
 /*.carrousel_style {
   height: 200px;
@@ -37,4 +41,11 @@
 }
 .card-style {
   width: 300px;
+}
+.button-detail {
+  background-color: red;
+}
+.image-card {
+  height: 200px;
+  width: 90px;
 }

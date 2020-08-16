@@ -7,6 +7,7 @@ import {
     getEventsFromApi, deleteEventToApi
 
 } from "../../Action/EventAction.js";
+import { getUser } from "../../Action/AuthentificationAction"
 import ModifEvent from "./ModifEventModal";
 import ModalAddevent from "./ModalAddevent";
 
@@ -18,16 +19,20 @@ class GererEvent extends Component {
     }
     componentDidMount() {
         this.props.getAllEvents();
+        //   this.setState{ (nom_organzateure = this.props.authetification.nom) }
 
 
     }
     render() {
+        this.props.authetification && console.log("xcx", this.props.authetification.nom);
+
+
         const { event } = this.props;
 
         return (
 
             < div >
-                <h1>ici ces evenements de ce profesionnel  connecte</h1>
+
 
                 <button
                     className="buttonplus"
@@ -55,9 +60,9 @@ class GererEvent extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        {event.filter((el) =>
-                            this.state.nom_organzateure === "" ? el : el.nom_organzateur === this.state.nom_organzateure
-                        )
+                        {event/*.filter((el_organizateurs) => this.el_organizateurs === "" ?
+                            el_organizateurs : el_organizateurs === "maazza"
+        )*/
                             .map((el, i) => (<tr>
                                 <td>{el.titre}</td>
                                 <td>{el.Adresse}</td>
@@ -84,7 +89,7 @@ class GererEvent extends Component {
 
 const mapStateToProps = (state) => ({
     event: state.event,
-
+    authetification: state.authetification,
 
 });
 
@@ -92,6 +97,7 @@ const mapDispatchToProps = (dispatch) => ({
 
     getAllEvents: () => dispatch(getEventsFromApi()),
     deleteEvent: (el) => dispatch(deleteEventToApi(el)),
+    getUser: () => dispatch(getUser())
 
 
 

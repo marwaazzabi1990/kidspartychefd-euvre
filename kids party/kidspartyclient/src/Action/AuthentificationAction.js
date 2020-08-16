@@ -25,10 +25,12 @@ export const getUser = () => async (dispatch) => {
     try {
         const res = await axios.get(
             "http://localhost:8080/user/getuserconnecte"
+
         );
         dispatch({
             type: USER_LOADED,
             payload: res.data,
+
         });
     } catch (err) {
         console.log(err);

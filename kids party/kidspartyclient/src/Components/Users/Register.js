@@ -15,7 +15,7 @@ export default class Register extends Component {
                 </div>
                 <div className="grid">
                     <a href="#partenaires" className="lien-profesionnel">Vous etes organisateurs d'evenements </a>
-                    <p className="lien-profesionnel">Vous etes un organisateurs des evenements </p>
+                    <p className="lien-profesionnel">Partagez avec nous  vos evenements  et  devenir partenire</p>
                 </div>
                 <div >
 
@@ -28,7 +28,7 @@ export default class Register extends Component {
                        <br></br> -Bien s’identifier et augmenter la visibilité.
                        <br></br> -Aider l’internaute à joindre facilement votre </p>
                         <div >
-                            < RegisterModal  />
+                            < RegisterModal />
                         </div>
 
                     </div>

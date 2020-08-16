@@ -2,12 +2,27 @@
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  height: 100px;
-  width: 1000px;
+  height: 60px;
+  width: 100%;
 
   flex-wrap: nowrap;
   margin-top: 20px;
+  color: red;
+  margin-bottom: 5px;
+}
+.menus:hover {
+  box-shadow: 10px 5px 5px gray;
+}
+.menu_NavItem {
+  color: red;
+}
+.menu_NavItem :hover {
+  text-decoration: none;
+  color: gray;
+}
+.menu_NavItem:active {
+  text-decoration: dotted;
 }
 .img-lg {
-  width: 150px;
+  width: 100px;
 }

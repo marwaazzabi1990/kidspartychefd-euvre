@@ -96,3 +96,5 @@ export function addEventInApi(element) {
             }
         );
 }
+/*
+http://localhost:8080/event/getallevents" */

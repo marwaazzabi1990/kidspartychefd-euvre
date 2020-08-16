@@ -1,3 +1,6 @@
+body {
+  color: black;
+}
 .pos_modal {
   display: flex;
   justify-content: space-around;
@@ -20,7 +23,7 @@
   margin-left: 30px;
 }
 .bg-register {
-  background-image: url(https://image.freepik.com/photos-gratuite/rangees-sieges-rouges-dans-theatre_53876-64710.jpg);
+  background-image: url(https://image.freepik.com/photos-gratuite/petite-fille-dessin-coloriage_53876-20438.jpg);
 
   background-size: cover;
   background-repeat: no-repeat;
@@ -33,17 +36,17 @@
 }
 .grid {
   justify-content: space-between;
-  background-color: gray;
+  background-color: black;
   padding: 25px;
   margin-top: -200px;
   margin-left: 300px;
   height: 100px;
   width: 500px;
 
-  opacity: 0.5;
+  opacity: 0.9;
 }
 .lien-profesionnel {
-  color: black;
+  color: white;
   text-decoration: none;
 }
 .lien-profesionnel:hover {
@@ -62,6 +65,16 @@
   margin-bottom: 0;
 }
 
-.btn-moda-register {
-  color: red;
+.header_modal {
+  color: black;
+}
+.but-register {
+  border-radius: 10px;
+  width: 150px;
+  background-image: linear-gradient(60deg, red, gray);
+}
+.carrousel_margi {
+  margin-top: 5px;
+  margin-left: 20px;
+  margin-right: 20px;
 }

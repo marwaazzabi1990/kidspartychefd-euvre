@@ -9,6 +9,7 @@ import LogIn from "./authentification/LogIn";
 import Register from "./Users/Register";
 import Users from "./Users/users_professionnel";
 import Detail from "./evenement/Detail_Event";
+
 import {
     getUser
 
@@ -39,43 +40,47 @@ class Index extends Component {
 
                             {/*    link router  */}
                             <Nav className="menus" >
-                                < NavItem>
+                                < NavItem className="menu_NavItem">
                                     <img src={logo} className="img-lg" />
                                 </NavItem>
-                                <NavItem>
+                                <NavItem className="menu_NavItem">
                                     <Link>
-                                        <Link to="/">
-                                            <NavLink >Les evenments</NavLink>
+                                        <Link to="/" >
+                                            <NavLink className="menu_NavItem">Acceuil</NavLink>
                                         </Link>
                                     </Link>
                                 </NavItem>
-                                <NavItem>
+                                <NavItem className="menu_NavItem">
                                     <Link>
                                         {this.props.authetification && this.props.authetification.role === "Admin" ? <Link to="/users">
-                                            <NavLink >Utlisateurs</NavLink>
+                                            <NavLink className="menu_NavItem">Utlisateurs</NavLink>
                                         </Link> : ""}
                                     </Link>
                                 </NavItem>
-                                <NavItem>
+                                <NavItem className="menu_NavItem">
                                     <Link>
                                         <Link to="/Gerer_evenement">
-                                            <NavLink >Gerer mes evenements </NavLink>
+                                            <NavLink className="menu_NavItem">Mes evenements </NavLink>
                                         </Link>
                                     </Link>
                                 </NavItem>
 
 
 
-                                <NavItem >
-                                    {this.props.authetification ? <Link to="/connexion">
-                                        <NavLink >Log out</NavLink>
+                                <NavItem className="menu_NavItem" >
+                                    {this.props.authetification ? <Link to="/connexion" className="menu_NavItem">
+                                        <NavLink  >Log out</NavLink>
                                     </Link> : <NavLink > <Link>connexion</Link></NavLink>}
+
+
                                 </NavItem>
-                                <NavItem >
-                                    {this.props.authetification ? <Link to="/inscription">
+                                <NavItem className="menu_NavItem" >
+                                    {this.props.authetification ? <Link to="/inscription" className="menu_NavItem ">
                                         <NavLink ></NavLink>
                                     </Link> : <NavLink > <Link>Inscription</Link></NavLink>}
+
                                 </NavItem>
+
                             </Nav>
                         </div>
 
@@ -128,12 +133,7 @@ class Index extends Component {
                     </div>
 
 
-                    <div className="footer">
-                        <p>
-                            Copyright &copy; Simplon Tunis, Made with{" "}
-                            <i class="fas fa-heart"></i>
-                        </p>
-                    </div>
+
                 </Router >
             </div >
         )
@@ -142,11 +142,12 @@ class Index extends Component {
 const mapStateToProps = (state) => ({
     event: state.event,
     categorie: state.categorie,
-    authetification: state.authetification.user
+    authetification: state.authetification
 });
 
 const mapDispatchToProps = (dispatch) => ({
     getAllEvents: () => dispatch(getEventsFromApi()),
+    /*modal get token with exct information*/
     getUser: () => dispatch(getUser())
 
 });

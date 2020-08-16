@@ -14,6 +14,8 @@ import {
     addEventInApi
 
 } from "../../Action/EventAction.js";
+import { getUser }
+    from "../../Action/AuthentificationAction";
 import axios from 'axios'
 
 
@@ -24,6 +26,12 @@ class ModalAjoutEvent extends Component {
         selectedFile: null
 
     };
+    /* componentDidUpdate() {
+         //this.props.getAllUsers();
+         //  this.props.authetification && console.log(this.props.authetification.role)
+         this.setState({ nom_organzateure: this.props.authetification.nom })
+ 
+     }*/
 
     toggle = (nr) => () => {
         let modalNumber = "modal" + nr;
@@ -51,6 +59,9 @@ class ModalAjoutEvent extends Component {
     }
 
     render() {
+        this.props.authetification && console.log(this.props.authetification.nom)
+        this.props.authetification && console.log(this.props.authetification.nom)
+        //this.setState({ nom_organzateure: this.props.authetification.nom })
         return (
             <MDBContainer>
 
@@ -155,10 +166,13 @@ class ModalAjoutEvent extends Component {
 
 const mapStateToProps = (state) => ({
     event: state.event,
+    authetification: state.authetification
 });
 
 const mapDispatchToProps = (dispatch) => ({
     addEvent: (el) => dispatch(addEventInApi(el)),
+
+    getUser: () => dispatch(getUser())
 
 });
 

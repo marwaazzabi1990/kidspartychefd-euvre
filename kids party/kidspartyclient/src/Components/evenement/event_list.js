@@ -13,12 +13,14 @@ import {
 
 } from "../../Action/AuthentificationAction"
 import { Carousel, InputGroup, FormControl, Form } from 'react-bootstrap';
-import { MDBRow, MDBContainer, MDBBtn, MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBCol } from 'mdbreact';
+import { MDBCardGroup, MDBIcon, MDBBtn, MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBCol } from 'mdbreact';
 
 import ModalDetail from "./Detail_Event";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 import { FaSearch, FaUsers } from 'react-icons/fa';
+import RegisterModal from "../Users/ModalRegister";
+import { Select } from 'semantic-ui-react'
 var categorie = [];
 var newArray = [];
 
@@ -34,6 +36,7 @@ class Event_list extends Component {
         this.props.getAllEvents();
         this.props.getAllCategorie();
         this.props.getUser();
+        // localStorage.setItem('nom', this.props.authetification.nom)
 
     }
     filter = (e) => {
@@ -54,26 +57,32 @@ class Event_list extends Component {
     };
 
 
+
     render() {
         this.distinctDoubleCategorie();
         const { event } = this.props;
+        // this.nomUser();
         //  const { categorie } = this.props;
-        this.props.authetification&&console.log(this.props.authetification.role)
+        this.props.authetification && console.log("non", this.props.authetification.nom)
+
 
         return (
             <div>
-                <div>
+
+                <div className="carrousel_margi">
                     {/*  crrousel zone */}
                     <Carousel className="carrousel_style">
                         {event.slice(event.length - 10, event.length).map((el, i) => (<Carousel.Item>
                             <img
                                 className="image-slider"
+
                                 src={"http://localhost:8080/" + el.affiche}
                                 alt="First slide"
                             />
                             <Carousel.Caption>
-                                <h3>First slide label</h3>
+                                <h3>{el.titre}</h3>
                                 <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                                < RegisterModal />
                             </Carousel.Caption>
                         </Carousel.Item>))}
 
@@ -85,6 +94,7 @@ class Event_list extends Component {
 
 
                 <div className="flexselect">
+
 
 
                     <div>
@@ -102,10 +112,10 @@ class Event_list extends Component {
                     </div>
                     <div >
 
-
-                        <select onChange={(e) =>
-                            this.setState({ Adresse: (e.target.value) })
-                        }  >
+                        <select className="browser-default custom-select">
+                            onChange={(e) =>
+                                this.setState({ Adresse: (e.target.value) })
+                            }  >
 
 
 
@@ -140,7 +150,7 @@ class Event_list extends Component {
 
 
                     <div>
-                        <select
+                        <select className="browser-default custom-select"
                             onChange={(e) =>
                                 this.setState({ Categorie: (e.target.value) })
                             }
@@ -173,27 +183,34 @@ class Event_list extends Component {
                                 this.state.titre === "" ? eltitre : eltitre.titre.includes(this.state.titre)
                             )
                             .map((el, i) => (
-                                <MDBCol >
-                                    <MDBCard className="card-style">
-                                        <MDBCardImage className="image_card" src={"http://localhost:8080/" + el.affiche}
-                                            waves />
-                                        <MDBCardBody>
-                                            <MDBCardTitle>{el.titre}</MDBCardTitle>
-                                            <MDBCardText>{el.Adresse}</MDBCardText>
-                                            <MDBCardText>  {el.nom_categorie}</MDBCardText>
 
-                                            <MDBCardText>{el.nombre_de_participant} <FaUsers /></MDBCardText>
+                                <MDBCardGroup className="pos_card" >
+                                    <MDBCard className="card-style" >
+                                        <MDBCardImage className="image-card" src={"http://localhost:8080/" + el.affiche} alt="MDBCard image cap" top hover
+                                            overlay="white-slight" />
+                                        <MDBCardBody>
+                                            <MDBCardTitle tag="h5">{el.titre}</MDBCardTitle>
+                                            <MDBCardText>
+                                                <pan>Date début:</pan>{el.Date_Debut}<br></br>
+                                                <pan>Date Fin</pan>{el.Date_fin}<br></br>
+
+                                                {el.description}.<FaUsers />
+                                            </MDBCardText>
                                             <Link to={"/detail/" + el._id}>
                                                 {" "}
-                                                <button className="btn-card-detail">
-                                                    Detail <i class="fas fa-info-circle"></i>
-                                                </button>
+                                                <MDBBtn color="danger">
+
+                                                    <MDBIcon icon="info-circle" />Plus Detail
+                                        </MDBBtn>
                                             </Link>
                                         </MDBCardBody>
-
                                     </MDBCard>
+                                </MDBCardGroup>
 
-                                </MDBCol>
+
+
+
+
 
                             ))
                     }</div >
