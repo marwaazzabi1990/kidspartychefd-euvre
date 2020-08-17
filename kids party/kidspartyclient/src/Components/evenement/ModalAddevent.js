@@ -59,9 +59,13 @@ class ModalAjoutEvent extends Component {
     }
 
     render() {
-        this.props.authetification && console.log(this.props.authetification.nom)
-        this.props.authetification && console.log(this.props.authetification.nom)
-        //this.setState({ nom_organzateure: this.props.authetification.nom })
+        // this.props.authetification && console.log(this.props.authetification.nom)
+        // this.props.authetification && console.log(this.props.authetification.nom)
+        // //this.setState({ nom_organzateure: this.props.authetification.nom })
+        // if (this.props.authetification) {
+        //     console.log("oooooo", this.props.authetification.nom)
+        console.log("ddd", this.props.nom)
+        // }
         return (
             <MDBContainer>
 
@@ -132,6 +136,7 @@ class ModalAjoutEvent extends Component {
                             label="nom_organzateur"
                             outline
                         />
+
                     </MDBModalBody>
                     <MDBModalFooter>
                         <MDBBtn color="secondary" onClick={this.toggle(14)}>
@@ -151,7 +156,7 @@ class ModalAjoutEvent extends Component {
                                     nombre_de_place: this.state.nombre_de_place,
                                     nombre_de_participant: this.state.nombre_de_participant,
                                     nom_categorie: this.state.nom_categorie,
-                                    nom_organzateur: this.state.nom_organzateur
+                                    nom_organzateur: this.props.nom
                                 })
                             }
                         >

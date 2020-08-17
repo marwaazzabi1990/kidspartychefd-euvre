@@ -47,6 +47,7 @@ export class EventModalModif extends Component {
                     toggle={this.toggle(8)}
                     fullHeight
                     position="right"
+                    size="fluid"
                 >
                     <MDBModalHeader className="titlemodaleditmod" toggle={this.toggle(8)}>
                         Modifier Event

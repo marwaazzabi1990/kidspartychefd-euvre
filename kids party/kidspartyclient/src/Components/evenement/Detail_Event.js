@@ -2,6 +2,8 @@ import React, { Component } from "react";
 
 import { Facebook, Twitter } from 'react-sharingbuttons';
 import SFacebook from './facebook';
+
+import { MDBBtn, MDBIcon } from 'mdbreact'
 import './Detail_Event.css'
 
 import { Label } from "reactstrap";
@@ -68,11 +70,22 @@ export default class Detail extends Component {
 
             </div>
           </div>
-          <div >
-            <SFacebook />
-            <button className="btn-regarde">
-              Participer
-              </button>
+          <div className="pos_reaction">
+            <div className="react-imog"  >
+              {/* <SFacebook />*/}
+              <button className="icone_imog"><i class="fas fa-thumbs-down"></i></button>
+              <span>0</span>
+              <button className="icone_imog"> <i class="fas fa-thumbs-up"></i></button>
+              <span>0</span>
+
+
+            </div>
+            <div>
+
+              <MDBBtn color='danger'>
+                Participer
+              </MDBBtn>
+            </div>
           </div>
 
         </div >

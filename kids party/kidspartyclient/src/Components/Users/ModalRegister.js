@@ -228,7 +228,7 @@ class ModalRegister extends Component {
                                         username: this.state.username,
                                         password: this.state.password,
                                         adresse: this.state.adresse,
-                                        role: "professionnel"
+                                        role: "Professionnel"
                                     })
                                 }} > Envoyer</MDBBtn>
                         </MDBModalFooter>

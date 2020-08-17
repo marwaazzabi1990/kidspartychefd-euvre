@@ -8,16 +8,13 @@ import { Nav, NavItem, NavLink, Spinner } from "reactstrap";
 import LogIn from "./authentification/LogIn";
 import Register from "./Users/Register";
 import Users from "./Users/users_professionnel";
-import Detail from "./evenement/Detail_Event";
-
-import {
-    getUser
-
-} from "../Action/AuthentificationAction"
+import Detail from "./evenement/Detail_Event"
+import { getUser, logout } from "../Action/AuthentificationAction"
 import {
     getEventsFromApi,
 
 } from "../Action/EventAction";
+import { MDBBtn } from 'mdbreact'
 
 import "./acceuil.css";
 
@@ -29,6 +26,13 @@ class Index extends Component {
 
     render() {
         this.props.authetification && console.log(this.props.authetification.role)
+        // const role = this.props.authetification && this.props.authetification.role
+        if (this.props.authetification) {
+            console.log("index", this.props.authetification && this.props.authetification.role)
+        }
+        const role = this.props.authetification && this.props.authetification.role
+
+
         return (
 
             < div >
@@ -50,13 +54,16 @@ class Index extends Component {
                                         </Link>
                                     </Link>
                                 </NavItem>
-                                <NavItem className="menu_NavItem">
+                                {/* <NavItem className="menu_NavItem">
                                     <Link>
-                                        {this.props.authetification && this.props.authetification.role === "Admin" ? <Link to="/users">
-                                            <NavLink className="menu_NavItem">Utlisateurs</NavLink>
-                                        </Link> : ""}
+                                        {{ role } === "Admin" ?
+                                            <Link to="/users">
+                                                <NavLink className="menu_NavItem"></NavLink>
+                                            </Link> : <Link to="/users">
+                                                <NavLink className="menu_NavItem">Utlisateurs</NavLink>
+                                            </Link>}
                                     </Link>
-                                </NavItem>
+                                </NavItem> */}
                                 <NavItem className="menu_NavItem">
                                     <Link>
                                         <Link to="/Gerer_evenement">
@@ -67,17 +74,35 @@ class Index extends Component {
 
 
 
-                                <NavItem className="menu_NavItem" >
+                                {/* <NavItem className="menu_NavItem" >
                                     {this.props.authetification ? <Link to="/connexion" className="menu_NavItem">
-                                        <NavLink  >Log out</NavLink>
+                                        <NavLink  ><Link>Log out </Link></NavLink>
                                     </Link> : <NavLink > <Link>connexion</Link></NavLink>}
 
 
-                                </NavItem>
+                                </NavItem> */}
+                                {/* <NavItem className="menu_NavItem" >
+                                    {this.props.authetification ? <Link to="/connexion" className="menu_NavItem ">
+                                        <NavLink > </NavLink>
+                                    </Link> : <NavLink > <Link>Conexion</Link></NavLink>}
+
+                                </NavItem> */}
                                 <NavItem className="menu_NavItem" >
-                                    {this.props.authetification ? <Link to="/inscription" className="menu_NavItem ">
-                                        <NavLink ></NavLink>
-                                    </Link> : <NavLink > <Link>Inscription</Link></NavLink>}
+                                    {role === "admin" ?
+
+
+                                        <NavLink > <Link to="/users"> Utlisateurs</Link>  </NavLink>
+                                        :
+                                        <NavItem className="menu_NavItem" >       </NavItem>
+                                    }
+
+                                </NavItem>
+                                <NavItem  >
+                                    {this.props.authetification ?
+                                        <NavLink onClick={() => this.props.logout()}> Log out</NavLink>
+                                        :
+                                        <NavItem className="pos_btn_menu">   <Link className="btn-color" to="/inscription">   <MDBBtn >Inscription</MDBBtn></Link>
+                                            <Link className="btn-color" to="/connexion">    <LogIn /></Link > </NavItem>}
 
                                 </NavItem>
 
@@ -142,13 +167,14 @@ class Index extends Component {
 const mapStateToProps = (state) => ({
     event: state.event,
     categorie: state.categorie,
-    authetification: state.authetification
+    authetification: state.authetification.user
+
 });
 
 const mapDispatchToProps = (dispatch) => ({
     getAllEvents: () => dispatch(getEventsFromApi()),
     /*modal get token with exct information*/
-    getUser: () => dispatch(getUser())
-
+    getUser: () => dispatch(getUser()),
+    logout: () => dispatch(logout())
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Index);

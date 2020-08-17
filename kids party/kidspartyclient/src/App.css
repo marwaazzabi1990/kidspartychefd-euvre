@@ -1,5 +1,14 @@
-body {
+.App {
   color: black;
+  /* background-image: linear-gradient(
+    60deg,
+    rgb(92, 92, 114),
+    rgb(201, 130, 130)
+  );*/
+
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100%px;
 }
 .pos_modal {
   display: flex;
@@ -70,11 +79,23 @@ body {
 }
 .but-register {
   border-radius: 10px;
-  width: 150px;
-  background-image: linear-gradient(60deg, red, gray);
+  border: 1px solid black;
+  color: black;
+
+  background-image: linear-gradient(90deg, rgb(168, 47, 47), rgb(41, 129, 145));
 }
 .carrousel_margi {
   margin-top: 5px;
   margin-left: 20px;
   margin-right: 20px;
+}
+.pos_btn_menu {
+  display: flex;
+  justify-content: space-between;
+}
+.btn-color {
+  color: white;
+  border-radius: 10px;
+
+  background-image: linear-gradient(90deg, rgb(168, 47, 47), rgb(41, 129, 145));
 }

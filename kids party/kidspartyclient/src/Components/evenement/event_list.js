@@ -112,7 +112,7 @@ class Event_list extends Component {
                     </div>
                     <div >
 
-                        <select className="browser-default custom-select">
+                        <select className="browser-default custom-select"
                             onChange={(e) =>
                                 this.setState({ Adresse: (e.target.value) })
                             }  >
@@ -177,7 +177,7 @@ class Event_list extends Component {
                             .filter((elcategorie) =>
                                 this.state.Categorie === "" ? elcategorie : elcategorie.nom_categorie === this.state.Categorie
                             ).filter((eladresse) =>
-                                this.state.Adresse === "" ? eladresse : eladresse.Adresse === this.state.Adresse
+                                this.state.Adresse === "" ? eladresse : eladresse.Adresse.includes(this.state.Adresse)
 
                             ).filter((eltitre) =>
                                 this.state.titre === "" ? eltitre : eltitre.titre.includes(this.state.titre)
@@ -193,6 +193,7 @@ class Event_list extends Component {
                                             <MDBCardText>
                                                 <pan>Date début:</pan>{el.Date_Debut}<br></br>
                                                 <pan>Date Fin</pan>{el.Date_fin}<br></br>
+                                                <pan>Adresse</pan>{el.Adresse}<br></br>
 
                                                 {el.description}.<FaUsers />
                                             </MDBCardText>
