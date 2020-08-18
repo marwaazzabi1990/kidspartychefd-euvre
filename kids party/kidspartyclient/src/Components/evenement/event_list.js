@@ -67,7 +67,7 @@ class Event_list extends Component {
 
 
         return (
-            <div>
+            <div className="container">
 
                 <div className="carrousel_margi">
                     {/*  crrousel zone */}

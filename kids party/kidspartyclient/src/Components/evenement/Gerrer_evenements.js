@@ -46,7 +46,7 @@ class GererEvent extends Component {
         console.log("eventwa7ed", events)
         return (
 
-            < div >
+            < div className="container">
 
 
                 <button

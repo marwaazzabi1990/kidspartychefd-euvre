@@ -1,9 +1,16 @@
 const express = require("express");
 const router = express.Router();
+const nodemailer = require("nodemailer");
 
-const EventsController = require('../Models/EventModel')
+const EventsController = require("../Models/EventModel");
 
-const { listallevents, postEvent, updateEvent, deleteEvent } = require("../Controllers/EventsController");
+const {
+  sendmail,
+  listallevents,
+  postEvent,
+  updateEvent,
+  deleteEvent,
+} = require("../Controllers/EventsController");
 
 // get All event
 router.get("/getallevents", listallevents);
