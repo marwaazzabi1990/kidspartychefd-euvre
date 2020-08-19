@@ -59,7 +59,7 @@ class Index extends Component {
       <div>
         <Router>
           <div>
-            <MDBNavbar className="menu" dark expand="md">
+            <MDBNavbar className="menus" expand="md">
               <MDBNavbarBrand>
                 <img src={logo} className="img-lg" />
               </MDBNavbarBrand>
@@ -72,16 +72,19 @@ class Index extends Component {
                 isOpen={this.state.isOpen}
                 navbar
               >
-                <MDBNavbarNav className="menu" left>
+                <MDBNavbarNav left>
                   <MDBNavItem active>
-                    <MDBNavLink to="/">Acceuil</MDBNavLink>
+                    <MDBNavLink to="/">
+                      {" "}
+                      <span className="item_nav">Acceuil</span>
+                    </MDBNavLink>
                   </MDBNavItem>
                   <MDBNavItem>
                     <MDBNavLink
                       to="/users"
                       className={role !== "admin" ? "disabled" : null}
                     >
-                      Utlisateurs
+                      <span className="item_nav">Utlisateurs</span>
                     </MDBNavLink>
                   </MDBNavItem>
                   <MDBNavItem>
@@ -89,7 +92,7 @@ class Index extends Component {
                       to="/categorie"
                       className={role !== "admin" ? "disabled" : null}
                     >
-                      Categorie
+                      <span className="item_nav"> Categorie</span>
                     </MDBNavLink>
                   </MDBNavItem>
                   <MDBNavItem>
@@ -98,11 +101,14 @@ class Index extends Component {
                       className={role !== "professionnel" ? "disabled" : null}
                     >
                       {" "}
-                      Mes evenement{" "}
+                      <span className="item_nav"> Mes evenement </span>
                     </MDBNavLink>
                   </MDBNavItem>
                   <MDBNavItem>
-                    <MDBNavLink to="/contact">Contact</MDBNavLink>
+                    <MDBNavLink to="/contact">
+                      {" "}
+                      <span className="item_nav">Contact</span>
+                    </MDBNavLink>
                   </MDBNavItem>
                 </MDBNavbarNav>
                 <MDBNavbarNav right>
@@ -116,7 +122,9 @@ class Index extends Component {
                         {" "}
                         <MDBNavLink to="/inscription">
                           {" "}
-                          <MDBBtn>Inscription</MDBBtn>
+                          <button className="btn btn-outline btn-md btn-rounded btn-navbar waves-effect waves-light btn_menu ">
+                            Inscription
+                          </button>
                         </MDBNavLink>
                         <MDBNavLink to="/connexion">
                           {" "}
@@ -139,9 +147,9 @@ class Index extends Component {
                   <Users />
                 </Route>
 
-                <Route exact path="/connexion">
+                {/* <Route exact path="/connexion">
                   <LogIn />
-                </Route>
+                </Route> */}
                 <Route exact path="/Gerer_evenement">
                   <GererEvenement />
                 </Route>

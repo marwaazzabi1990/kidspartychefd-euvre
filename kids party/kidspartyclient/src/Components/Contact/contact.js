@@ -16,14 +16,15 @@ class Contact extends Component {
   render() {
     return (
       <div className="body">
-        <h1> formulaire de contact</h1>
         <form className="test-mailing">
-          <h1>Let's see if it works</h1>
+          <h1>Contactez Nous</h1>
           <input
             type="text"
             name="name"
             onChange={(e) => this.setState({ name: e.target.value })}
           ></input>
+          <br></br>
+          <br></br>
           <input
             type="text"
             name="email"

@@ -1,14 +1,9 @@
-.App {
+.container {
   color: black;
-  /* background-image: linear-gradient(
-    60deg,
-    rgb(92, 92, 114),
-    rgb(201, 130, 130)
-  );*/
-
+  /* background-image: url("https://www.teskerti.tn/img/teskerti-www/background-teskerti-1366-x-768px.png");
   background-size: cover;
   background-repeat: no-repeat;
-  height: 100%;
+  height: 100%;*/
 }
 .pos_modal {
   display: flex;
@@ -81,14 +76,46 @@
 
   background-image: linear-gradient(90deg, rgb(168, 47, 47), rgb(41, 129, 145));
 }
-.carrousel_margi {
-  margin-top: 5px;
-  margin-left: 20px;
-  margin-right: 20px;
+/*card*/
+.card {
+  margin-top: 10px;
+}
+/*carrousel*/
+.carrousel_style {
+  width: 100%;
+  height: 1000px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+.carrousel_side {
+  width: 100%;
+  height: 800px;
+}
+
+/* navbar*/
+.item_nav {
+  color: white;
+  font-weight: bold;
 }
 .pos_btn_menu {
   display: flex;
   justify-content: space-between;
+}
+.color {
+  color: black;
+} /*partie filter in page acceuil*/
+.flexselect {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-top: -144px !important;
+}
+/*btn style*/
+.btn_menu {
+  background-color: #ec407a !important;
+  color: white !important;
+  font-weight: bold !important;
 }
 .btn-color {
   color: black;
@@ -99,11 +126,27 @@
   margin-left: 10px;
 }
 .disabled {
-  pointer-events: none;
+  display: none;
+  opacity: 0;
+  width: 0px;
 }
 /*** footer*/
 .footer {
-  background-color: rgb(43, 38, 38);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  background-image: linear-gradient(
+    to right,
+    rgba(3, 169, 244, 0.7),
+    rgba(50, 143, 197, 0)
+  );
+  height: 200px;
+  width: 100%;
+
+  flex-wrap: nowrap;
+
+  background-color: white;
+  margin-bottom: 5px;
 }
 
 /***modal conexion*/

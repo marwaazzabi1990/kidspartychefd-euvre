@@ -31,23 +31,28 @@ class logIn extends Component {
   render() {
     return (
       <MDBContainer>
-        <MDBBtn onClick={this.toggle}>Connexion</MDBBtn>
+        <button
+          className="btn btn-outline btn-md btn-rounded btn-navbar waves-effect waves-light btn_menu "
+          onClick={this.toggle}
+        >
+          Connexion
+        </button>
         <MDBModal isOpen={this.state.modal} toggle={this.toggle}>
           <MDBModalHeader toggle={this.toggle}>Conexion</MDBModalHeader>
           <MDBModalBody>
             <form>
               <div className="grey-text">
-                <MDBInput
+                <input
                   label="Type your email"
                   icon="envelope"
-                  group
                   type="email"
                   validate
                   error="wrong"
                   success="right"
                   onChange={(e) => this.setState({ email: e.target.value })}
+                  className="color"
                 />
-                <MDBInput
+                <input
                   label="Type your password"
                   icon="lock"
                   group
