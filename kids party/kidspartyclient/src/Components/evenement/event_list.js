@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { FaStar } from "react-icons/fa";
 import "./event_list.css";
 import { getEventsFromApi } from "../../Action/EventAction.js";
 import { getCategorieFromApi } from "../../Action/CategorieAction.js";
@@ -196,8 +197,38 @@ class Event_list extends Component {
                       {el.Date_fin}
                       <br></br>
                       <span>rating</span>
-                      {el.notes} <br></br>
-                      <StartRating />
+                      {/*rating  */}
+                      {[...Array(5)].map((star, i) => {
+                        const ratingValue = i + 1;
+                        return (
+                          <label>
+                            <input
+                              type="radio"
+                              name="rating"
+                              value={el.notes}
+                              /*  onClick={(e) => {
+                                this.setState({ rating: e.target.value });
+                                this.sendNote(e.target.value);
+                              }}*/
+                            />{" "}
+                            <FaStar
+                              className="star"
+                              color={
+                                ratingValue <= el.notes ? "#ffc107" : "#e4e5e9"
+                              }
+                              size={20}
+                              onMouseEnter={(e) =>
+                                this.setState({ hover: ratingValue })
+                              }
+                              onMouseLeave={(e) =>
+                                this.setState({ hover: null })
+                              }
+                              //onClick={() => this.sendNote(this.state.rating)}
+                            />
+                          </label>
+                        );
+                      })}
+                      {/*end rating*/}
                       <pan>Adresse</pan>
                       {el.Adresse}
                       <br></br>
