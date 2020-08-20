@@ -116,14 +116,14 @@ class ModalAjoutEvent extends Component {
               />
             </div>
             <div>
-              <MDBInput
+              {/* <MDBInput
                 onChange={(e) =>
                   this.setState({ nombre_de_participant: e.target.value })
                 }
                 label="nombre_de_participant"
                 outline
                 type="number"
-              />
+              /> */}
               <MDBInput
                 onChange={(e) =>
                   this.setState({ nom_categorie: e.target.value })
@@ -155,10 +155,12 @@ class ModalAjoutEvent extends Component {
                   Date_fin: this.state.Date_fin,
                   Adresse: this.state.Adresse,
                   description: this.state.description,
+                  notes: 1,
+                  nb_per_note: 1,
                   prix: this.state.prix,
                   affiche: this.state.selectedFile.name,
                   nombre_de_place: this.state.nombre_de_place,
-                  nombre_de_participant: this.state.nombre_de_participant,
+                  nombre_de_participant: 0,
                   nom_categorie: this.state.nom_categorie,
                   nom_organzateur: this.props.nom,
                 })

@@ -25,8 +25,9 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { FaSearch, FaUsers } from "react-icons/fa";
 import RegisterModal from "../Users/ModalRegister";
 import { Select } from "semantic-ui-react";
-import Chart from "../shurt";
-import { Pie } from "react-chartjs-2";
+import StartRating from "../StartRating";
+// import Chart from "../shurt";
+// import { Pie } from "react-chartjs-2";
 var categorie = [];
 var newArray = [];
 
@@ -194,6 +195,9 @@ class Event_list extends Component {
                       <pan>Date Fin</pan>
                       {el.Date_fin}
                       <br></br>
+                      <span>rating</span>
+                      {el.notes} <br></br>
+                      <StartRating />
                       <pan>Adresse</pan>
                       {el.Adresse}
                       <br></br>
@@ -214,7 +218,6 @@ class Event_list extends Component {
               </MDBCol>
             ))}
         </div>
-        <Chart />
       </div>
     );
   }

@@ -55,6 +55,7 @@ class GererEvent extends Component {
           className="buttonplus"
           onClick={() => this.setState({ addModelShow: true })}
         >
+        
           {this.props.authetification ? (
             <ModalAddevent nom={this.props.authetification.nom} />
           ) : null}
@@ -72,7 +73,7 @@ class GererEvent extends Component {
               <Table.HeaderCell>NB particiant</Table.HeaderCell>
               <Table.HeaderCell>Prix</Table.HeaderCell>
               <Table.HeaderCell>nom_categorie</Table.HeaderCell>
-              <Table.HeaderCell>nom_organzateur</Table.HeaderCell>
+              {/* <Table.HeaderCell>nom_organzateur</Table.HeaderCell> */}
               <Table.HeaderCell>Action</Table.HeaderCell>
             </Table.Row>
           </Table.Header>
