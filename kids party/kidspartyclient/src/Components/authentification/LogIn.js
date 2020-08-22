@@ -32,7 +32,7 @@ class logIn extends Component {
     return (
       <MDBContainer>
         <button
-          className="btn btn-outline btn-md btn-rounded btn-navbar waves-effect waves-light btn_menu "
+          className="btn btn-outline btn-md btn-rounded btn-navbar waves-effect waves-light btn_menu1 "
           onClick={this.toggle}
         >
           Connexion

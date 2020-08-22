@@ -80,7 +80,7 @@ class Event_list extends Component {
                   alt="First slide"
                 />
                 <Carousel.Caption>
-                  <h3>{el.titre}</h3>
+                  <h1 className="titre-card">{el.titre}</h1>
                   <p>
                     Nulla vitae elit libero, a pharetra augue mollis interdum.
                   </p>
@@ -91,6 +91,20 @@ class Event_list extends Component {
           </Carousel>
           {/*Filtre   zone */}
         </div>
+        {/* paragraphe Bienvenu */}
+        <div className="bienvenu">
+          <h2 className="bienveneu-h1"> Bienvenu Chez Kids Party</h2>
+          <p className="bienveneu-p">
+            Le lorem ipsum est, en imprimerie, une suite de mots sans
+            signification utilisée à titre provisoire pour calibrer une mise en
+            page, le texte définitif venant remplacer le faux-texte dès qu'il
+            est prêt ou que la mise en page est achevée. Généralement, on
+            utilise un texte en faux latin, le Lorem ipsum ou Lipsum.
+          </p>
+        </div>
+        {/* end of bienvenu paragraphe */}
+        {/*  zonne Event */}
+        <h2 className="bienveneu-h2"> Événements</h2>
 
         <div className="flexselect">
           <div>
@@ -112,7 +126,7 @@ class Event_list extends Component {
               className="browser-default custom-select"
               onChange={(e) => this.setState({ Adresse: e.target.value })}
             >
-              <option value="">Indiquez votre destination</option>
+              <option value="">Lieu</option>
 
               <option value="Hammamet">Hammamet</option>
               <option value="Kelibia">kelibia</option>
@@ -172,83 +186,88 @@ class Event_list extends Component {
                 : eltitre.titre.includes(this.state.titre)
             )
             .map((el, i) => (
-              <MDBCol className="card" md="3">
-                <MDBCard wide cascade>
-                  <MDBView cascade>
+              <MDBCol md="3">
+                <div className="pos-card-map">
+                  {/*ici card*/}
+
+                  <MDBCard className="cardcolor">
                     <MDBCardImage
-                      hover
-                      overlay="white-slight"
-                      className="card-img-top"
+                      top
                       src={"http://localhost:8080/" + el.affiche}
-                      alt="Card cap"
+                      overlay="white-slight"
+                      hover
+                      waves
+                      alt="MDBCard image cap"
                     />
-                  </MDBView>
-
-                  <MDBCardBody cascade className="text-center">
-                    <MDBCardTitle className="card-title">
-                      <strong>{el.titre}</strong>
-                    </MDBCardTitle>
-
-                    <MDBCardText>
-                      <pan>Date début:</pan>
-                      {el.Date_Debut}
-                      <br></br>
-                      <pan>Date Fin</pan>
-                      {el.Date_fin}
-                      <br></br>
-                      <span>rating</span>
-                      {/*rating  */}
-                      {[...Array(5)].map((star, i) => {
-                        const ratingValue = i + 1;
-                        return (
-                          <label>
-                            <input
-                              type="radio"
-                              name="rating"
-                              value={el.notes}
-                              /*  onClick={(e) => {
-                                this.setState({ rating: e.target.value });
-                                this.sendNote(e.target.value);
-                              }}*/
-                            />{" "}
-                            <FaStar
-                              className="star"
-                              color={
-                                ratingValue <= el.notes ? "#ffc107" : "#e4e5e9"
-                              }
-                              size={20}
-                              onMouseEnter={(e) =>
-                                this.setState({ hover: ratingValue })
-                              }
-                              onMouseLeave={(e) =>
-                                this.setState({ hover: null })
-                              }
-                              //onClick={() => this.sendNote(this.state.rating)}
-                            />
-                          </label>
-                        );
-                      })}
-                      {/*end rating*/}
-                      <pan>Adresse</pan>
-                      {el.Adresse}
-                      <br></br>
-                      {el.description}.<FaUsers />
-                    </MDBCardText>
-
-                    <MDBCol md="12" className="d-flex justify-content-center">
-                      <Link to={"/detail/" + el._id}>
-                        {" "}
-                        <button className="btn btn-outline btn-md btn-rounded btn-navbar waves-effect waves-light btn_menu ">
-                          <MDBIcon icon="info-circle" />
-                          Plus Detail
-                        </button>
-                      </Link>
-                    </MDBCol>
-                  </MDBCardBody>
-                </MDBCard>
+                    <MDBCardBody className="elegant-color white-text rounded-bottom ">
+                      <a
+                        href="#!"
+                        className="activator waves-effect waves-light mr-4"
+                      >
+                        <MDBIcon icon="share-alt" className="white-text" />
+                      </a>
+                      <MDBCardTitle>{el.titre}</MDBCardTitle>
+                      <hr className="hr-light" />
+                      <MDBCardText className="white-text">
+                        <i class="fas fa-map-marker"></i>
+                        {el.Adresse}
+                        <br></br>
+                        {el.nom_categorie}
+                      </MDBCardText>
+                      <a
+                        href="#!"
+                        className="black-text d-flex justify-content-end"
+                      >
+                        {/*rating  */}
+                        {[...Array(5)].map((star, i) => {
+                          const ratingValue = i + 1;
+                          return (
+                            <label>
+                              <input
+                                type="radio"
+                                name="rating"
+                                value={el.notes}
+                                /*  onClick={(e) => {
+                    this.setState({ rating: e.target.value });
+                    this.sendNote(e.target.value);
+                  }}*/
+                              />{" "}
+                              <FaStar
+                                className="star"
+                                color={
+                                  ratingValue <= el.notes
+                                    ? "#ffc107"
+                                    : "#e4e5e9"
+                                }
+                                size={20}
+                                onMouseEnter={(e) =>
+                                  this.setState({ hover: ratingValue })
+                                }
+                                onMouseLeave={(e) =>
+                                  this.setState({ hover: null })
+                                }
+                                //onClick={() => this.sendNote(this.state.rating)}
+                              />
+                            </label>
+                          );
+                        })}
+                        {/*end rating*/}
+                        <Link to={"/detail/" + el._id}>
+                          {" "}
+                          <a>
+                            <span className="lien-detail">EN SAvoir PLUS</span>
+                          </a>
+                        </Link>
+                      </a>
+                    </MDBCardBody>
+                  </MDBCard>
+                </div>
               </MDBCol>
             ))}
         </div>
+        {/*end of cards events*/}
+
+        <div className="div-vide"></div>
       </div>
     );
   }

@@ -28,6 +28,7 @@ class GererEvent extends Component {
   componentDidMount() {
     this.props.getUser();
     this.props.getAllEvents();
+
     //   this.setState{ (nom_organzateure = this.props.authetification.nom) }
   }
   render() {
@@ -51,28 +52,51 @@ class GererEvent extends Component {
     console.log("eventwa7ed", events);
     return (
       <div className="container">
-        <button
+        {/* <button
           className="buttonplus"
           onClick={() => this.setState({ addModelShow: true })}
-        >
-          {this.props.authetification ? (
-            <ModalAddevent nom={this.props.authetification.nom} />
-          ) : null}
-        </button>
+        > */}
+        {this.props.authetification ? (
+          <ModalAddevent nom={this.props.authetification.nom} />
+        ) : null}
+        {/* </button> */}
 
         <Table celled>
-          <Table.Header>
+          <Table.Header className="th-table">
             <Table.Row>
-              <Table.HeaderCell>Titre</Table.HeaderCell>
-              <Table.HeaderCell>Adresse</Table.HeaderCell>
-              <Table.HeaderCell> Debut</Table.HeaderCell>
-              <Table.HeaderCell> Fin</Table.HeaderCell>
-              <Table.HeaderCell>Description</Table.HeaderCell>
-              <Table.HeaderCell>Notes</Table.HeaderCell>
-              <Table.HeaderCell>NB place</Table.HeaderCell>
-              <Table.HeaderCell>NB particiant</Table.HeaderCell>
-              <Table.HeaderCell>Prix</Table.HeaderCell>
-              <Table.HeaderCell>nom_categorie</Table.HeaderCell>
+              <Table.HeaderCell className="Table-HeaderCell">
+                Titre
+              </Table.HeaderCell>
+              <Table.HeaderCell className="Table-HeaderCell">
+                Adresse
+              </Table.HeaderCell>
+              <Table.HeaderCell className="Table-HeaderCell">
+                {" "}
+                Debut
+              </Table.HeaderCell>
+              <Table.HeaderCell className="Table-HeaderCell">
+                {" "}
+                Fin
+              </Table.HeaderCell>
+              <Table.HeaderCell className="Table-HeaderCell">
+                Description
+              </Table.HeaderCell>
+              <Table.HeaderCell className="Table-HeaderCell">
+                Notes
+              </Table.HeaderCell>
+              <Table.HeaderCell className="Table-HeaderCell">
+                {" "}
+                place
+              </Table.HeaderCell>
+              <Table.HeaderCell className="Table-HeaderCell">
+                particiant
+              </Table.HeaderCell>
+              <Table.HeaderCell className="Table-HeaderCell">
+                Prix
+              </Table.HeaderCell>
+              <Table.HeaderCell className="Table-HeaderCell">
+                nom_categorie
+              </Table.HeaderCell>
               {/* <Table.HeaderCell>nom_organzateur</Table.HeaderCell> */}
               <Table.HeaderCell>Action</Table.HeaderCell>
             </Table.Row>
@@ -100,16 +124,15 @@ class GererEvent extends Component {
                   {/*<Table.Cell>{el.nom_organzateur}</Table.Cell>*/}
 
                   <Table.Cell className="pos-Action ">
-                    <Button secondary>
-                      <ModifEvent el={el} />
-                    </Button>
-                    <Button
-                      outline
-                      size="sm"
+                    <ModifEvent el={el} />
+
+                    <MDBBtn
+                      color="elegant-color"
+                      className="btn-color_sup-intern"
                       onClick={() => this.props.deleteEvent(el._id)}
                     >
                       <i class="fas fa-trash"></i>
-                    </Button>
+                    </MDBBtn>
                   </Table.Cell>
                 </Table.Row>
               ))}{" "}

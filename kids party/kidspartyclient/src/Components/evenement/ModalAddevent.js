@@ -21,12 +21,16 @@ class ModalAjoutEvent extends Component {
     modal9: false,
     selectedFile: null,
   };
-  /* componentDidUpdate() {
-         //this.props.getAllUsers();
-         //  this.props.authetification && console.log(this.props.authetification.role)
-         this.setState({ nom_organzateure: this.props.authetification.nom })
- 
-     }*/
+  componentDidMount() {
+    //this.props.getAllUsers();
+    //  this.props.authetification && console.log(this.props.authetification.role)
+    //this.setState({ nom_organzateure: this.props.authetification.nom });
+    this.setState({ nom: this.props.nom });
+    console.log(this.state.nom);
+  }
+  componentDidUpdate() {
+    console.log("ici didudate", this.props.nom);
+  }
 
   toggle = (nr) => () => {
     let modalNumber = "modal" + nr;
@@ -64,8 +68,13 @@ class ModalAjoutEvent extends Component {
     // }
     return (
       <MDBContainer>
-        <MDBBtn onClick={this.toggle(14)}>
+        <MDBBtn
+          color="elegant-color"
+          className="btn-color"
+          onClick={this.toggle(14)}
+        >
           <i class="far fa-plus-square"></i>
+          Creer evenement
         </MDBBtn>
         <MDBModal isOpen={this.state.modal14} toggle={this.toggle(14)} centered>
           <MDBModalHeader toggle={this.toggle(14)}>

@@ -32,7 +32,7 @@ import "./acceuil.css";
 import Categorie from "./Categorie/Categorie";
 import Contact from "./Contact/contact";
 import FooterPage from "./Footer";
-
+import Conecte from "./Modal-persone conecte";
 class Index extends Component {
   state = {
     isOpen: false,
@@ -114,8 +114,8 @@ class Index extends Component {
                 <MDBNavbarNav right>
                   <MDBNavItem>
                     {this.props.authetification ? (
-                      <MDBNavLink to="/" onClick={() => this.props.logout()}>
-                        Log out
+                      <MDBNavLink to="/">
+                        <Conecte />
                       </MDBNavLink>
                     ) : (
                       <MDBNavItem className="pos_btn_menu">
@@ -126,13 +126,20 @@ class Index extends Component {
                             Inscription
                           </button>
                         </MDBNavLink>
-                        <MDBNavLink to="/connexion">
-                          {" "}
+                        <MDBNavItem className="mt-2">
                           <LogIn />
-                        </MDBNavLink>{" "}
+                        </MDBNavItem>
                       </MDBNavItem>
                     )}
                   </MDBNavItem>
+                  {/*  {this.props.authetification ? (
+                    <MDBNavItem></MDBNavItem>
+                  ) : (
+                    <MDBNavItem>
+                      {" "}
+                      <Conecte />
+                    </MDBNavItem>
+                  )}*/}
                 </MDBNavbarNav>
               </MDBCollapse>
             </MDBNavbar>
@@ -147,9 +154,6 @@ class Index extends Component {
                   <Users />
                 </Route>
 
-                {/* <Route exact path="/connexion">
-                  <LogIn />
-                </Route> */}
                 <Route exact path="/Gerer_evenement">
                   <GererEvenement />
                 </Route>

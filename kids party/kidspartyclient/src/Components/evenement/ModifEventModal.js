@@ -39,7 +39,11 @@ export class EventModalModif extends Component {
   render() {
     return (
       <MDBContainer>
-        <MDBBtn outline size="sm" onClick={this.toggle(8)}>
+        <MDBBtn
+          color="elegant-color"
+          className="btn-color_inter_tableau"
+          onClick={this.toggle(8)}
+        >
           <i class="fas fa-edit"></i>
         </MDBBtn>
         <MDBModal
