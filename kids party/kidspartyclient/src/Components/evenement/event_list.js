@@ -27,6 +27,9 @@ import { FaSearch, FaUsers } from "react-icons/fa";
 import RegisterModal from "../Users/ModalRegister";
 import { Select } from "semantic-ui-react";
 import StartRating from "../StartRating";
+import artistique from "../../artistique.jpg";
+import culturel from "../../culturelle.jpg";
+import sport from "../../sport.jpg";
 // import Chart from "../shurt";
 // import { Pie } from "react-chartjs-2";
 var categorie = [];
@@ -81,10 +84,10 @@ class Event_list extends Component {
                 />
                 <Carousel.Caption>
                   <h1 className="titre-card">{el.titre}</h1>
-                  <p>
-                    Nulla vitae elit libero, a pharetra augue mollis interdum.
-                  </p>
-                  <RegisterModal />
+                  <p className="p-carrousel">{el.description}</p>
+                  <Link to="/inscription">
+                    <MDBBtn className="btn_menu">Devenir partenaire</MDBBtn>
+                  </Link>
                 </Carousel.Caption>
               </Carousel.Item>
             ))}
@@ -93,7 +96,10 @@ class Event_list extends Component {
         </div>
         {/* paragraphe Bienvenu */}
         <div className="bienvenu">
-          <h2 className="bienveneu-h1"> Bienvenu Chez Kids Party</h2>
+          <h2 className="bienveneu-h1">
+            {" "}
+            Bienvenu <span className="titre-speciale">Chez Kids</span> Party
+          </h2>
           <p className="bienveneu-p">
             Le lorem ipsum est, en imprimerie, une suite de mots sans
             signification utilisée à titre provisoire pour calibrer une mise en
@@ -103,10 +109,31 @@ class Event_list extends Component {
           </p>
         </div>
         {/* end of bienvenu paragraphe */}
-        {/*  zonne Event */}
-        <h2 className="bienveneu-h2"> Événements</h2>
+        {/*zone de icone de categorie*/}
+        <div className="pos-categorie">
+          <div>
+            <img className="img-categorie" src={artistique} />
+            <h3>artistique</h3>
+          </div>
+          <div>
+            <img className="img-categorie" src={culturel} />
+            <h3>culture</h3>
+          </div>
+          <div>
+            {" "}
+            <img className="img-categorie" src={sport} />
+            <h3>sport</h3>
+          </div>
+        </div>
 
-        <div className="flexselect">
+        {/*end of zone de categorie */}
+        {/*  zonne Event */}
+        <h2 className="bienveneu-h2">
+          {" "}
+          Événements <span className="titre-speciale">A Venir</span>
+        </h2>
+
+        {/* <div className="flexselect">
           <div>
             <InputGroup className="mb-3">
               <InputGroup.Prepend>
@@ -164,7 +191,7 @@ class Event_list extends Component {
               ))}
             </select>
           </div>
-        </div>
+              </div>*/}
 
         {/*Card Event */}
 
@@ -199,7 +226,7 @@ class Event_list extends Component {
                       waves
                       alt="MDBCard image cap"
                     />
-                    <MDBCardBody className="elegant-color white-text rounded-bottom ">
+                    <MDBCardBody className="black-text rounded-bottom ">
                       <a
                         href="#!"
                         className="activator waves-effect waves-light mr-4"
@@ -208,7 +235,7 @@ class Event_list extends Component {
                       </a>
                       <MDBCardTitle>{el.titre}</MDBCardTitle>
                       <hr className="hr-light" />
-                      <MDBCardText className="white-text">
+                      <MDBCardText className="black-text">
                         <i class="fas fa-map-marker"></i>
                         {el.Adresse}
                         <br></br>
