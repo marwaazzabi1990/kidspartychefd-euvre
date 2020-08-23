@@ -15,45 +15,126 @@ class Contact extends Component {
 
   render() {
     return (
-      <div className="body">
-        <form className="test-mailing">
-          <h1>Contactez Nous</h1>
-          <input
-            type="text"
-            name="name"
-            onChange={(e) => this.setState({ name: e.target.value })}
-          ></input>
-          <br></br>
-          <br></br>
-          <input
-            type="text"
-            name="email"
-            onChange={(e) => this.setState({ email: e.target.value })}
-          ></input>
-          <div>
+      <div>
+        <h1 class="section-header">CONTACTEZ-NOUS</h1>
+
+        <div class="contact-wrapper">
+          <form
+            class="form-horizontal"
+            role="form"
+            // method="post"
+            // action="contact.php"
+          >
+            <div class="form-group">
+              <div class="col-sm-12">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="name"
+                  placeholder="Nom"
+                  name="name"
+                  onChange={(e) => this.setState({ name: e.target.value })}
+                />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-sm-12">
+                <input
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  placeholder="EMAIL"
+                  name="email"
+                  onChange={(e) => this.setState({ email: e.target.value })}
+                />
+              </div>
+            </div>
+
             <textarea
-              id="test-mailing"
-              name="test-mailing"
+              class="form-control"
+              rows="10"
+              placeholder="MESSAGE"
+              name="message"
               onChange={(e) => this.setState({ message: e.target.value })}
-              placeholder="Post some lorem ipsum here"
-              required
-              value={this.state.feedback}
-              style={{ width: "100%", height: "150px" }}
-            />
+            ></textarea>
+
+            <button
+              class="btn  send-button"
+              id="submit"
+              type="submit"
+              value="SEND"
+            >
+              <div class="button">
+                <span
+                  className="text"
+                  o
+                  onClick={() =>
+                    this.handleSubmit({
+                      name: this.state.name,
+                      email: this.state.email,
+                      message: this.state.message,
+                    })
+                  }
+                >
+                  Envoyer
+                </span>
+              </div>
+            </button>
+          </form>
+
+          <div class="direct-contact-container">
+            <ul class="contact-list">
+              <li class="list-item">
+                <i class="fa fa-map-marker fa-2x">
+                  <span class="contact-text place">Tunisie</span>
+                </i>
+              </li>
+
+              <li class="list-item">
+                <i class="fas fa-phone fa-2x">
+                  <span class="contact-text phone">
+                    <a href="tel:1-212-555-5555" title="Give me a call">
+                      (216) 26 75 88 99
+                    </a>
+                  </span>
+                </i>
+              </li>
+
+              <li class="list-item">
+                <i class="fas fa-envelope fa-2x">
+                  <span class="contact-text gmail">
+                    <a href="mailto:#" title="Send me an email">
+                      kidsparty@gmail.com
+                    </a>
+                  </span>
+                </i>
+              </li>
+            </ul>
+
+            <hr></hr>
+            <ul class="social-media-list">
+              <li>
+                <a href="#" target="_blank" class="contact-icon">
+                  <i class="fab fa-facebook-square"></i>
+                </a>
+              </li>
+              <li>
+                <a href="#" target="_blank" class="contact-icon">
+                  <i class="fab fa-twitter"></i>
+                </a>
+              </li>
+              <li>
+                <a href="#" target="_blank" class="contact-icon">
+                  <i class="fab fa-instagram"></i>
+                </a>
+              </li>
+            </ul>
+            <hr></hr>
+
+            <div class="copyright">&copy; ALL OF THE RIGHTS RESERVED</div>
           </div>
-          <input
-            type="button"
-            value="Submit"
-            className="btn btn--submit"
-            onClick={() =>
-              this.handleSubmit({
-                name: this.state.name,
-                email: this.state.email,
-                message: this.state.message,
-              })
-            }
-          />
-        </form>
+        </div>
       </div>
     );
   }

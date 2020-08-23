@@ -190,7 +190,7 @@ class ModalRegister extends Component {
                       onChange={this.fileSelectedHandler}
                     />
                     <MDBBtn color="dark" onClick={this.uploadHandler}>
-                      Upload
+                      <i class="fas fa-upload"></i>
                     </MDBBtn>
                   </FormGroup>
                 </Col>

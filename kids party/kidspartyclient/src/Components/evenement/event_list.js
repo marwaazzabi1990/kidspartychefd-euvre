@@ -41,6 +41,9 @@ class Event_list extends Component {
     Adresse: "",
     titre: "",
   };
+  // categorie = () => {
+  //   this.setState({categorie:})
+  // };
   componentDidMount() {
     this.props.getAllEvents();
     this.props.getAllCategorie();
@@ -112,17 +115,23 @@ class Event_list extends Component {
         {/*zone de icone de categorie*/}
         <div className="pos-categorie">
           <div>
-            <img className="img-categorie" src={artistique} />
-            <h3>artistique</h3>
+            <a onClick={(e) => this.setState({ categorie: artistique })}>
+              <img className="img-categorie" src={artistique} />
+              <h3 class="text_h3">artistique</h3>
+            </a>
           </div>
           <div>
-            <img className="img-categorie" src={culturel} />
-            <h3>culture</h3>
+            <a>
+              <img className="img-categorie" src={culturel} />
+              <h3 class="text_h3"> culture</h3>
+            </a>
           </div>
           <div>
             {" "}
-            <img className="img-categorie" src={sport} />
-            <h3>sport</h3>
+            <a>
+              <img className="img-categorie" src={sport} />
+              <h3 class="text_h3">sport</h3>
+            </a>
           </div>
         </div>
 
@@ -212,12 +221,13 @@ class Event_list extends Component {
                 ? eltitre
                 : eltitre.titre.includes(this.state.titre)
             )
+            .slice(event.length - 2, event.length)
             .map((el, i) => (
               <MDBCol md="3">
                 <div className="pos-card-map">
                   {/*ici card*/}
 
-                  <MDBCard className="cardcolor">
+                  <MDBCard>
                     <MDBCardImage
                       top
                       src={"http://localhost:8080/" + el.affiche}
@@ -226,7 +236,7 @@ class Event_list extends Component {
                       waves
                       alt="MDBCard image cap"
                     />
-                    <MDBCardBody className="black-text rounded-bottom ">
+                    <MDBCardBody className="default-color black-text rounded-bottomcardcolor">
                       <a
                         href="#!"
                         className="activator waves-effect waves-light mr-4"

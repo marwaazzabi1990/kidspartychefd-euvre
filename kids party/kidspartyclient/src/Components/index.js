@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import logo from "../logo.png";
+import EventList from "./evenement/ListEvent";
 import Event_list from "./evenement/event_list";
 import Footer from "./Footer";
 import GererEvenement from "./evenement/Gerrer_evenements";
@@ -26,6 +27,7 @@ import Users from "./Users/users_professionnel";
 import Detail from "./evenement/Detail_Event";
 import { getUser, logout } from "../Action/AuthentificationAction";
 import { getEventsFromApi } from "../Action/EventAction";
+import { Eventlist } from "./evenement/ListEvent";
 import { MDBBtn } from "mdbreact";
 
 import "./acceuil.css";
@@ -77,6 +79,12 @@ class Index extends Component {
                     <MDBNavLink to="/">
                       {" "}
                       <span className="item_nav">Acceuil</span>
+                    </MDBNavLink>
+                  </MDBNavItem>
+                  <MDBNavItem active>
+                    <MDBNavLink to="/Evenement">
+                      {" "}
+                      <span className="item_nav">Evenement</span>
                     </MDBNavLink>
                   </MDBNavItem>
                   <MDBNavItem>
@@ -148,6 +156,9 @@ class Index extends Component {
               <Switch>
                 <Route exact path="/">
                   <Event_list />
+                </Route>
+                <Route exact path="/Evenement">
+                  <EventList />
                 </Route>
 
                 <Route exact path="/users">
