@@ -9,6 +9,13 @@ import {
   MDBModalFooter,
 } from "mdbreact";
 import { getUser, logout } from "../Action/AuthentificationAction";
+import {
+  MDBNavItem,
+  MDBDropdown,
+  MDBDropdownMenu,
+  MDBDropdownToggle,
+  MDBDropdownItem,
+} from "mdbreact";
 
 class Conecte extends Component {
   state = {
@@ -28,39 +35,45 @@ class Conecte extends Component {
 
   render() {
     return (
-      <MDBContainer>
-        <MDBBtn
-          color="elegant-color"
-          className="btn-color"
-          onClick={this.toggle(6)}
-        >
-          <i class="fas fa-user-circle"></i>
-        </MDBBtn>
-        <MDBModal
-          isOpen={this.state.modal6}
-          toggle={this.toggle(6)}
-          side
-          position="top-right"
-        >
-          <MDBModalHeader toggle={this.toggle(6)}>
-            MDBModal title
-          </MDBModalHeader>
-          <MDBModalBody className="modal-conecte">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat.
-          </MDBModalBody>
-          <MDBModalFooter>
-            <MDBBtn color="secondary" onClick={this.toggle(6)}>
-              Close
-            </MDBBtn>
-            <MDBBtn color="primary" to="/" onClick={() => this.props.logout()}>
-              Deconexion
-            </MDBBtn>
-          </MDBModalFooter>
-        </MDBModal>
-      </MDBContainer>
+      // <MDBContainer>
+      //   <MDBBtn color="elegant-color" onClick={this.toggle(6)}>
+      //     <i class="fas fa-user-circle"></i>
+      //   </MDBBtn>
+      //   <MDBModal
+      //     isOpen={this.state.modal6}
+      //     toggle={this.toggle(6)}
+      //     side
+      //     position="top-right"
+      //   >
+      //     <MDBModalHeader toggle={this.toggle(6)}>
+      //       MDBModal title
+      //     </MDBModalHeader>
+      //     <MDBModalBody className="modal-conecte">
+      //       <a>Modifier Profil</a>
+      //     </MDBModalBody>
+      //     <MDBModalFooter>
+      //       <MDBBtn color="secondary" onClick={this.toggle(6)}>
+      //         Close
+      //       </MDBBtn>
+      //       <MDBBtn color="primary" to="/" onClick={() => this.props.logout()}>
+      //         Deconexion
+      //       </MDBBtn>
+      //     </MDBModalFooter>
+      //   </MDBModal>
+      // </MDBContainer>
+      <MDBNavItem>
+        <MDBDropdown>
+          <MDBDropdownToggle nav caret>
+            <span className="mr-2">Dropdown</span>
+          </MDBDropdownToggle>
+          <MDBDropdownMenu>
+            <MDBDropdownItem href="#!">Action</MDBDropdownItem>
+            <MDBDropdownItem href="#!">Another Action</MDBDropdownItem>
+            <MDBDropdownItem href="#!">Something else here</MDBDropdownItem>
+            <MDBDropdownItem href="#!">Something else here</MDBDropdownItem>
+          </MDBDropdownMenu>
+        </MDBDropdown>
+      </MDBNavItem>
     );
   }
 }
@@ -78,3 +91,5 @@ const mapDispatchToProps = (dispatch) => ({
   logout: () => dispatch(logout()),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Conecte);
+
+/* */

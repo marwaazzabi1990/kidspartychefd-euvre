@@ -67,6 +67,7 @@ app.post("/image", (req, res) => {
 //importing route Event
 var Event = require("./app/Routes/EventsRouter");
 var User = require("./app/Routes/UserRouter");
+var Categorie = require("./app/Routes/CategorieRoutes");
 // parse requests of content-type - application/json
 app.use(bodyParser.json());
 // parse requests of content-type - application/x-www-form-urlencoded
@@ -76,6 +77,7 @@ app.use(cors());
 // Use routers
 app.use("/event", Event);
 app.use("/user", User);
+app.use("/categorie", Categorie);
 app.use(express.json());
 
 //const db = require("./app/models");

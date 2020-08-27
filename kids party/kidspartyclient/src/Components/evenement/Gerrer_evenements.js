@@ -52,6 +52,7 @@ class GererEvent extends Component {
     console.log("eventwa7ed", events);
     return (
       <div className="container">
+        <h1 className="bienveneu-h1">Mes evenements creer</h1>
         {/* <button
           className="buttonplus"
           onClick={() => this.setState({ addModelShow: true })}
@@ -112,8 +113,13 @@ class GererEvent extends Component {
                     <Label ribbon>{el.titre}</Label>
                   </Table.Cell>
                   <Table.Cell>{el.Adresse}</Table.Cell>
-                  <Table.Cell>{el.Date_Debut}</Table.Cell>
-                  <Table.Cell>{el.Date_fin}</Table.Cell>
+                  <Table.Cell>
+                    {el.Date_Debut.day}/{el.Date_Debut.moth}/
+                    {el.Date_Debut.year}
+                  </Table.Cell>
+                  <Table.Cell>
+                    {el.Date_fin.day}/{el.Date_fin.moth}/{el.Date_fin.year}
+                  </Table.Cell>
 
                   <Table.Cell>{el.description}</Table.Cell>
                   <Table.Cell>{el.notes}</Table.Cell>

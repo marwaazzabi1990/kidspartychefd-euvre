@@ -3,8 +3,16 @@ const mongoose = require("mongoose");
 
 const EventShema = new mongoose.Schema({
   titre: { type: String, required: true },
-  Date_Debut: { type: String, required: true },
-  Date_fin: { type: String },
+  Date_Debut: {
+    year: { type: String },
+    moth: { type: String },
+    day: { type: String },
+  },
+  Date_fin: {
+    year: { type: String },
+    moth: { type: String },
+    day: { type: String },
+  },
   Adresse: { type: String, required: true },
   description: { type: String, required: true },
   notes: { type: Number, required: true },

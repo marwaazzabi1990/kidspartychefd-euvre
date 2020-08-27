@@ -21,66 +21,29 @@ export default class Detail extends Component {
   render() {
     return (
       <div>
-        <div className="detail_generale">
-          <div className="pos">
-            <div>
-              <img
-                className="img-detail"
-                src={"http://localhost:8080/" + this.props.el.affiche}
-              />
-            </div>
+        <h1 className="titre">
+          Titre <span className="tt"> {this.props.el.titre}</span>
+        </h1>
 
-            <div className="detail">
-              <h1 className="titre">
-                Titre <span className="tt"> {this.props.el.titre}</span>
-              </h1>
-              <StartRating el={this.props.el} />
-              <h3>
-                {" "}
-                <Label className="label-decription">Date Debut</Label>
-              </h3>
-              <h2>{this.props.el.Date_Debut}</h2>
-              <h3>
-                {" "}
-                <Label className="label-decription">Date Fin </Label>
-              </h3>
-              <h2>{this.props.el.Date_Fin}</h2>
-              <h3>
-                {" "}
-                <Label className="label-decription">Adresse</Label>
-              </h3>
-              <h5>{this.props.el.Adresse}</h5>
-              <h3>
-                {" "}
-                <Label className="label-decription">Description</Label>
-              </h3>
-              <p>{this.props.el.description}</p> <br />
-              <h3>
-                {" "}
-                <Label className="label-decription">Prix</Label>
-              </h3>
-              <p>{this.props.el.prix}</p> <br />
-              <div className="pos_detail"></div>
-            </div>
+        <div className="pos_detail ">
+          <div>
+            <img
+              className="img-detail"
+              src={"http://localhost:8080/" + this.props.el.affiche}
+            />
           </div>
-          <div className="pos_reaction">
-            <div className="react-imog">
-              {/* <SFacebook />*/}
-              <button className="icone_imog">
-                <i class="fas fa-thumbs-down"></i>
-              </button>
-              <span>0</span>
-              <button className="icone_imog">
-                {" "}
-                <i class="fas fa-thumbs-up"></i>
-              </button>
-              <span>0</span>
-            </div>
-            <div>
-              <MDBBtn color="danger">Participer</MDBBtn>
-            </div>
+          <StartRating el={this.props.el} />
+          <div>
+            <p>
+              {this.props.el.description}
+              {this.props.el.Date_debut}
+            </p>
           </div>
+          <MDBBtn className="btn_menu2">Participer</MDBBtn>
         </div>
+        <div className="div-vide"></div>
+
+        <div className="div-vide"></div>
       </div>
     );
   }

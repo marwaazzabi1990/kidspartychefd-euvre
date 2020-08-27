@@ -13,10 +13,11 @@
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-evenly;
   border-radius: 5px;
+  margin-top: 50px;
   /*box-shadow: 5px 5px 2px 1px rgba(0, 0, 255, 0.2);*/
-  margin-left: 30px;
+  margin-left: 40px;
 }
 /*.carrousel_style {
   height: 200px;

@@ -9,13 +9,14 @@ class StartRating extends Component {
     hover: null,
   };
 
-  sendNote = (e) => {
+  sendNote = (e, el) => {
     console.log("zz", Number(e));
-    console.log("le nombre de notes de base ", Number(this.props.el.notes));
-    console.log(
+
+    console.log("le nombre de notes de base ", Number(el));
+    /*  console.log(
       "les nombre de personne de base ",
       Number(this.props.el.nb_per_note)
-    );
+    );*/
     let moy1 = Number(this.props.el.notes) * Number(this.props.el.nb_per_note);
     console.log("moy1 apres calcul", moy1);
     let moy2 = Number(moy1) + Number(e);
@@ -47,7 +48,7 @@ class StartRating extends Component {
     this.props.getAllEvents();
   }
   render() {
-    console.log(this.props.notes);
+    /// console.log("sds", this.props.el.notes);
     return (
       <div>
         {[...Array(5)].map((star, i) => {
@@ -73,7 +74,9 @@ class StartRating extends Component {
                 size={20}
                 onMouseEnter={(e) => this.setState({ hover: ratingValue })}
                 onMouseLeave={(e) => this.setState({ hover: null })}
-                //onClick={() => this.sendNote(this.state.rating)}
+                onClick={() =>
+                  this.sendNote(this.state.rating, this.props.notes)
+                }
               />
             </label>
           );

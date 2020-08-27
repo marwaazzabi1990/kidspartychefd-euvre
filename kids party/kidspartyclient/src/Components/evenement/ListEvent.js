@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { getCategorieFromApi } from "../../Action/CategorieAction.js";
 import {
   MDBCardGroup,
   MDBIcon,
@@ -13,11 +14,15 @@ import {
   MDBRow,
   MDBView,
 } from "mdbreact";
+import { MDBContainer, MDBInput } from "mdbreact";
+
+import Moment from "react-moment";
 import { getEventsFromApi } from "../../Action/EventAction.js";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
 import { FaSearch, FaUsers } from "react-icons/fa";
 import { Carousel, InputGroup, FormControl, Form } from "react-bootstrap";
+//import Carrousel from "./carrousel";
 var categorie = [];
 var newArray = [];
 class Eventlist extends Component {
@@ -28,6 +33,7 @@ class Eventlist extends Component {
   };
   componentDidMount() {
     this.props.getAllEvents();
+    this.props.getAllCategorie();
   }
   filter = (e) => {
     let input = e.target.value;
@@ -36,24 +42,28 @@ class Eventlist extends Component {
 
     console.log(this.state.titre);
   };
-  distinctDoubleCategorie = () => {
-    let ArrayOfCategorie = [];
-    console.log("categorie is :" + this.props.categorie);
-    this.props.categorie.map((el) => ArrayOfCategorie.push(el.nom_categorie));
-    newArray = new Set(ArrayOfCategorie);
-    categorie = [...newArray];
-  };
+  // onClickartistique = (e) => {
+  //   this.setState({ Categorie: "artistique" });
+  //   console.log(this.state.Categorie);
+  // };
+
+  // distinctDoubleCategorie = () => {
+  //   let ArrayOfCategorie = [];
+  //   console.log("categorie is :" + this.props.categorie);
+  //   this.props.categorie.map((el) => ArrayOfCategorie.push(el.nom_categorie));
+  //   newArray = new Set(ArrayOfCategorie);
+  //   categorie = [...newArray];
+  // };
   render() {
+    // this.distinctDoubleCategorie();
     return (
-      <div>
-        <div className="flexselect">
-          <div>
+      <div className="pos-filter">
+        <div>
+          <div className="filter">
             <InputGroup className="mb-3">
-              <InputGroup.Prepend>
-                <InputGroup.Text id="basic-addon1">
-                  <FaSearch />
-                </InputGroup.Text>
-              </InputGroup.Prepend>
+              <InputGroup.Text id="basic-addon1">
+                <FaSearch />
+              </InputGroup.Text>
               <input
                 onChange={(e) => this.filter(e)}
                 placeholder="Rechercher  "
@@ -61,6 +71,7 @@ class Eventlist extends Component {
               />
             </InputGroup>
           </div>
+          <hr></hr>
           <div>
             <select
               className="browser-default custom-select"
@@ -90,8 +101,20 @@ class Eventlist extends Component {
               <option value="El Jem">El Jem</option>
             </select>
           </div>
-
+          <hr></hr>
           <div>
+            {/* <MDBContainer className="mt-5">
+              <MDBInput
+                gap
+                onClick={this.onClickartistique(2)}
+                checked={this.state.radio === 2 ? true : false}
+                label="artistique"
+                type="radio"
+                id="radio2"
+                value="artistique"
+              />
+            </MDBContainer> */}
+            <hr></hr>
             <select
               className="browser-default custom-select"
               onChange={(e) => this.setState({ Categorie: e.target.value })}
@@ -99,8 +122,8 @@ class Eventlist extends Component {
               id="Quantity-select"
             >
               <option value="">Categorie</option>
-              {categorie.map((el) => (
-                <option value={el}>{el}</option>
+              {this.props.categorie.map((el, i) => (
+                <option value={el}>{el.titre}</option>
               ))}
             </select>
           </div>
@@ -124,38 +147,16 @@ class Eventlist extends Component {
                 : eltitre.titre.includes(this.state.titre)
             )
             .map((el) => (
-              <MDBCol md="3">
-                <div>
-                  {/*ici card*/}
-
-                  <MDBCard>
-                    <MDBCardImage
-                      top
-                      src={"http://localhost:8080/" + el.affiche}
-                      overlay="white-slight"
-                      hover
-                      waves
-                      alt="MDBCard image cap"
-                    />
-                    <MDBCardBody className="default-color black-text rounded-bottomcardcolor">
-                      <a
-                        href="#!"
-                        className="activator waves-effect waves-light mr-4"
-                      >
-                        <MDBIcon icon="share-alt" className="white-text" />
-                      </a>
-                      <MDBCardTitle>{el.titre}</MDBCardTitle>
-                      <hr className="hr-light" />
-                      <MDBCardText className="black-text">
-                        <i class="fas fa-map-marker"></i>
-                        {el.Adresse}
-                        <br></br>
-                        {el.nom_categorie}
-                      </MDBCardText>
-                      <a
-                        href="#!"
-                        className="black-text d-flex justify-content-end"
-                      >
+              <div>
+                <MDBCard className="MDBCol-card">
+                  <MDBCardImage
+                    className="img-fluid"
+                    src={"http://localhost:8080/" + el.affiche}
+                  />
+                  <MDBCardBody>
+                    <MDBCardTitle>{el.titre}</MDBCardTitle>
+                    <MDBCardText>
+                      <div className="rating">
                         {/*rating  */}
                         {[...Array(5)].map((star, i) => {
                           const ratingValue = i + 1;
@@ -165,6 +166,10 @@ class Eventlist extends Component {
                                 type="radio"
                                 name="rating"
                                 value={el.notes}
+                                /*  onClick={(e) => {
+this.setState({ rating: e.target.value });
+this.sendNote(e.target.value);
+}}*/
                               />{" "}
                               <FaStar
                                 className="star"
@@ -185,20 +190,30 @@ class Eventlist extends Component {
                             </label>
                           );
                         })}
-                        {/*end rating*/}
-                        <Link to={"/detail/" + el._id}>
-                          {" "}
-                          <a>
-                            <span className="lien-detail">EN SAvoir PLUS</span>
-                          </a>
-                        </Link>
-                      </a>
-                    </MDBCardBody>
-                  </MDBCard>
-                </div>
-              </MDBCol>
+                        <br></br>
+                        {el.categorie}
+                        {el.Adresse}
+                      </div>
+                    </MDBCardText>
+                    <MDBBtn
+                      style={{ backgroundColor: "white", height: "40px" }}
+                    >
+                      {" "}
+                      <Link to={"/detail/" + el._id}>
+                        {" "}
+                        <a>
+                          <span style={{ color: "white" }}>EN SAvoir PLUS</span>
+                        </a>
+                      </Link>
+                    </MDBBtn>
+                  </MDBCardBody>
+                </MDBCard>
+
+                {/*ici card*/}
+              </div>
             ))}
         </div>
+        <div className="div-vide"></div>
       </div>
     );
   }
@@ -206,12 +221,13 @@ class Eventlist extends Component {
 
 const mapStateToProps = (state) => ({
   event: state.event,
-  // categorie: state.categorie,
+  categorie: state.categorie,
   // authetification: state.authetification.user,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   getAllEvents: () => dispatch(getEventsFromApi()),
+  getAllCategorie: () => dispatch(getCategorieFromApi()),
   //   getAllCategorie: () => dispatch(getCategorieFromApi()),
   //   getUser: () => dispatch(getUser()),
 });

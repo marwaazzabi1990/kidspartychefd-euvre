@@ -1,14 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { FaStar } from "react-icons/fa";
+import Moment from "react-moment";
 import "./event_list.css";
 import { getEventsFromApi } from "../../Action/EventAction.js";
 import { getCategorieFromApi } from "../../Action/CategorieAction.js";
 import { getUser } from "../../Action/AuthentificationAction";
 import { Carousel, InputGroup, FormControl, Form } from "react-bootstrap";
 import {
-  MDBCardGroup,
-  MDBIcon,
   MDBBtn,
   MDBCard,
   MDBCardBody,
@@ -16,8 +15,6 @@ import {
   MDBCardTitle,
   MDBCardText,
   MDBCol,
-  MDBRow,
-  MDBView,
 } from "mdbreact";
 
 import ModalDetail from "./Detail_Event";
@@ -27,9 +24,10 @@ import { FaSearch, FaUsers } from "react-icons/fa";
 import RegisterModal from "../Users/ModalRegister";
 import { Select } from "semantic-ui-react";
 import StartRating from "../StartRating";
-import artistique from "../../artistique.jpg";
+import artistique from "../../artistique2.png";
 import culturel from "../../culturelle.jpg";
-import sport from "../../sport.jpg";
+import sport from "../../sport.jpeg";
+
 // import Chart from "../shurt";
 // import { Pie } from "react-chartjs-2";
 var categorie = [];
@@ -66,6 +64,7 @@ class Event_list extends Component {
   };
 
   render() {
+    console.log(this.props.event);
     this.distinctDoubleCategorie();
     const { event } = this.props;
     // this.nomUser();
@@ -86,11 +85,11 @@ class Event_list extends Component {
                   alt="First slide"
                 />
                 <Carousel.Caption>
-                  <h1 className="titre-card">{el.titre}</h1>
+                  {/* <h1 className="titre-card">{el.titre}</h1>
                   <p className="p-carrousel">{el.description}</p>
                   <Link to="/inscription">
                     <MDBBtn className="btn_menu">Devenir partenaire</MDBBtn>
-                  </Link>
+                  </Link> */}
                 </Carousel.Caption>
               </Carousel.Item>
             ))}
@@ -114,16 +113,14 @@ class Event_list extends Component {
         {/* end of bienvenu paragraphe */}
         {/*zone de icone de categorie*/}
         <div className="pos-categorie">
-          <div>
+          <div className="pos_categorie_img">
             <a onClick={(e) => this.setState({ categorie: artistique })}>
-              <img className="img-categorie" src={artistique} />
-              <h3 class="text_h3">artistique</h3>
-            </a>
-          </div>
-          <div>
-            <a>
-              <img className="img-categorie" src={culturel} />
-              <h3 class="text_h3"> culture</h3>
+              <div>
+                <img className="img-categorie" src={artistique} />
+              </div>
+              <div>
+                <h3 class="text_h3">artistique</h3>
+              </div>
             </a>
           </div>
           <div>
@@ -131,6 +128,12 @@ class Event_list extends Component {
             <a>
               <img className="img-categorie" src={sport} />
               <h3 class="text_h3">sport</h3>
+            </a>
+          </div>
+          <div>
+            <a>
+              <img className="img-categorie" src={culturel} />
+              <h3 class="text_h3"> culture</h3>
             </a>
           </div>
         </div>
@@ -141,66 +144,6 @@ class Event_list extends Component {
           {" "}
           Événements <span className="titre-speciale">A Venir</span>
         </h2>
-
-        {/* <div className="flexselect">
-          <div>
-            <InputGroup className="mb-3">
-              <InputGroup.Prepend>
-                <InputGroup.Text id="basic-addon1">
-                  <FaSearch />
-                </InputGroup.Text>
-              </InputGroup.Prepend>
-              <input
-                onChange={(e) => this.filter(e)}
-                placeholder="Rechercher  "
-                aria-describedby="basic-addon1"
-              />
-            </InputGroup>
-          </div>
-          <div>
-            <select
-              className="browser-default custom-select"
-              onChange={(e) => this.setState({ Adresse: e.target.value })}
-            >
-              <option value="">Lieu</option>
-
-              <option value="Hammamet">Hammamet</option>
-              <option value="Kelibia">kelibia</option>
-              <option value="Sousse">Sousse</option>
-              <option value="Djerba">Djerba</option>
-              <option value="Monastir">Monastir</option>
-
-              <option value="Mahdia">Mahdia</option>
-              <option value="Tabarka">Tabarka</option>
-              <option value="Zarzis">Zarzis</option>
-              <option value="Tunis">Tunis</option>
-              <option value="Sfax">Sfax</option>
-              <option value="Nabeul">Nabeul</option>
-              <option value="Tozeur">Tozeur</option>
-              <option value="Gammarth">Gammarth</option>
-              <option value="Douz">Douz</option>
-              <option value="Bizerte">Bizerte</option>
-              <option value="Ain Draham">Ain Draham</option>
-              <option value="Kairouan">Kairouan</option>
-              <option value="Tataouine">Tataouine</option>
-              <option value="El Jem">El Jem</option>
-            </select>
-          </div>
-
-          <div>
-            <select
-              className="browser-default custom-select"
-              onChange={(e) => this.setState({ Categorie: e.target.value })}
-              name="pets"
-              id="Quantity-select"
-            >
-              <option value="">Categorie</option>
-              {categorie.map((el) => (
-                <option value={el}>{el}</option>
-              ))}
-            </select>
-          </div>
-              </div>*/}
 
         {/*Card Event */}
 
@@ -226,84 +169,71 @@ class Event_list extends Component {
               <MDBCol md="3">
                 <div className="pos-card-map">
                   {/*ici card*/}
+                  <MDBCol>
+                    <div className="pos-card-map">
+                      <MDBCard className="card">
+                        <MDBCardImage
+                          className="img-fluid"
+                          src={"http://localhost:8080/" + el.affiche}
+                        />
+                        <MDBCardBody>
+                          <MDBCardTitle>{el.titre}</MDBCardTitle>
+                          <MDBCardText>
+                            <div className="rating">
+                              {/*rating  */}
+                              {[...Array(5)].map((star, i) => {
+                                const ratingValue = i + 1;
+                                return (
+                                  <label>
+                                    <input
+                                      type="radio"
+                                      name="rating"
+                                      value={el.notes}
+                                    />{" "}
+                                    <FaStar
+                                      className="star"
+                                      color={
+                                        ratingValue <= el.notes
+                                          ? "#ffc107"
+                                          : "#e4e5e9"
+                                      }
+                                      size={20}
+                                      onMouseEnter={(e) =>
+                                        this.setState({ hover: ratingValue })
+                                      }
+                                      onMouseLeave={(e) =>
+                                        this.setState({ hover: null })
+                                      }
+                                      //onClick={() => this.sendNote(this.state.rating)}
+                                    />
+                                  </label>
+                                );
+                              })}
+                            </div>
+                          </MDBCardText>
+                          <MDBBtn>
+                            {" "}
+                            <Link to={"/detail/" + el._id}>
+                              {" "}
+                              <a>
+                                <span style={{ color: "white" }}>
+                                  {" "}
+                                  EN SAvoir PLUS
+                                </span>
+                              </a>
+                            </Link>
+                          </MDBBtn>
+                        </MDBCardBody>
+                      </MDBCard>
 
-                  <MDBCard>
-                    <MDBCardImage
-                      top
-                      src={"http://localhost:8080/" + el.affiche}
-                      overlay="white-slight"
-                      hover
-                      waves
-                      alt="MDBCard image cap"
-                    />
-                    <MDBCardBody className="default-color black-text rounded-bottomcardcolor">
-                      <a
-                        href="#!"
-                        className="activator waves-effect waves-light mr-4"
-                      >
-                        <MDBIcon icon="share-alt" className="white-text" />
-                      </a>
-                      <MDBCardTitle>{el.titre}</MDBCardTitle>
-                      <hr className="hr-light" />
-                      <MDBCardText className="black-text">
-                        <i class="fas fa-map-marker"></i>
-                        {el.Adresse}
-                        <br></br>
-                        {el.nom_categorie}
-                      </MDBCardText>
-                      <a
-                        href="#!"
-                        className="black-text d-flex justify-content-end"
-                      >
-                        {/*rating  */}
-                        {[...Array(5)].map((star, i) => {
-                          const ratingValue = i + 1;
-                          return (
-                            <label>
-                              <input
-                                type="radio"
-                                name="rating"
-                                value={el.notes}
-                                /*  onClick={(e) => {
-                    this.setState({ rating: e.target.value });
-                    this.sendNote(e.target.value);
-                  }}*/
-                              />{" "}
-                              <FaStar
-                                className="star"
-                                color={
-                                  ratingValue <= el.notes
-                                    ? "#ffc107"
-                                    : "#e4e5e9"
-                                }
-                                size={20}
-                                onMouseEnter={(e) =>
-                                  this.setState({ hover: ratingValue })
-                                }
-                                onMouseLeave={(e) =>
-                                  this.setState({ hover: null })
-                                }
-                                //onClick={() => this.sendNote(this.state.rating)}
-                              />
-                            </label>
-                          );
-                        })}
-                        {/*end rating*/}
-                        <Link to={"/detail/" + el._id}>
-                          {" "}
-                          <a>
-                            <span className="lien-detail">EN SAvoir PLUS</span>
-                          </a>
-                        </Link>
-                      </a>
-                    </MDBCardBody>
-                  </MDBCard>
+                      {/*ici card*/}
+                    </div>
+                  </MDBCol>
                 </div>
+                {/*end of cards events*/}
               </MDBCol>
             ))}
         </div>
-        {/*end of cards events*/}
-
         <div className="div-vide"></div>
       </div>
     );

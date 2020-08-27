@@ -27,6 +27,7 @@
     "nodemon": "^2.0.4",
     "parser": "^0.1.4",
     "path": "^0.12.7",
+    "react-multi-carousel": "^2.5.5",
     "sequelize": "^6.3.3"
   }
 }

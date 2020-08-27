@@ -12,6 +12,7 @@ export function getEventsFromApi() {
       dispatch(getAllevents(res.data));
     });
 }
+/*modifEvent*/
 export const ModifierEvent = (payload) => ({
   type: MODIF_EVENT,
   payload,
@@ -57,7 +58,7 @@ export function modifEventFromApi(data) {
       // window.location.reload();
     });
 }
-/*delette USER */
+/*delette event */
 
 export const deleteEvent = (payload) => ({
   type: DELETE_EVENT,

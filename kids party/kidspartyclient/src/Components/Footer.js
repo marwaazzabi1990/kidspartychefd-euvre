@@ -1,11 +1,12 @@
 import React from "react";
 import { MDBCol, MDBContainer, MDBRow, MDBFooter } from "mdbreact";
-import logo from "../logo.png";
+import logo from "../logo2.png";
 
 const FooterPage = () => {
   return (
-    <div className="bg-light ">
+    <div>
       <MDBFooter
+        color="default-color"
         className="text-dark"
         className="font-small pt-4 mt-4 categoryNavigationPrincipalFooter "
       >
@@ -14,7 +15,7 @@ const FooterPage = () => {
             <MDBCol md="6">
               <h5 class="text_h3">Kids Party</h5>
               <p>
-                <img src={logo} />
+                <img src={logo} className="img-lg-footer " />
                 <span className="text-dark font-large">
                   Le meilleur accompagnement pour gagner du temps{" "}
                 </span>

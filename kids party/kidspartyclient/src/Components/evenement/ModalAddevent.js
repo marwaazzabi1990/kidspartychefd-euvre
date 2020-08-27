@@ -10,9 +10,10 @@ import {
 } from "mdbreact";
 import { MDBRow, MDBCol, MDBInput } from "mdbreact";
 import { connect } from "react-redux";
-import { addEventInApi } from "../../Action/EventAction.js";
+import { addEventInApi, getEventsFromApi } from "../../Action/EventAction.js";
 import { MDBDatePickerV5 } from "mdbreact";
 import { getUser } from "../../Action/AuthentificationAction";
+import Datepicker from "./DatePicker";
 import axios from "axios";
 
 class ModalAjoutEvent extends Component {
@@ -20,12 +21,14 @@ class ModalAjoutEvent extends Component {
     modal14: false,
     modal9: false,
     selectedFile: null,
+    date: "",
   };
   componentDidMount() {
     //this.props.getAllUsers();
     //  this.props.authetification && console.log(this.props.authetification.role)
     //this.setState({ nom_organzateure: this.props.authetification.nom });
     this.setState({ nom: this.props.nom });
+    this.props.getAllEvents();
     console.log(this.state.nom);
   }
   componentDidUpdate() {
@@ -38,6 +41,11 @@ class ModalAjoutEvent extends Component {
       [modalNumber]: !this.state[modalNumber],
     });
   };
+
+  setDate = (el) => {
+    this.setState({ date: el });
+  };
+
   //upload logo
 
   fileSelectedHandler = (event) => {
@@ -59,6 +67,7 @@ class ModalAjoutEvent extends Component {
   };
 
   render() {
+    console.log("eventday", this.state.date);
     // this.props.authetification && console.log(this.props.authetification.nom)
     // this.props.authetification && console.log(this.props.authetification.nom)
     // //this.setState({ nom_organzateure: this.props.authetification.nom })
@@ -88,18 +97,7 @@ class ModalAjoutEvent extends Component {
                 outline
               />
 
-              <MDBInput
-                onChange={(e) => this.setState({ Date_Debut: e.target.value })}
-                label="Date_Debut"
-                outline
-                type="date"
-              />
-              <MDBInput
-                onChange={(e) => this.setState({ Date_fin: e.target.value })}
-                label="Date_fin"
-                outline
-                type="date"
-              />
+              <Datepicker setDate={this.setDate} event={this.props.event} />
 
               <MDBInput
                 onChange={(e) => this.setState({ Adresse: e.target.value })}
@@ -160,8 +158,8 @@ class ModalAjoutEvent extends Component {
               onClick={() =>
                 this.props.addEvent({
                   titre: this.state.titre,
-                  Date_Debut: this.state.Date_Debut,
-                  Date_fin: this.state.Date_fin,
+                  Date_Debut: this.state.date.from,
+                  Date_fin: this.state.date.to,
                   Adresse: this.state.Adresse,
                   description: this.state.description,
                   notes: 0,
@@ -191,6 +189,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   addEvent: (el) => dispatch(addEventInApi(el)),
+  getAllEvents: () => dispatch(getEventsFromApi()),
 
   getUser: () => dispatch(getUser()),
 });

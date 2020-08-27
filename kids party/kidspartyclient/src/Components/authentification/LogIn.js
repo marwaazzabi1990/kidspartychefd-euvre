@@ -90,7 +90,7 @@ class logIn extends Component {
   render() {
     const { formErrors } = this.state;
     return (
-      <MDBContainer>
+      <MDBContainer className="cont-modal">
         <button
           className="btn btn-outline btn-md btn-rounded btn-navbar waves-effect waves-light btn_menu1 "
           onClick={this.toggle}
@@ -107,15 +107,14 @@ class logIn extends Component {
             <form>
               <div className="grey-text">
                 <MDBInput
-                  label="Type your email"
-                  icon="envelope"
+                  label="Email"
                   type="email"
                   validate
                   error="wrong"
                   name="email"
                   success="right"
                   onChange={this.handleChange}
-                  className="color"
+                  className="inp-text"
                 />
                 {formErrors.email.length > 0 && (
                   <span className="errorMessage">{formErrors.email}</span>
@@ -123,13 +122,13 @@ class logIn extends Component {
                 <br></br>
 
                 <MDBInput
-                  label="Type your password"
-                  icon="lock"
+                  label="Password"
                   group
                   type="password"
                   name="password"
                   validate
                   onChange={this.handleChange}
+                  className="inp-text "
                 />
                 {formErrors.password.length > 0 && (
                   <span className="errorMessage">{formErrors.password}</span>
@@ -139,11 +138,11 @@ class logIn extends Component {
             <div></div>
           </MDBModalBody>
           <MDBModalFooter>
-            <MDBBtn color="secondary" onClick={this.toggle}>
+            {/* <MDBBtn color="secondary" onClick={this.toggle}>
               Close
-            </MDBBtn>
+            </MDBBtn> */}
             <MDBBtn
-              color="primary"
+             className="btn_menu1"
               onClick={
                 (this.handelSubmit,
                 () =>
@@ -153,7 +152,7 @@ class logIn extends Component {
                   }))
               }
             >
-              Save changes
+              Connexion
             </MDBBtn>
           </MDBModalFooter>
         </MDBModal>
