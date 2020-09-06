@@ -77,7 +77,7 @@ class Index extends Component {
                 isOpen={this.state.isOpen}
                 navbar
               >
-                <MDBNavbarNav left>
+                <MDBNavbarNav left className="text_navbar">
                   <MDBNavItem active>
                     <MDBNavLink className="menu" to="/">
                       Acceuil
@@ -125,7 +125,7 @@ class Index extends Component {
                 <MDBNavbarNav className="pos-drop" right>
                   <MDBNavItem>
                     {this.props.authetification ? (
-                      <MDBDropdown>
+                      <MDBDropdown className="text_navbar">
                         <MDBDropdownToggle nav caret>
                           <MDBIcon className="icon-color" icon="user" />
                         </MDBDropdownToggle>

@@ -144,3 +144,6 @@ div#main-card:hover {
     transform: scale3d(1, 1, 1);
   }
 }
+.pos-btn {
+  margin-left: 600px !important;
+}

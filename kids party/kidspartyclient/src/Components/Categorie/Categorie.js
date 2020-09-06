@@ -34,100 +34,45 @@ class Categorie extends Component {
   }
   render() {
     return (
-      <div className=" marg-top">
-        <h1>
-          La listes de <span className="titre-speciale"> Categorie</span>
+      <div>
+        <h1 className=" marg-top">
+          Listes des <span className="titre-speciale"> Categories</span>
         </h1>
+        <AddCategorie />
         <br></br>
-        <center>
-          <AddCategorie />
-        </center>
+        <div className="containerr">
+          <Table striped bordered hover size="sm">
+            <thead className="th-table">
+              <tr>
+                <th>Titre</th>
+                <th>Description</th>
 
-        <Table className="cat-table">
-          <Table.Header className="th-table2">
-            <Table.Row>
-              <Table.HeaderCell className="Table-HeaderCell">
-                Titre
-              </Table.HeaderCell>
-              <Table.HeaderCell className="Table-HeaderCell">
-                Description
-              </Table.HeaderCell>
-              {/* <Table.HeaderCell className="Table-HeaderCell">
-                {" "}
-                Debut
-              </Table.HeaderCell>
-              <Table.HeaderCell className="Table-HeaderCell">
-                {" "}
-                Fin
-              </Table.HeaderCell>
-              <Table.HeaderCell className="Table-HeaderCell">
-                Description
-              </Table.HeaderCell>
-              <Table.HeaderCell className="Table-HeaderCell">
-                Notes
-              </Table.HeaderCell>
-              <Table.HeaderCell className="Table-HeaderCell">
-                {" "}
-                place
-              </Table.HeaderCell>
-              <Table.HeaderCell className="Table-HeaderCell">
-                particiant
-              </Table.HeaderCell>
-              <Table.HeaderCell className="Table-HeaderCell">
-                Prix
-              </Table.HeaderCell>
-              <Table.HeaderCell className="Table-HeaderCell">
-                nom_categorie
-              </Table.HeaderCell> */}
-              {/* <Table.HeaderCell>nom_organzateur</Table.HeaderCell> */}
-              <Table.HeaderCell className="actcategorie">
-                Action
-              </Table.HeaderCell>
-            </Table.Row>
-          </Table.Header>
+                <th className="actcategorie">Action</th>
+              </tr>
+            </thead>
 
-          <Table.Body>
-            {this.props.categorie.map((el, i) => (
-              <Table.Row>
-                <Table.Cell>
-                  <Label ribbon>{el.titre}</Label>
-                </Table.Cell>
-                <Table.Cell>{el.Description}</Table.Cell>
+            <tbody>
+              {this.props.categorie.map((el, i) => (
+                <tr>
+                  <td>{el.titre}</td>
+                  <td>{el.Description}</td>
 
-                <Table.Cell className="pos-Action ">
-                  {/* <ModifEvent el={el} /> */}
+                  <td className="pos-Action ">
+                    {/* <ModifEvent el={el} /> */}
 
-                  <MDBBtn
-                    color="elegant-color"
-                    className="btn-color_sup-inter"
-                    onClick={() => this.props.deleteCategorie(el._id)}
-                  >
-                    <i class="fas fa-trash"></i>
-                  </MDBBtn>
-                </Table.Cell>
-              </Table.Row>
-            ))}{" "}
-          </Table.Body>
-
-          <Table.Footer>
-            <Table.Row>
-              <Table.HeaderCell colSpan="3">
-                <Menu floated="right" pagination>
-                  {/* <Menu.Item as='a' icon>
-                                        <Icon name='chevron left' />
-                                    </Menu.Item>
-                                    <Menu.Item as='a'>1</Menu.Item>
-                                    <Menu.Item as='a'>2</Menu.Item>
-                                    <Menu.Item as='a'>3</Menu.Item>
-                                    <Menu.Item as='a'>4</Menu.Item>
-                                    <Menu.Item as='a' icon>
-                                        <Icon name='chevron right' /> */}
-                  {/* </Menu>  </Menu.Item> */}
-                </Menu>
-              </Table.HeaderCell>
-            </Table.Row>
-          </Table.Footer>
-        </Table>
+                    <MDBBtn
+                      color="elegant-color"
+                      className="btn-color_sup-inter"
+                      onClick={() => this.props.deleteCategorie(el._id)}
+                    >
+                      <i class="fas fa-trash"></i>
+                    </MDBBtn>
+                  </td>
+                </tr>
+              ))}{" "}
+            </tbody>
+          </Table>
+        </div>{" "}
       </div>
     );
   }

@@ -153,11 +153,16 @@
   height: 30px;
 
   margin-left: -10px;
+  margin-top: -20px !important;
 }
 .navbar .nav-item .nav-link {
   display: block;
   margin-top: 24px;
 }
+.text_navbar {
+  margin-top: -30px;
+}
+
 .item_nav {
   margin-top: 200px;
   color: #2e2e2e;
@@ -225,6 +230,13 @@
   color: white !important;
   font-weight: bold !important;
 }
+.btn_menu222 {
+  margin-left: 800px !important;
+  background-color: black !important;
+  color: white !important;
+  font-weight: bold !important;
+  width: 100px !important;
+}
 .btn_menu2 {
   background-color: white !important;
   color: black !important;
@@ -234,6 +246,7 @@
   margin-left: 150px !important;
 }
 .icon-color {
+  margin-top: -100px !important;
   color: #59ba4f;
 }
 .btn_menu22 {
@@ -347,9 +360,14 @@
 .th-table2 {
   background-color: #5c5c5a !important ;
   text-align: center !important;
-  width: 100% !important;
+  /*width: 100% !important;*/
   color: white;
-  margin-left: -80px !important;
+  /* margin-left: -80px !important;*/
+}
+.containerr {
+  width: 700px !important;
+  margin-left: 250px !important;
+  margin-right: 150px !important;
 }
 .cat-table {
   margin-right: 400px !important;
@@ -359,6 +377,9 @@
 }
 .Table-HeaderCell {
   width: 200px !important;
+}
+.Table-HeaderCell2 {
+  width: 20px !important;
 }
 .disabled {
   display: none;
@@ -2925,6 +2946,9 @@ body #cda-remove {
 .detail {
   font-size: x-large;
   color: black;
+}
+.user {
+  margin-left: -150px !important;
 }
 .titre-speciale2 {
   color: #59ba4f !important;

@@ -75,7 +75,11 @@ class Eventlist extends Component {
         <div className="pos-filter">
           <div style={{ width: 240, marginTop: 30 }}>
             <div>
-              <h5 style={{ fontSize: 30, color: "green" }}>Filtrer par </h5>
+              <h5
+                style={{ fontSize: 30, fontWeight: "bolder", color: "green" }}
+              >
+                Filtrer par{" "}
+              </h5>
               <br></br>
               <br></br>
 
@@ -88,6 +92,13 @@ class Eventlist extends Component {
             </div>
             <br></br>
             <div>
+              <span
+                style={{ fontSize: 30, fontWeight: "bolder", color: "black" }}
+              >
+                {" "}
+                Adresse
+              </span>
+              <br></br>
               <select
                 className="browser-default custom-select"
                 onChange={(e) => this.setState({ Adresse: e.target.value })}
@@ -116,6 +127,27 @@ class Eventlist extends Component {
                 <option value="El Jem">El Jem</option>
               </select>
             </div>
+            <br></br>
+            <div>
+              <span
+                style={{ fontSize: 30, fontWeight: "bolder", color: "black" }}
+              >
+                {" "}
+                Prix
+              </span>
+              <br></br>
+              <select
+                className="browser-default custom-select"
+                onChange={(e) => this.setState({ prix: e.target.value })}
+              >
+                <option value="0">Prix</option>
+                <option value="Gratuit">Gratuit</option>
+                <option value="5">moins 5 DT</option>
+                <option value="30">moins 30 DT</option>
+                <option value="50">mois 50 DT</option>
+                <option value="100">mois 100 DT</option>
+              </select>
+            </div>
 
             <div>
               {/* <MDBContainer className="mt-5">
@@ -130,6 +162,13 @@ class Eventlist extends Component {
               />
             </MDBContainer> */}
               <br></br>
+              <span
+                style={{ fontSize: 30, fontWeight: "bolder", color: "black" }}
+              >
+                {" "}
+                Categorie
+              </span>
+              <br></br>
               <select
                 className="browser-default custom-select"
                 onChange={(e) => this.setState({ Categorie: e.target.value })}
@@ -138,7 +177,7 @@ class Eventlist extends Component {
               >
                 <option value="">Categorie</option>
                 {this.props.categorie.map((el, i) => (
-                  <option value={el}>{el.titre}</option>
+                  <option value={el.titre}>{el.titre}</option>
                 ))}
               </select>
             </div>
@@ -161,6 +200,22 @@ class Eventlist extends Component {
                   ? eltitre
                   : eltitre.titre.includes(this.state.titre)
               )
+              .filter((el) => {
+                if (this.state.prix) {
+                  return el.prix <= Number(this.state.prix);
+                } else if (this.state.prix === "Gratuit") {
+                  return el.prix === this.state.prix;
+                } else {
+                  return el;
+                }
+              })
+
+              /* .filter(
+                ((elprix) =>
+                  Number(this.state.prix) === 0
+                    ? elprix
+                    : Number(elprix.prix) <= Number(this.state.prix): (elprix.prix)== "Gratuit")
+              )*/
               .filter(
                 (el, i) =>
                   (this.state.page - 1) * this.state.pageSize <= i &&

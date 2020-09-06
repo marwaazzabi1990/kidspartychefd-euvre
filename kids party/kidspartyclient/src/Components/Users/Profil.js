@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { modifUserFromApi } from "../../Action/UserAction";
+import { getUsersFromApi, modifUserFromApi } from "../../Action/UserAction";
 import { getUser, logout } from "../../Action/AuthentificationAction";
 import { MDBIcon } from "mdbreact";
 import ModifUser from "./Modalusermodif";
@@ -11,17 +11,27 @@ export class Profile extends Component {
   };
   componentDidMount() {
     this.props.getUser();
+    this.props.getAllUsers();
   }
   change = () => {
     this.setState({ etat: "modifier" });
     console.log("je chang", this.state.etat);
   };
   render() {
-    if (this.props.authetification) {
-      console.log("marwaaa", this.props.authetification);
-    }
-    const au = this.props.authetification && this.props.authetification;
-    console.log("nn", au);
+    // if (this.props.authetification) {
+    //   console.log("marwaaa", this.props.authetification);
+    // }
+    // const au = this.props.authetification && this.props.authetification;
+    // console.log("nn", au);
+
+    const { user } = this.props;
+    console.log("props", user);
+    const users = user.filter(
+      (el) =>
+        this.props.authetification && el._id === this.props.authetification._id
+    );
+
+    console.log("user modifier", users);
     return (
       <div>
         <center>
@@ -30,79 +40,64 @@ export class Profile extends Component {
           </h1>
         </center>{" "}
         <div class="container">
-          <div class="row">
-            <div class="col-sm-2 col-md-2">
-              <img
-                className="img-profil"
-                src={
-                  this.props.authetification &&
-                  "http://localhost:8080/" + this.props.authetification.photos
-                }
-                alt=""
-                className="img-profile"
-              />
-            </div>
-            <div class="col-sm-4 col-md-4 ">
-              <div className="row">
-                <p>
-                  {" "}
-                  <span className="titre-speciale2">Nom : </span>
-                  <span>
-                    {this.props.authetification &&
-                      this.props.authetification.nom}
-                  </span>
-                </p>
+          {users.map((el, i) => (
+            <div class="row">
+              <div class="col-sm-2 col-md-2">
+                <img
+                  className="img-profil"
+                  src={"http://localhost:8080/" + el.photos}
+                  alt=""
+                  className="img-profile"
+                />
               </div>
-              <div className="row">
-                <p>
-                  {" "}
-                  <span className="titre-speciale2">Prenom: </span>{" "}
-                  <i class="glyphicon glyphicon-envelope"></i>{" "}
-                  {this.props.authetification &&
-                    this.props.authetification.prenom}
-                </p>
-              </div>
-              <div className="row">
-                <p>
-                  {" "}
-                  <span className="titre-speciale2">établissement: </span>{" "}
-                  <i class="glyphicon glyphicon-envelope"></i>{" "}
-                  {this.props.authetification &&
-                    this.props.authetification.établissement}
-                </p>
-              </div>
+              <div class="col-sm-4 col-md-4 ">
+                <div className="row">
+                  <p>
+                    {" "}
+                    <span className="titre-speciale2">Nom : </span>
+                    <span>{el.nom}</span>
+                  </p>
+                </div>
+                <div className="row">
+                  <p>
+                    {" "}
+                    <span className="titre-speciale2">Prenom: </span>{" "}
+                    <i class="glyphicon glyphicon-envelope"></i> {el.prenom}
+                  </p>
+                </div>
+                <div className="row">
+                  {/* <p>
+                    {" "}
+                    <span className="titre-speciale2">
+                      établissement:{" "}
+                    </span>{" "}
+                    <i class="glyphicon glyphicon-envelope"></i>{" "}
+                    {el.établissement}
+                  </p> */}
+                </div>
 
-              <div className="row">
-                <p>
-                  {" "}
-                  <span className="titre-speciale2">Email: </span>{" "}
-                  <i class="glyphicon glyphicon-envelope"></i>{" "}
-                  {this.props.authetification &&
-                    this.props.authetification.email}
-                </p>
-              </div>
+                <div className="row">
+                  <p>
+                    {" "}
+                    <span className="titre-speciale2">Email: </span> {el.email}
+                  </p>
+                </div>
 
-              <div className="row">
-                <p>
-                  {" "}
-                  <span className="titre-speciale2">Username: </span>{" "}
-                  <i class="glyphicon glyphicon-envelope"></i>{" "}
-                  {this.props.authetification &&
-                    this.props.authetification.username}
-                </p>
-                <button
-                  onClick={() => {
-                    this.change();
-                  }}
-                >
-                  {" "}
-                  editer
-                </button>
+                <div className="row">
+                  <p>
+                    {" "}
+                    <span className="titre-speciale2">Username: </span>{" "}
+                    {el.username}
+                  </p>{" "}
+                  <div className="pos-btn">
+                    <ModifUser el={el} />
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
+          ))}
         </div>
-        <di>
+        <div>
           <form className={this.state.etat === "modifier" ? null : "disabled"}>
             <label>nom</label>
             <input
@@ -112,7 +107,7 @@ export class Profile extends Component {
               }
             />
           </form>
-        </di>
+        </div>
       </div>
     );
   }
@@ -124,6 +119,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
+  getAllUsers: () => dispatch(getUsersFromApi()),
   getUser: () => dispatch(getUser()),
   Modifieruser: (el) => dispatch(modifUserFromApi(el)),
 });

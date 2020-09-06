@@ -53,7 +53,7 @@ class GererEvent extends Component {
     return (
       <div>
         <h1 className="bienveneu-h1">
-          Liste <span className="titre-speciale">des evenement</span>
+          Liste <span className="titre-speciale">des evenements</span>
         </h1>
         {/* <button
           className="buttonplus"
@@ -139,7 +139,7 @@ class GererEvent extends Component {
                       className="btn-color_sup-intern"
                       onClick={() => this.props.deleteEvent(el._id)}
                     >
-                       <i class="fas fa-trash"></i>
+                      <i class="fas fa-trash"></i>
                     </MDBBtn>
                   </Table.Cell>
                 </Table.Row>

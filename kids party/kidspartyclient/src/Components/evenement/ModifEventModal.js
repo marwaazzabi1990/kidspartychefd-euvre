@@ -227,6 +227,7 @@ export class EventModalModif extends Component {
                   nb_per_note: Number(this.props.el.nb_per_note) + 1,
                   prix: this.state.prix,
                   nombre_de_place: this.state.nombre_de_place,
+                  nombre_de_participant: this.state.nombre_de_place,
                   nombre_de_participant: this.state.nombre_de_participant,
                   affiche: this.state.affiche,
                   nom_categorie: this.state.nom_categorie,
