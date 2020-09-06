@@ -29,6 +29,7 @@ import Detail from "./evenement/Detail_Event";
 import { getUser, logout } from "../Action/AuthentificationAction";
 import { getEventsFromApi } from "../Action/EventAction";
 import { UserModalModif } from "../Components/Users/Modalusermodif";
+import Registervisiteur from "../Components/Users/ModalRegistervisiteur";
 import { Eventlist } from "./evenement/ListEvent";
 import { MDBBtn } from "mdbreact";
 //import { LogIn } from "./authentification/LogIn";
@@ -195,8 +196,8 @@ class Index extends Component {
                 <Route exact path="/inscription">
                   <Register />
                 </Route>
-                <Route exact path="/inscription">
-                  <Register />
+                <Route exact path="/Registervisiteur">
+                  <Registervisiteur />
                 </Route>
                 <Route exact path="/log">
                   <LogIn />

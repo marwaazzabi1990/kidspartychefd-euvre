@@ -46,7 +46,7 @@ class GererEvent extends Component {
     const events = event.filter(
       (el) =>
         this.props.authetification &&
-        el.nom_organzateur === this.props.authetification.nom
+        el.nom_organzateur === this.props.authetification._id
     );
 
     console.log("eventwa7ed", events);
@@ -60,7 +60,7 @@ class GererEvent extends Component {
           onClick={() => this.setState({ addModelShow: true })}
         > */}
         {this.props.authetification ? (
-          <ModalAddevent nom={this.props.authetification.nom} />
+          <ModalAddevent id={this.props.authetification._id} />
         ) : null}
         {/* </button> */}
 

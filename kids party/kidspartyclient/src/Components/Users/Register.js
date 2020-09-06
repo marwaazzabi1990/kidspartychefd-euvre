@@ -18,12 +18,12 @@ export default class Register extends Component {
         <div>
           <div className="this">
             <h1 id="partenaires">
-              Espace <span className="titre-speciale"> proffesionnel</span>
+              Espace <span className="titre-speciale2"> proffesionnel</span>
             </h1>
-            <h3>
-              Vous etes<span className="titre-speciale">organisateurs</span>{" "}
-              d'evenements
+            <h3 className="titre-speciale2">
+              Vous etes <span>organisateurs</span> d'evenements
             </h3>
+            <br></br>
             <p>
               Vous etes un organisateurs des evenements pour les enfants .Lancez
               votre demande de partenariat avec Kids Party ,c'est une platforme

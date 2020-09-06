@@ -206,7 +206,7 @@ class ModalAjoutEvent extends Component {
                   nombre_de_place: this.state.nombre_de_place,
                   nombre_de_participant: 0,
                   nom_categorie: this.state.nom_categorie,
-                  nom_organzateur: this.props.nom,
+                  nom_organzateur: this.props.id,
                 });
               }}
             >

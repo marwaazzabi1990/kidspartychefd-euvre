@@ -22,7 +22,7 @@
 .titre {
   font-weight: bold;
   font-size: xx-large;
-  margin-left: 600px;
+  margin-left: 100px !important;
 }
 .img-detail {
   width: 300px;

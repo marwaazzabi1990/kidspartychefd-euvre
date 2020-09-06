@@ -69,7 +69,7 @@ class StartRating extends Component {
                 color={
                   ratingValue <= (this.state.hover || this.state.rating)
                     ? "#ffc107"
-                    : "#e4e5e9"
+                    : "#070500"
                 }
                 size={20}
                 onMouseEnter={(e) => this.setState({ hover: ratingValue })}

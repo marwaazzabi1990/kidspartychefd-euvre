@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { GoogleLogin } from "react-google-login";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-
-import "./log.css";
+import "../authentification/log.css";
 
 import { login } from "./../../Action/AuthentificationAction";
+import { addUserFromApi } from "../../Action/UserAction";
 //import { addSessionInApi } from "./../../Action/SessionAction";
 
 import {
@@ -36,7 +35,7 @@ const formValid = ({ formErrors }) => {
   // });*/
   return valid;
 };
-class logIn extends Component {
+class ModalRegistervisiteur extends Component {
   state = {
     modal: false,
     // email: null,
@@ -100,7 +99,10 @@ class logIn extends Component {
             <div class="col-left">
               <div class="login-text">
                 <h2>Kids PARTY </h2>
-                <p>platforme des evenements pour les enfants</p>
+                <p>
+                  Votre avis ce nous concerne <br></br>Inscrivez-vous et donnez
+                  votre avis sur nous evenements!!!!
+                </p>
                 <a class="btn" href="">
                   Read More
                 </a>
@@ -108,7 +110,7 @@ class logIn extends Component {
             </div>
             <div class="col-right">
               <div class="login-form">
-                <h2>Login</h2>
+                <h2>Inscription</h2>
 
                 <p>
                   <input
@@ -144,17 +146,21 @@ class logIn extends Component {
                     onClick={
                       (this.handelSubmit,
                       () =>
-                        this.props.login({
+                        this.props.AddUser({
+                          nom: "visiteur",
+                          prenom: "visiteur",
+                          établissement: "visiteur",
+                          photos: "visiteur",
                           email: this.state.email,
+                          username: "visiteur",
                           password: this.state.password,
+                          adresse: "visiteur",
+                          role: "visiteur",
                         }))
                     }
                   >
-                    Connexion
+                    Inscription
                   </button>
-                </p>
-                <p>
-                  <Link to="inscription">Create an account</Link>
                 </p>
               </div>
             </div>
@@ -170,12 +176,16 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
+  AddUser: (el) => dispatch(addUserFromApi(el)),
   // getAllUsers: () => dispatch(getUsersFromApi()),
   //  AddSession: (session) => dispatch(addSessionInApi(session)),
   login: (userInfo) => dispatch(login(userInfo)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(logIn);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ModalRegistervisiteur);
 
 /*
   {/* onChange={(e) => this.setState({ email: e.target.value })}*/

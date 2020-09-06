@@ -6,7 +6,7 @@ import { Input } from "antd";
 import { AudioOutlined } from "@ant-design/icons";
 
 import { Card } from "antd";
-import { MDBContainer, MDBInput } from "mdbreact";
+import { MDBIcon } from "mdbreact";
 
 import Moment from "react-moment";
 import { getEventsFromApi } from "../../Action/EventAction.js";
@@ -279,7 +279,10 @@ this.sendNote(e.target.value);
                         <a>
                           <span style={{ color: "black" }}>
                             {" "}
-                            <i class="fas fa-eye"></i>
+                            <MDBIcon
+                              className="detai_icon"
+                              icon="search-plus"
+                            />
                           </span>
                         </a>
                       </Link>

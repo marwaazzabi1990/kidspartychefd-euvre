@@ -28,7 +28,8 @@ class Detail extends Component {
       <div>
         <center>
           <h1 className="titre">
-            Titre <span className="titre-speciale"> {this.props.el.titre}</span>
+            Nom d'Evenement:{" "}
+            <span className="titre-speciale"> {this.props.el.titre}</span>
           </h1>
         </center>
 
@@ -80,7 +81,7 @@ class Detail extends Component {
               <div className="row">
                 <p>
                   {" "}
-                  <span className="titre-speciale2 ">Rating: </span>
+                  <span className="titre-speciale2 user ">Rating: </span>
                   {/*rating  */}
                   {[...Array(5)].map((star, i) => {
                     const ratingValue = i + 1;
@@ -113,17 +114,27 @@ this.sendNote(e.target.value);
                     );
                   })}
                 </p>{" "}
-                {/* <div className="pos-btn">
-                  <ModifUser el={el} />
-                </div> */}
+                <p>
+                  <div className={this.props.authetification ? "disabled" : ""}>
+                    <Link to="/Registervisiteur">
+                      {" "}
+                      Si vous voulez donnez votre note Inscrivez-vous{" "}
+                    </Link>
+                  </div>
+                  <br></br>
+                  <br></br>
+                  <br></br>
+                  <div className={this.props.authetification ? "" : "disabled"}>
+                    <span className="detail">
+                      Donnez_votre notes
+                      <StartRating el={this.props.el} />
+                    </span>
+                  </div>
+                </p>
               </div>
             </div>
           </div>
-        </div>
 
-        <div className={this.props.authetification ? "" : "disabled"}>
-          <h3>Donnez_votre avis</h3>
-          <StartRating el={this.props.el} />
           {/* rating 
           {[...Array(5)].map((star, i) => {
             const ratingValue = i + 1;
