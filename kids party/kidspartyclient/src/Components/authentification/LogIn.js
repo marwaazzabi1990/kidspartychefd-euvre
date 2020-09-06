@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { GoogleLogin } from "react-google-login";
+import "./log.css";
 
 import { login } from "./../../Action/AuthentificationAction";
 //import { addSessionInApi } from "./../../Action/SessionAction";
@@ -36,13 +37,14 @@ const formValid = ({ formErrors }) => {
 class logIn extends Component {
   state = {
     modal: false,
-    //  email: null,
+    // email: null,
     // password: null,
     formErrors: { email: "", password: "" },
     message: "",
   };
   handelSubmit = (e) => {
     e.preventDefault();
+
     console.log(this.state.formErrors);
     if (
       this.state.formErrors.email.length == 0 &&
@@ -90,73 +92,74 @@ class logIn extends Component {
   render() {
     const { formErrors } = this.state;
     return (
-      <MDBContainer className="cont-modal">
-        <button
-          className="btn btn-outline btn-md btn-rounded btn-navbar waves-effect waves-light btn_menu1 "
-          onClick={this.toggle}
-        >
-          Connexion
-        </button>
-        <MDBModal isOpen={this.state.modal} toggle={this.toggle}>
-          <MDBModalHeader toggle={this.toggle}></MDBModalHeader>
-          <MDBModalBody>
-            <h2 className="text_h3">Connexion</h2>
-            <MDBBtn color="danger" className="btsocial">
-              <i class="fab fa-google"></i>
-            </MDBBtn>
-            <form>
-              <div className="grey-text">
-                <MDBInput
-                  label="Email"
-                  type="email"
-                  validate
-                  error="wrong"
-                  name="email"
-                  success="right"
-                  onChange={this.handleChange}
-                  className="inp-text"
-                />
-                {formErrors.email.length > 0 && (
-                  <span className="errorMessage">{formErrors.email}</span>
-                )}
-                <br></br>
-
-                <MDBInput
-                  label="Password"
-                  group
-                  type="password"
-                  name="password"
-                  validate
-                  onChange={this.handleChange}
-                  className="inp-text "
-                />
-                {formErrors.password.length > 0 && (
-                  <span className="errorMessage">{formErrors.password}</span>
-                )}
+      <div>
+        <div class="wrapper">
+          <div class="container">
+            <div class="col-left">
+              <div class="login-text">
+                <h2>Kids PARTY </h2>
+                <p>platforme des evenements pour les enfants</p>
+                <a class="btn" href="">
+                  Read More
+                </a>
               </div>
-            </form>
-            <div></div>
-          </MDBModalBody>
-          <MDBModalFooter>
-            {/* <MDBBtn color="secondary" onClick={this.toggle}>
-              Close
-            </MDBBtn> */}
-            <MDBBtn
-             className="btn_menu1"
-              onClick={
-                (this.handelSubmit,
-                () =>
-                  this.props.login({
-                    email: this.state.email,
-                    password: this.state.password,
-                  }))
-              }
-            >
-              Connexion
-            </MDBBtn>
-          </MDBModalFooter>
-        </MDBModal>
-      </MDBContainer>
+            </div>
+            <div class="col-right">
+              <div class="login-form">
+                <h2>Login</h2>
+
+                <p>
+                  <input
+                    type="text"
+                    placeholder="Username"
+                    required
+                    error="wrong"
+                    name="email"
+                    success="right"
+                    onChange={this.handleChange}
+                  />
+                  {formErrors.email.length > 0 && (
+                    <span className="errorMessage">{formErrors.email}</span>
+                  )}
+                </p>
+                <p>
+                  <input
+                    type="password"
+                    placeholder="Password"
+                    name="password"
+                    validate
+                    onChange={this.handleChange}
+                    required
+                  />
+                  {formErrors.password.length > 0 && (
+                    <span className="errorMessage">{formErrors.password}</span>
+                  )}
+                </p>
+                <p>
+                  <button
+                    className="btn btn-outline btn-md btn-rounded btn-navbar waves-effect waves-light btn-color1"
+                    className="btn btn_menu2"
+                    onClick={
+                      (this.handelSubmit,
+                      () =>
+                        this.props.login({
+                          email: this.state.email,
+                          password: this.state.password,
+                        }))
+                    }
+                  >
+                    Connexion
+                  </button>
+                </p>
+                <p>
+                  <a href="">Forget password?</a>
+                  <a href="">Create an account.</a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     );
   }
 }
@@ -173,48 +176,6 @@ const mapDispatchToProps = (dispatch) => ({
 
 export default connect(mapStateToProps, mapDispatchToProps)(logIn);
 
-/*<div className="pos_conexion">
- onClick={() =>
-                this.props.login({
-                  email: this.state.email,
-                  password: this.state.password,
-                })
-              }
-    <h2>Entrez votre informations</h2>
-    <div>
-        <div>
-            <MDBContainer>
-                <MDBRow>
-                    <MDBCol >
-                        <form>
-
-                            <div className="grey-text">
-                                <MDBInput label="Type your email" icon="envelope" group type="email" validate error="wrong"
-                                    success="right" onChange={(e) => this.setState({ email: e.target.value })} />
-                                <MDBInput label="Type your password" icon="lock" group type="password" validate onChange={(e) => this.setState({ password: e.target.value })} />
-                            </div>
-                            <div className="text-center">
-                                <MDBBtn onClick={
-                                    () =>
-                                        this.props.login({
-                                            email: this.state.email,
-                                            password: this.state.password
-
-                                        })}
-                                >Connexion</MDBBtn>
-                            </div>
-                        </form>
-                    </MDBCol>
-                </MDBRow>
-            </MDBContainer>
-        </div>
-    </div></div >
-            )
-        }
-
-
-
-    }*/
 /*
   {/* onChange={(e) => this.setState({ email: e.target.value })}*/
 /*   onChange={(e) => this.setState({ password: e.target.value })}*/

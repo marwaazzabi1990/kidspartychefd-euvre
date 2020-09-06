@@ -5,6 +5,7 @@ const mangoose = require("mongoose");
 const mon = require("./app/Models/db");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+// require('dotenv').config();5.4k(gzipped:2.2k)
 var nodemailer = require("nodemailer");
 
 //upload image
@@ -83,7 +84,7 @@ app.use(express.json());
 //const db = require("./app/models");
 
 /*nodemailer*/
-app.post("/api/form", (req, res) => {
+app.post("/email", (req, res) => {
   console.log("zzzzz", req.body);
   nodemailer.createTestAccount((err, acount) => {
     const htmlEmail = `
@@ -98,7 +99,7 @@ app.post("/api/form", (req, res) => {
     let trasporteur = nodemailer.createTransport({
       host: "smtp.gmail.com",
       port: 465,
-      secure: false, // true for 465, false for other ports
+      secure: true, // true for 465, false for other ports
       auth: {
         user: "marwaazzabisimplon@gmail.com", // generated ethereal user
         pass: "marwazied123", // generated ethereal password
@@ -116,7 +117,6 @@ app.post("/api/form", (req, res) => {
         return console.log(err);
       } else {
         return console.log("message bien envoyer");
-        console.log("Message url", nodemailer.getTestMessageUrl(info));
       }
     });
   });

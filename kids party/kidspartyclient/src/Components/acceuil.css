@@ -34,7 +34,7 @@
 }
 
 .menu {
-  color: white;
+  color: black !important;
 
   font-size: larger;
   font-weight: bold;
@@ -58,5 +58,5 @@
   font-size: 22px;
 }
 .titre-speciale {
-  color: palevioletred;
+  color: #827717;
 }

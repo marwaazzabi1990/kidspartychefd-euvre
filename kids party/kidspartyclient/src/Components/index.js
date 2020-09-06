@@ -5,6 +5,7 @@ import logo from "../logo2.png";
 import EventList from "./evenement/ListEvent";
 import Event_list from "./evenement/event_list";
 import Footer from "./Footer";
+import Log2 from "./authentification/connexion";
 import GererEvenement from "./evenement/Gerrer_evenements";
 import {
   MDBNavbar,
@@ -27,13 +28,16 @@ import Users from "./Users/users_professionnel";
 import Detail from "./evenement/Detail_Event";
 import { getUser, logout } from "../Action/AuthentificationAction";
 import { getEventsFromApi } from "../Action/EventAction";
+import { UserModalModif } from "../Components/Users/Modalusermodif";
 import { Eventlist } from "./evenement/ListEvent";
 import { MDBBtn } from "mdbreact";
+//import { LogIn } from "./authentification/LogIn";
 
 import "./acceuil.css";
 import Categorie from "./Categorie/Categorie";
 import Contact from "./Contact/contact";
 import FooterPage from "./Footer";
+import Profil from "./Users/Profil";
 import Conecte from "./Modal-persone conecte";
 class Index extends Component {
   state = {
@@ -63,11 +67,11 @@ class Index extends Component {
           <div>
             {/*navbar mdd*/}
 
-            <MDBNavbar color="default-color" dark expand="md">
+            <MDBNavbar dark expand="md" className="navbar">
               <MDBNavbarBrand>
                 <img src={logo} className="img-lg" />
               </MDBNavbarBrand>
-              <MDBNavbarToggler onClick={this.toggleCollapse} />
+              <MDBNavbarToggler onClick={this.toggleCollapse} className="tt" />
               <MDBCollapse
                 id="navbarCollapse3"
                 isOpen={this.state.isOpen}
@@ -118,21 +122,18 @@ class Index extends Component {
                   </MDBNavItem>
                 </MDBNavbarNav>
 
-                <MDBNavbarNav right>
+                <MDBNavbarNav className="pos-drop" right>
                   <MDBNavItem>
                     {this.props.authetification ? (
                       <MDBDropdown>
                         <MDBDropdownToggle nav caret>
-                          <MDBIcon icon="user" />
+                          <MDBIcon className="icon-color" icon="user" />
                         </MDBDropdownToggle>
-                        <MDBDropdownMenu className="dropdown-default">
-                          <MDBDropdownItem href="#!">Action</MDBDropdownItem>
-                          <MDBDropdownItem href="#!">
-                            Another Action
-                          </MDBDropdownItem>
-                          <MDBDropdownItem href="#!">
-                            Something else here
-                          </MDBDropdownItem>
+                        <MDBDropdownMenu>
+                          <MDBNavLink className="menu-dropdown" to="/monprofil">
+                            <MDBDropdownItem>Voir Profil </MDBDropdownItem>
+                          </MDBNavLink>
+
                           <MDBDropdownItem onClick={() => this.props.logout()}>
                             Log out
                           </MDBDropdownItem>
@@ -148,7 +149,12 @@ class Index extends Component {
                           </button>
                         </MDBNavLink>
                         <MDBNavItem className="mt-2">
-                          <LogIn />
+                          {/* <LogIn />*/}
+                          <MDBNavLink to="/log">
+                            <button className="btn btn-outline btn-md btn-rounded btn-navbar waves-effect waves-light btn_menu11">
+                              Connexion
+                            </button>
+                          </MDBNavLink>
                         </MDBNavItem>
                       </MDBNavItem>
                     )}
@@ -160,7 +166,7 @@ class Index extends Component {
             {/*navbar mdb*/}
 
             {/* routing  menu principal */}
-            <div className="switch">
+            <div>
               <Switch>
                 <Route exact path="/">
                   <Event_list />
@@ -189,6 +195,16 @@ class Index extends Component {
                 <Route exact path="/inscription">
                   <Register />
                 </Route>
+                <Route exact path="/inscription">
+                  <Register />
+                </Route>
+                <Route exact path="/log">
+                  <LogIn />
+                </Route>
+                <Route exact path="/monprofil">
+                  <Profil />
+                </Route>
+
                 {this.props.event.map((el) => (
                   <Route exact path={"/detail/" + el._id}>
                     <Detail el={el} />

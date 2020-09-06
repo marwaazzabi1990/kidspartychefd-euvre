@@ -20,7 +20,7 @@ export const ModifierEvent = (payload) => ({
 export function modifEventFromApi(data) {
   // console.log("notes est finale action ", data.notes);
   //console.log("nb", data.nb_per_note);
-  console.log("action", data.notes);
+  console.log("modifier", data);
   console.log("action", data);
   let id = data.id;
   let titre = data.nom;

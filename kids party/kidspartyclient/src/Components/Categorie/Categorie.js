@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getCategorieFromApi } from "../../Action/CategorieAction.js";
+import {
+  getCategorieFromApi,
+  deleteCategorieToApi,
+} from "../../Action/CategorieAction.js";
 import {
   Icon,
   Label,
@@ -9,6 +12,7 @@ import {
   Pagination,
   Button,
 } from "semantic-ui-react";
+import AddCategorie from "./ModalAddCategorie";
 import {
   MDBCardGroup,
   MDBIcon,
@@ -34,8 +38,13 @@ class Categorie extends Component {
         <h1>
           La listes de <span className="titre-speciale"> Categorie</span>
         </h1>
-        <Table celled>
-          <Table.Header className="th-table">
+        <br></br>
+        <center>
+          <AddCategorie />
+        </center>
+
+        <Table className="cat-table">
+          <Table.Header className="th-table2">
             <Table.Row>
               <Table.HeaderCell className="Table-HeaderCell">
                 Titre
@@ -71,7 +80,9 @@ class Categorie extends Component {
                 nom_categorie
               </Table.HeaderCell> */}
               {/* <Table.HeaderCell>nom_organzateur</Table.HeaderCell> */}
-              <Table.HeaderCell>Action</Table.HeaderCell>
+              <Table.HeaderCell className="actcategorie">
+                Action
+              </Table.HeaderCell>
             </Table.Row>
           </Table.Header>
 
@@ -88,8 +99,8 @@ class Categorie extends Component {
 
                   <MDBBtn
                     color="elegant-color"
-
-                    // onClick={() => this.props.deleteEvent(el._id)}
+                    className="btn-color_sup-inter"
+                    onClick={() => this.props.deleteCategorie(el._id)}
                   >
                     <i class="fas fa-trash"></i>
                   </MDBBtn>
@@ -128,5 +139,6 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   getAllCategorie: () => dispatch(getCategorieFromApi()),
+  deleteCategorie: (el) => dispatch(deleteCategorieToApi(el)),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Categorie);

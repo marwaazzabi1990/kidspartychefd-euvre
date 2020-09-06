@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { FaStar } from "react-icons/fa";
 import Moment from "react-moment";
+import { MDBIcon } from "mdbreact";
 import "./event_list.css";
 import { getEventsFromApi } from "../../Action/EventAction.js";
 import { getCategorieFromApi } from "../../Action/CategorieAction.js";
@@ -16,7 +17,7 @@ import {
   MDBCardText,
   MDBCol,
 } from "mdbreact";
-
+import { Card } from "antd";
 import ModalDetail from "./Detail_Event";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
@@ -28,6 +29,11 @@ import artistique from "../../artistique2.png";
 import culturel from "../../culturelle.jpg";
 import sport from "../../sport.jpeg";
 
+/*function onChange(a, b, c) {
+  console.log(a, b, c);
+}*/
+
+const { Meta } = Card;
 // import Chart from "../shurt";
 // import { Pie } from "react-chartjs-2";
 var categorie = [];
@@ -74,35 +80,34 @@ class Event_list extends Component {
 
     return (
       <div>
-        <div>
-          {/*  crrousel zone */}
-          <Carousel className="carrousel_side">
-            {event.slice(event.length - 10, event.length).map((el, i) => (
-              <Carousel.Item>
-                <img
-                  className="image-slider"
-                  src={"http://localhost:8080/" + el.affiche}
-                  alt="First slide"
-                />
-                <Carousel.Caption>
-                  {/* <h1 className="titre-card">{el.titre}</h1>
+        {/*  crrousel zone */}
+        <Carousel className="carrousel_side">
+          {event.slice(event.length - 10, event.length).map((el, i) => (
+            <Carousel.Item>
+              <img
+                className="image-slider"
+                src={"http://localhost:8080/" + el.affiche}
+                alt="First slide"
+              />
+              <Carousel.Caption>
+                {/* <h1 className="titre-card">{el.titre}</h1>
                   <p className="p-carrousel">{el.description}</p>
                   <Link to="/inscription">
                     <MDBBtn className="btn_menu">Devenir partenaire</MDBBtn>
                   </Link> */}
-                </Carousel.Caption>
-              </Carousel.Item>
-            ))}
-          </Carousel>
-          {/*Filtre   zone */}
-        </div>
+              </Carousel.Caption>
+            </Carousel.Item>
+          ))}
+        </Carousel>
+        {/*Filtre   zone */}
+
         {/* paragraphe Bienvenu */}
         <div className="bienvenu">
           <h2 className="bienveneu-h1">
             {" "}
             Bienvenu <span className="titre-speciale">Chez Kids</span> Party
           </h2>
-          <p className="bienveneu-p">
+          <p>
             Le lorem ipsum est, en imprimerie, une suite de mots sans
             signification utilisée à titre provisoire pour calibrer une mise en
             page, le texte définitif venant remplacer le faux-texte dès qu'il
@@ -117,10 +122,9 @@ class Event_list extends Component {
             <a onClick={(e) => this.setState({ categorie: artistique })}>
               <div>
                 <img className="img-categorie" src={artistique} />
-              </div>
-              <div>
                 <h3 class="text_h3">artistique</h3>
               </div>
+              <div></div>
             </a>
           </div>
           <div>
@@ -164,11 +168,112 @@ class Event_list extends Component {
                 ? eltitre
                 : eltitre.titre.includes(this.state.titre)
             )
-            .slice(event.length - 2, event.length)
+            // .slice(event.length - 6, event.length)
             .map((el, i) => (
-              <MDBCol md="3">
-                <div className="pos-card-map">
-                  {/*ici card*/}
+              <div>
+                <Link to={"/detail/" + el._id}>
+                  <Card
+                    hoverable
+                    style={{ width: 240 }}
+                    cover={
+                      <img
+                        className="img"
+                        alt="example"
+                        src={"http://localhost:8080/" + el.affiche}
+                      />
+                    }
+                  >
+                    <Meta
+                      title={el.titre}
+                      Adresse={el.Adresse}
+                      description="www.instagram.com"
+                    />
+
+                    {/*rating  */}
+                    {[...Array(5)].map((star, i) => {
+                      const ratingValue = i + 1;
+                      return (
+                        <label>
+                          <input
+                            type="radio"
+                            name="rating"
+                            value={el.notes}
+                            /*  onClick={(e) => {
+this.setState({ rating: e.target.value });
+this.sendNote(e.target.value);
+}}*/
+                          />{" "}
+                          <FaStar
+                            className="star"
+                            color={
+                              ratingValue <= el.notes ? "#ffc107" : "#e4e5e9"
+                            }
+                            size={20}
+                            onMouseEnter={(e) =>
+                              this.setState({ hover: ratingValue })
+                            }
+                            onMouseLeave={(e) => this.setState({ hover: null })}
+                            //onClick={() => this.sendNote(this.state.rating)}
+                          />
+                        </label>
+                      );
+                    })}
+                    <br></br>
+
+                    <Link to={"/detail/" + el._id}>
+                      {" "}
+                      <a>
+                        <span style={{ color: "black" }}>
+                          {" "}
+                          <MDBIcon className="detai_icon" icon="search-plus" />
+                        </span>
+                      </a>
+                    </Link>
+                  </Card>
+                  ,
+                </Link>
+              </div>
+            ))}
+        </div>
+        {/* <Carousel afterChange={onChange} autoplay>
+          {this.props.event.map((el, i) => (
+            <div>
+              <div>
+                <Card
+                  cover={
+                    <img
+                      alt="example"
+                      src={"http://localhost:8080/" + el.affiche}
+                      style={{ width: "200px" }}
+                    />
+                  }
+                ></Card>{" "}
+              </div>
+            </div>
+          ))}
+        </Carousel> */}
+        <div className="div-vide"></div>
+      </div>
+    );
+  }
+}
+
+const mapStateToProps = (state) => ({
+  event: state.event,
+  categorie: state.categorie,
+  authetification: state.authetification.user,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  getAllEvents: () => dispatch(getEventsFromApi()),
+  getAllCategorie: () => dispatch(getCategorieFromApi()),
+  getUser: () => dispatch(getUser()),
+});
+export default connect(mapStateToProps, mapDispatchToProps)(Event_list);
+
+{
+  /* 
+
                   <MDBCol>
                     <div className="pos-card-map">
                       <MDBCard className="card">
@@ -180,8 +285,10 @@ class Event_list extends Component {
                           <MDBCardTitle>{el.titre}</MDBCardTitle>
                           <MDBCardText>
                             <div className="rating">
-                              {/*rating  */}
-                              {[...Array(5)].map((star, i) => {
+                              {/*rating  */
+}
+{
+  /* {[...Array(5)].map((star, i) => {
                                 const ratingValue = i + 1;
                                 return (
                                   <label>
@@ -226,29 +333,60 @@ class Event_list extends Component {
                         </MDBCardBody>
                       </MDBCard>
 
-                      {/*ici card*/}
-                    </div>
+                      {/*ici card*/
+}
+{
+  /* </div>
                   </MDBCol>
                 </div>
-                {/*end of cards events*/}
-              </MDBCol>
-            ))}
-        </div>
-        <div className="div-vide"></div>
-      </div>
-    );
-  }
+                {/*end of cards events*/
 }
+{
+  /* </MDBCol>
+            ))} */
+}
+{
+  /* </div> */
+} /*
+<div class="grid">
+<figure class="effect-lily">
+  <img src={"http://localhost:8080/" + el.affiche} />
+  <figcaption>
+    <div>
+      <h2 className="color-text">{el.titre}</h2>
+      <p>
+        {[...Array(5)].map((star, i) => {
+          const ratingValue = i + 1;
+          return (
+            <label>
+              <input
+                type="radio"
+                name="rating"
+                value={el.notes}
+              />{" "}
+              <FaStar
+                className="star"
+                color={
+                  ratingValue <= el.notes
+                    ? "#ffc107"
+                    : "#e4e5e9"
+                }
+                size={20}
+                onMouseEnter={(e) =>
+                  this.setState({ hover: ratingValue })
+                }
+                onMouseLeave={(e) =>
+                  this.setState({ hover: null })
+                }
+                //onClick={() => this.sendNote(this.state.rating)}
+              />
+            </label>
+          );
+        })}
+      </p>
+    </div>
+  </figcaption>
+</figure>
+</div>*/
 
-const mapStateToProps = (state) => ({
-  event: state.event,
-  categorie: state.categorie,
-  authetification: state.authetification.user,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  getAllEvents: () => dispatch(getEventsFromApi()),
-  getAllCategorie: () => dispatch(getCategorieFromApi()),
-  getUser: () => dispatch(getUser()),
-});
-export default connect(mapStateToProps, mapDispatchToProps)(Event_list);
+/*annimatio,n*/

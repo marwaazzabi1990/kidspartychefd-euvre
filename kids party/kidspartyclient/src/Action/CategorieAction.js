@@ -45,7 +45,7 @@ export const deleteCategorie = (payload) => ({
 });
 export function deleteCategorieToApi(id) {
   return (dispatch) =>
-    Axios.delete(`http://localhost:8080/event/deleteevnts/${id}`).then(
+    Axios.delete(`http://localhost:8080/categorie/deletecategorie/${id}`).then(
       (res) => {
         dispatch(deleteCategorie(res.data));
         window.location.reload(false);

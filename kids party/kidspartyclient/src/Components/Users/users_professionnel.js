@@ -31,26 +31,36 @@ class UsersProffesionnel extends Component {
             </tr>
           </thead>
           <tbody>
-            {/* {user.filter((elrole) =>
-                            this.state.Role === "" ? elrole : elrole.role === this.state.Role
-                       )*/}
-            {user.map((el, i) => (
-              <tr>
-                <td>{el.nom}</td>
-                <td>{el.email}</td>
-                <td>{el.username}</td>
-                <td>{el.role}</td>
-                <td>
-                  <button onClick={() => this.props.deleteUser(el._id)}>
-                    Supprimer
-                  </button>
-                  <button>
+            {user
+              .filter((elrole) =>
+                this.state.Role === ""
+                  ? elrole
+                  : elrole.role === "Professionnel"
+              )
+              .map((el, i) => (
+                <tr>
+                  <td>{el.nom}</td>
+                  <td>{el.email}</td>
+                  <td>{el.username}</td>
+                  <td>{el.role}</td>
+                  <td className="pos-Action ">
+                    <MDBBtn
+                      color="elegant-color"
+                      className="btn-color_sup-inter"
+                      onClick={() => this.props.deleteUser(el._id)}
+                    >
+                      <MDBIcon icon="user-alt-slash" />
+                    </MDBBtn>
+                    {/*<MDBBtn color="elegant-color" className="modif-event2">
+                      <MDBIcon className="detai_icon" icon="search-plus" />
+                    </MDBBtn>
+                    <button>
                     {" "}
                     <ModamodifUser el={el} />
-                  </button>
-                </td>
-              </tr>
-            ))}
+                  </button> */}
+                  </td>
+                </tr>
+              ))}
           </tbody>
         </Table>
       </div>

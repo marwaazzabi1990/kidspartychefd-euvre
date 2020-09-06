@@ -51,8 +51,10 @@ class GererEvent extends Component {
 
     console.log("eventwa7ed", events);
     return (
-      <div className="container">
-        <h1 className="bienveneu-h1">Mes evenements creer</h1>
+      <div>
+        <h1 className="bienveneu-h1">
+          Liste <span className="titre-speciale">des evenement</span>
+        </h1>
         {/* <button
           className="buttonplus"
           onClick={() => this.setState({ addModelShow: true })}
@@ -62,7 +64,7 @@ class GererEvent extends Component {
         ) : null}
         {/* </button> */}
 
-        <Table celled>
+        <Table celled className="table">
           <Table.Header className="th-table">
             <Table.Row>
               <Table.HeaderCell className="Table-HeaderCell">
@@ -114,11 +116,11 @@ class GererEvent extends Component {
                   </Table.Cell>
                   <Table.Cell>{el.Adresse}</Table.Cell>
                   <Table.Cell>
-                    {el.Date_Debut.day}/{el.Date_Debut.moth}/
+                    {el.Date_Debut.day}/{el.Date_Debut.month}/
                     {el.Date_Debut.year}
                   </Table.Cell>
                   <Table.Cell>
-                    {el.Date_fin.day}/{el.Date_fin.moth}/{el.Date_fin.year}
+                    {el.Date_fin.day}/{el.Date_fin.month}/{el.Date_fin.year}
                   </Table.Cell>
 
                   <Table.Cell>{el.description}</Table.Cell>
@@ -137,7 +139,7 @@ class GererEvent extends Component {
                       className="btn-color_sup-intern"
                       onClick={() => this.props.deleteEvent(el._id)}
                     >
-                      <i class="fas fa-trash"></i>
+                       <i class="fas fa-trash"></i>
                     </MDBBtn>
                   </Table.Cell>
                 </Table.Row>

@@ -5,12 +5,12 @@ const EventShema = new mongoose.Schema({
   titre: { type: String, required: true },
   Date_Debut: {
     year: { type: String },
-    moth: { type: String },
+    month: { type: String },
     day: { type: String },
   },
   Date_fin: {
     year: { type: String },
-    moth: { type: String },
+    month: { type: String },
     day: { type: String },
   },
   Adresse: { type: String, required: true },

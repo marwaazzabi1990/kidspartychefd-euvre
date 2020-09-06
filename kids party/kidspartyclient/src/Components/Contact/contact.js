@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import axios from "axios";
+import Axios from "axios";
 class Contact extends Component {
   state = {
     name: "",
@@ -9,8 +9,10 @@ class Contact extends Component {
   };
 
   handleSubmit = (element) => {
+    console.log("ffsdsd");
     console.log(element);
-    const form = axios.post("http://localhost:8080/api/form", element);
+    Axios.post("http://localhost:8080/email", element);
+    console.log("RECEVED");
   };
 
   render() {
@@ -58,30 +60,21 @@ class Contact extends Component {
               name="message"
               onChange={(e) => this.setState({ message: e.target.value })}
             ></textarea>
-
-            <button
-              class="btn  send-button"
-              id="submit"
-              type="submit"
-              value="SEND"
-            >
-              <div class="button">
-                <span
-                  className="text"
-                  o
-                  onClick={() =>
-                    this.handleSubmit({
-                      name: this.state.name,
-                      email: this.state.email,
-                      message: this.state.message,
-                    })
-                  }
-                >
-                  Envoyer
-                </span>
-              </div>
-            </button>
           </form>
+
+          <div>
+            <button
+              onClick={() =>
+                this.handleSubmit({
+                  name: this.state.name,
+                  email: this.state.email,
+                  message: this.state.message,
+                })
+              }
+            >
+              Envoyer
+            </button>
+          </div>
 
           <div class="direct-contact-container">
             <ul class="contact-list">

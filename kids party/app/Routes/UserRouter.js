@@ -1,9 +1,16 @@
 const express = require("express");
 const router = express.Router();
 
-const UserController = require('../Models/UserModel')
+const UserController = require("../Models/UserModel");
 
-const { listallusers, postUser, updateUser, deleteUser, signIn, getProfil } = require("../Controllers/UsersController");
+const {
+  listallusers,
+  postUser,
+  updateUser,
+  deleteUser,
+  signIn,
+  getProfil,
+} = require("../Controllers/UsersController");
 
 // get All event
 router.get("/getallusers", listallusers);
@@ -15,7 +22,6 @@ router.post("/adduser", postUser);
 router.put("/updatusers/:id", updateUser);
 //Delete event
 router.delete("/deletuser/:id", deleteUser);
-router.post("/SingIn", signIn),
-    router.get("/getuserconnecte", getProfil)
+router.post("/SingIn", signIn), router.get("/getuserconnecte", getProfil);
 
 module.exports = router;

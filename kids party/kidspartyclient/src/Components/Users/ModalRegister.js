@@ -119,7 +119,11 @@ class ModalRegister extends Component {
   render() {
     return (
       <MDBContainer>
-        <MDBBtn className="btn_menu" onClick={this.toggle(8)}>
+        <MDBBtn
+          color="elegant-color"
+          className="btn-color"
+          onClick={this.toggle(8)}
+        >
           Inscrivez_vous
         </MDBBtn>
 
@@ -271,7 +275,7 @@ class ModalRegister extends Component {
                     username: this.state.username,
                     password: this.state.password,
                     adresse: this.state.adresse,
-                    role: "Professionnel",
+                    role: "professionnel",
                   });
                 }}
               >

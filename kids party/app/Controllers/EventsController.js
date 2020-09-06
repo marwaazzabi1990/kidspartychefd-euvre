@@ -14,9 +14,10 @@ module.exports = {
   },
   postEvent: (req, res) => {
     console.log(req.body);
-    const newEvent = new Events(req.body);
-    newEvent
+    const event = new Events(req.body);
+    event
       .save()
+
       .then(res.json("event added !"))
       .catch((err) => console.log(err));
   },
