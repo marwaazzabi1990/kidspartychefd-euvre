@@ -42,44 +42,18 @@ export class EventModalModif extends Component {
       [modalNumber]: !this.state[modalNumber],
     });
   };
-  setDateDebut = (el) => {
+  setDateDebut = (e, el) => {
+    e.preventDefault();
+    console.log(el);
     this.setState({ Date_Debut: el });
   };
 
-  setDateFin = (el) => {
+  setDateFin = (e, el) => {
+    e.preventDefault();
     this.setState({ Date_fin: el });
   };
-  // // distinctDoubleCategorie = () => {
-  // //   let ArrayofCategorie = [];
-
-  // //   this.props.categorie.map((el) => ArrayofCategorie.push(el.titre));
-  // //   newArray = new Set(ArrayofCategorie);
-  // //   categorieArray = [...newArray];
-  // //   for (let i = 0; i <= categorieArray.length; i++) {
-  // //     if (categorieArray[i] == this.props.el.nom_categorie) {
-  // //       console.log("yyy", this.props.el.nom_categorie);
-  // //       console.log("zzzz", categorieArray[i]);
-  // //       //finalcategorie.push(categorieArray.splice(categorieArray[i], 1));
-  // //       categorieArray2 = categorieArray.splice(categorieArray[i], 1);
-  // //       console.log("kkkk", categorieArray2);
-  // //       /* finalcategorie2 = new Set(finalcategorie);
-  // //       categorieArray2 = finalcategorie2;
-  // //       console.log("kkkvvvvk", categorieArray2);*/
-  // //     } else {
-  // //     }
-  // //     console.log("dsdsdgqhg");
-  // //   }
-
-  //   /* categorieArray.map((el) =>
-  //     el.titre === this.props.el.nom_categorie
-  //       ? alert("sss", categorieArray.slice(el.titre, 1))
-  //       : categorieArray
-  //   );*/
-  // };
 
   render() {
-    // this.distinctDoubleCategorie();
-    console.log("marwa", this.props.el);
     return (
       <MDBContainer>
         <MDBBtn
@@ -114,12 +88,13 @@ export class EventModalModif extends Component {
               />
 
               <labe>Date </labe>
-              <Datepicker2
+              <input type="date" defaultVal={this.props.el.Date_Debut}></input>
+              {/* <Datepicker2
                 setDateDebut={this.setDateDebut}
                 setDateFin={this.setDateFin}
                 datedebut={this.props.el.Date_Debut}
                 datefin={this.props.el.Date_fin}
-              />
+              /> */}
               <input
                 className="input-modif"
                 type="text"
@@ -210,9 +185,6 @@ export class EventModalModif extends Component {
             </form>
           </MDBModalBody>
           <MDBModalFooter>
-            {/* <MDBBtn color="dark" onClick={this.toggle(8)}>
-              Fermer
-            </MDBBtn> */}
             <button
               className="btn btn-outline btn-md btn-rounded btn-navbar waves-effect waves-light btn-color1"
               onClick={() =>
@@ -231,7 +203,6 @@ export class EventModalModif extends Component {
                   nombre_de_participant: this.state.nombre_de_participant,
                   affiche: this.state.affiche,
                   nom_categorie: this.state.nom_categorie,
-                  // nom_organzateur: this.state.nom_organzateur,
                 })
               }
             >

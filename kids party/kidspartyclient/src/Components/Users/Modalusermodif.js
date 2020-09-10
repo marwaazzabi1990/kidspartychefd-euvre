@@ -90,9 +90,6 @@ export class UserModalModif extends Component {
             </form>
           </MDBModalBody>
           <MDBModalFooter>
-            {/* <MDBBtn color="dark" onClick={this.toggle(8)}>
-              Fermer
-            </MDBBtn> */}
             <MDBBtn
               color="elegant-color"
               className="btn btn-outline btn-md btn-rounded btn-navbar waves-effect waves-light btn-color1"

@@ -8,6 +8,7 @@ import { getEventsFromApi } from "../../Action/EventAction.js";
 import { getCategorieFromApi } from "../../Action/CategorieAction.js";
 import { getUser } from "../../Action/AuthentificationAction";
 import { Carousel, InputGroup, FormControl, Form } from "react-bootstrap";
+import Navbar from "../../Components/Navbar/navbar";
 import {
   MDBBtn,
   MDBCard,
@@ -19,6 +20,7 @@ import {
 } from "mdbreact";
 import { Card } from "antd";
 import ModalDetail from "./Detail_Event";
+import FooterPage from "../Footer";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 import { FaSearch, FaUsers } from "react-icons/fa";
@@ -26,8 +28,9 @@ import RegisterModal from "../Users/ModalRegister";
 import { Select } from "semantic-ui-react";
 import StartRating from "../StartRating";
 import artistique from "../../artistique2.png";
-import culturel from "../../culturelle.jpg";
-import sport from "../../sport.jpeg";
+import culturel from "../../culture.png";
+import sport from "../../sport1.png";
+import { MDBAnimation } from "mdbreact";
 
 /*function onChange(a, b, c) {
   console.log(a, b, c);
@@ -89,25 +92,27 @@ class Event_list extends Component {
                 src={"http://localhost:8080/" + el.affiche}
                 alt="First slide"
               />
-              <Carousel.Caption>
-                {/* <h1 className="titre-card">{el.titre}</h1>
-                  <p className="p-carrousel">{el.description}</p>
-                  <Link to="/inscription">
-                    <MDBBtn className="btn_menu">Devenir partenaire</MDBBtn>
-                  </Link> */}
+              <Carousel.Caption className="carrousel-caption">
+                <h1 className="titre-card">{el.titre}</h1>
+
+                <Link to="/inscription">
+                  <button className="btn btn-outline btn-md btn-rounded btn-navbar waves-effect btn_menu">
+                    Devenir partenaire
+                  </button>
+                </Link>
               </Carousel.Caption>
             </Carousel.Item>
           ))}
         </Carousel>
         {/*Filtre   zone */}
-
         {/* paragraphe Bienvenu */}
-        <div className="bienvenu">
-          <h2 className="bienveneu-h1">
+
+        <div className="bienvenu ">
+          <h2 className="bienveneu-h1 ">
             {" "}
             Bienvenu <span className="titre-speciale">Chez Kids</span> Party
           </h2>
-          <p>
+          <p className="bienveneu-p">
             Le lorem ipsum est, en imprimerie, une suite de mots sans
             signification utilisée à titre provisoire pour calibrer une mise en
             page, le texte définitif venant remplacer le faux-texte dès qu'il
@@ -117,40 +122,67 @@ class Event_list extends Component {
         </div>
         {/* end of bienvenu paragraphe */}
         {/*zone de icone de categorie*/}
-        <div className="pos-categorie">
+        <br></br>
+        {/* <div className="classicformpage gradient"> */}
+        <div className="pos-categorie ">
           <div className="pos_categorie_img">
             <a onClick={(e) => this.setState({ categorie: artistique })}>
               <div>
-                <img className="img-categorie" src={artistique} />
-                <h3 class="text_h3">artistique</h3>
+                <MDBAnimation type="bounce" infinite>
+                  <center>
+                    {" "}
+                    <img className="img-categorie" src={artistique} />{" "}
+                  </center>
+                </MDBAnimation>
+                <h3 class="text_h3" style={{ color: "green" }}>
+                  artistique
+                </h3>
               </div>
               <div></div>
             </a>
           </div>
+
           <div>
             {" "}
             <a>
-              <img className="img-categorie" src={sport} />
-              <h3 class="text_h3">sport</h3>
+              <MDBAnimation type="bounce" infinite>
+                {" "}
+                <img className="img-categorie" src={sport} />
+              </MDBAnimation>{" "}
+              <center>
+                {" "}
+                <h3 class="text_h3" style={{ color: "green" }}>
+                  sport
+                </h3>
+              </center>
             </a>
           </div>
           <div>
             <a>
-              <img className="img-categorie" src={culturel} />
-              <h3 class="text_h3"> culture</h3>
+              <MDBAnimation type="bounce" infinite>
+                {" "}
+                <img className="img-categorie" src={culturel} />
+              </MDBAnimation>{" "}
+              <center>
+                {" "}
+                <h3 class="text_h3" style={{ color: "green" }}>
+                  {" "}
+                  culture
+                </h3>{" "}
+              </center>
             </a>
           </div>
         </div>
+        {/* </div> */}
 
         {/*end of zone de categorie */}
         {/*  zonne Event */}
+
         <h2 className="bienveneu-h2">
           {" "}
           Événements <span className="titre-speciale">A Venir</span>
         </h2>
-
         {/*Card Event */}
-
         <div className="pos_card">
           {event
             .filter((elcategorie) =>
@@ -173,6 +205,7 @@ class Event_list extends Component {
               <div>
                 <Link to={"/detail/" + el._id}>
                   <Card
+                    className="overflow"
                     hoverable
                     style={{ width: 240 }}
                     cover={
@@ -183,11 +216,14 @@ class Event_list extends Component {
                       />
                     }
                   >
-                    <Meta
-                      title={el.titre}
-                      Adresse={el.Adresse}
-                      description="www.instagram.com"
-                    />
+                    <div className="text">
+                      <span> title: </span> {el.titre} <span> Adresse :</span>{" "}
+                      {el.Adresse}
+                      <br></br>
+                      <span> Participant :</span> {el.nombre_de_participant}
+                      <br></br>
+                      <span> Prix :</span> {el.prix}
+                    </div>
 
                     {/*rating  */}
                     {[...Array(5)].map((star, i) => {
@@ -235,24 +271,12 @@ this.sendNote(e.target.value);
               </div>
             ))}
         </div>
-        {/* <Carousel afterChange={onChange} autoplay>
-          {this.props.event.map((el, i) => (
-            <div>
-              <div>
-                <Card
-                  cover={
-                    <img
-                      alt="example"
-                      src={"http://localhost:8080/" + el.affiche}
-                      style={{ width: "200px" }}
-                    />
-                  }
-                ></Card>{" "}
-              </div>
-            </div>
-          ))}
-        </Carousel> */}
+
         <div className="div-vide"></div>
+
+        <div>
+          <FooterPage />
+        </div>
       </div>
     );
   }

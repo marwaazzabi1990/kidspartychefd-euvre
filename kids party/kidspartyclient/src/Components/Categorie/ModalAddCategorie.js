@@ -18,9 +18,7 @@ class ModalAjoutCategorie extends Component {
     modal14: false,
     modal9: false,
   };
-  componentDidMount() {
-    // this.props.addCategorie();
-  }
+  componentDidMount() {}
 
   toggle = (nr) => () => {
     let modalNumber = "modal" + nr;

@@ -8,12 +8,10 @@ import { AudioOutlined } from "@ant-design/icons";
 import { Card } from "antd";
 import { MDBIcon } from "mdbreact";
 
-import Moment from "react-moment";
 import { getEventsFromApi } from "../../Action/EventAction.js";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
-import { FaSearch, FaUsers } from "react-icons/fa";
-import { Carousel, InputGroup, FormControl, Form } from "react-bootstrap";
+
 //import Carrousel from "./carrousel";
 const { Search } = Input;
 const suffix = (
@@ -39,6 +37,10 @@ class Eventlist extends Component {
     this.props.getAllEvents();
     this.props.getAllCategorie();
   }
+  componentWillUpdate() {
+    this.props.getAllEvents();
+    this.props.getAllCategorie();
+  }
   filter = (e) => {
     let input = e.target.value;
 
@@ -49,56 +51,34 @@ class Eventlist extends Component {
   page = (page, pageSize) => {
     this.setState({ page: page, pageSize: pageSize });
   };
-  // onClickartistique = (e) => {
-  //   this.setState({ Categorie: "artistique" });
-  //   console.log(this.state.Categorie);
-  // };
 
-  // distinctDoubleCategorie = () => {
-  //   let ArrayOfCategorie = [];
-  //   console.log("categorie is :" + this.props.categorie);
-  //   this.props.categorie.map((el) => ArrayOfCategorie.push(el.nom_categorie));
-  //   newArray = new Set(ArrayOfCategorie);
-  //   categorie = [...newArray];
-  // };
   render() {
-    // this.distinctDoubleCategorie();
     return (
       <div className="pos-generale">
-        <center style={{ marginTop: 30 }}>
+        {" "}
+        <h2 className="bienveneu-h1">
           {" "}
-          <h2 className="bienveneu-h1">
-            {" "}
-            Événements <span className="titre-speciale">En Kids Party</span>
-          </h2>
-        </center>
+          Événements <span className="titre-speciale">En Kids Party</span>
+        </h2>
         <div className="pos-filter">
           <div style={{ width: 240, marginTop: 30 }}>
             <div>
               <h5
-                style={{ fontSize: 30, fontWeight: "bolder", color: "green" }}
+                style={{ fontSize: 30, fontWeight: "bolder", color: "black" }}
               >
                 Filtrer par{" "}
               </h5>
               <br></br>
-              <br></br>
+            </div>
 
+            <div>
               <Search
                 placeholder="input search "
                 onChange={(e) => this.filter(e)}
                 onSearch={(value) => console.log(value)}
                 style={{ width: 240 }}
               />
-            </div>
-            <br></br>
-            <div>
-              <span
-                style={{ fontSize: 30, fontWeight: "bolder", color: "black" }}
-              >
-                {" "}
-                Adresse
-              </span>
-              <br></br>
+              <br></br> <br></br>
               <select
                 className="browser-default custom-select"
                 onChange={(e) => this.setState({ Adresse: e.target.value })}
@@ -129,19 +109,12 @@ class Eventlist extends Component {
             </div>
             <br></br>
             <div>
-              <span
-                style={{ fontSize: 30, fontWeight: "bolder", color: "black" }}
-              >
-                {" "}
-                Prix
-              </span>
-              <br></br>
               <select
                 className="browser-default custom-select"
                 onChange={(e) => this.setState({ prix: e.target.value })}
               >
                 <option value="0">Prix</option>
-                <option value="Gratuit">Gratuit</option>
+
                 <option value="5">moins 5 DT</option>
                 <option value="30">moins 30 DT</option>
                 <option value="50">mois 50 DT</option>
@@ -150,24 +123,6 @@ class Eventlist extends Component {
             </div>
 
             <div>
-              {/* <MDBContainer className="mt-5">
-              <MDBInput
-                gap
-                onClick={this.onClickartistique(2)}
-                checked={this.state.radio === 2 ? true : false}
-                label="artistique"
-                type="radio"
-                id="radio2"
-                value="artistique"
-              />
-            </MDBContainer> */}
-              <br></br>
-              <span
-                style={{ fontSize: 30, fontWeight: "bolder", color: "black" }}
-              >
-                {" "}
-                Categorie
-              </span>
               <br></br>
               <select
                 className="browser-default custom-select"
@@ -188,7 +143,7 @@ class Eventlist extends Component {
               .filter((elcategorie) =>
                 this.state.Categorie === ""
                   ? elcategorie
-                  : elcategorie.nom_categorie === this.state.Categorie
+                  : elcategorie.nom_categorie.includes(this.state.Categorie)
               )
               .filter((eladresse) =>
                 this.state.Adresse === ""
@@ -210,12 +165,6 @@ class Eventlist extends Component {
                 }
               })
 
-              /* .filter(
-                ((elprix) =>
-                  Number(this.state.prix) === 0
-                    ? elprix
-                    : Number(elprix.prix) <= Number(this.state.prix): (elprix.prix)== "Gratuit")
-              )*/
               .filter(
                 (el, i) =>
                   (this.state.page - 1) * this.state.pageSize <= i &&
@@ -224,6 +173,7 @@ class Eventlist extends Component {
               .map((el) => (
                 <div>
                   <Card
+                    className="overflow"
                     hoverable
                     style={{ width: 240, marginTop: 30 }}
                     cover={
@@ -234,7 +184,7 @@ class Eventlist extends Component {
                       />
                     }
                   >
-                    <Meta title={el.titre} description={el.description} />
+                    <Meta title={el.titre} />
                     <div>
                       <span> Adresse :</span> {el.Adresse}
                       <br></br>
@@ -313,13 +263,10 @@ this.sendNote(e.target.value);
 const mapStateToProps = (state) => ({
   event: state.event,
   categorie: state.categorie,
-  // authetification: state.authetification.user,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   getAllEvents: () => dispatch(getEventsFromApi()),
   getAllCategorie: () => dispatch(getCategorieFromApi()),
-  //   getAllCategorie: () => dispatch(getCategorieFromApi()),
-  //   getUser: () => dispatch(getUser()),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Eventlist);

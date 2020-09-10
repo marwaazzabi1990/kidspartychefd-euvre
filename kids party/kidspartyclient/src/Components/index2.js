@@ -36,7 +36,7 @@ import Users from "./Users/users_professionnel";
 import Detail from "./evenement/Detail_Event";
 import { getUser, logout } from "../Action/AuthentificationAction";
 import { getEventsFromApi } from "../Action/EventAction";
-
+import { UserModalModif } from "../Components/Users/Modalusermodif";
 import Registervisiteur from "../Components/Users/ModalRegistervisiteur";
 import { Eventlist } from "./evenement/ListEvent";
 import { MDBBtn } from "mdbreact";
@@ -45,10 +45,10 @@ import { MDBBtn } from "mdbreact";
 import "./acceuil.css";
 import Categorie from "./Categorie/Categorie";
 import Contact from "./Contact/contact";
-
+import FooterPage from "./Footer";
 import Profil from "./Users/Profil";
-/*import Conecte from "./Modal-persone conecte";*/
-class Index extends Component {
+import Conecte from "./Modal-persone conecte";
+class Index2 extends Component {
   state = {
     isOpen: false,
   };
@@ -59,16 +59,30 @@ class Index extends Component {
     this.props.getUser();
   }
   componentWillUpdate() {
-    this.props.getUser();
+    // this.props.getUser();
+    //this.props.getAllEvents();
   }
 
   render() {
+    // if (this.props.authetification) {
+    //   return <Redirect to="/" />;
+    // }
+    // this.props.authetification && console.log(this.props.authetification.role);
+    // // const role = this.props.authetification && this.props.authetification.role
+    // if (this.props.authetification) {
+    //   console.log(
+    //     "index",
+    //     this.props.authetification && this.props.authetification.role
+    //   );
+    // }
+    //const role = this.props.authetification && this.props.authetification.role;
+
     return (
       <div>
         <div>
           {/*navbar mdd*/}
           <Router>
-            <MDBNavbar dark expand="md" className="navbar">
+            {/* <MDBNavbar dark expand="md" className="navbar">
               <MDBNavbarBrand>
                 <img src={logo} className="img-lg" />
               </MDBNavbarBrand>
@@ -131,23 +145,10 @@ class Index extends Component {
                     {this.props.authetification ? (
                       <MDBDropdown className="text_navbar">
                         <MDBDropdownToggle nav caret>
-                          <div className="flex_icon">
-                            {" "}
-                            <div>
-                              {" "}
-                              <MDBIcon className="icon-color" icon="user">
-                                {" "}
-                              </MDBIcon>
-                            </div>
-                            <div>
-                              {this.props.authetification && (
-                                <h5>
-                                  {" "}
-                                  Bienvenu {this.props.authetification.nom}
-                                </h5>
-                              )}
-                            </div>
-                          </div>
+                          <MDBIcon className="icon-color" icon="user"></MDBIcon>
+                          {this.props.authetification && (
+                            <h5>{this.props.authetification.nom}</h5>
+                          )}
                         </MDBDropdownToggle>
                         <MDBDropdownMenu>
                           <MDBNavLink className="menu-dropdown" to="/monprofil">
@@ -170,7 +171,7 @@ class Index extends Component {
                         </MDBNavLink>
                         <MDBNavItem className="mt-2">
                           {/* <LogIn />*/}
-                          <MDBNavLink to="/log">
+            {/*   <MDBNavLink to="/log">
                             <button className="btn btn-outline btn-md btn-rounded btn-navbar waves-effect waves-light btn_menu11">
                               Connexion
                             </button>
@@ -189,43 +190,37 @@ class Index extends Component {
             <div>
               <Switch>
                 <Route exact path="/">
+                  <Navbar />
                   <Event_list />
                 </Route>
                 <Route exact path="/Evenement">
+                  <Navbar />
                   <EventList />
                 </Route>
 
-                <Route exact path="/users">
-                  <Users />
-                </Route>
-
-                <Route exact path="/Gerer_evenement">
-                  <GererEvenement />
-                </Route>
-                <Route exacft path="/categorie">
-                  <Categorie />
-                </Route>
                 <Route exact path="/contact">
+                  <Navbar />
                   <div className="contact">
                     {" "}
                     <Contact />
                   </div>
                 </Route>
                 <Route exact path="/inscription">
+                  <Navbar />
                   <Register />
                 </Route>
                 <Route exact path="/Registervisiteur">
+                  <Navbar />
                   <Registervisiteur />
                 </Route>
                 <Route exact path="/log">
+                  <Navbar />
                   <LogIn />
-                </Route>
-                <Route exact path="/monprofil">
-                  <Profil />
                 </Route>
 
                 {this.props.event.map((el) => (
                   <Route exact path={"/detail/" + el._id}>
+                    <Navbar />
                     <Detail el={el} />
                   </Route>
                 ))}
@@ -233,6 +228,8 @@ class Index extends Component {
             </div>
           </Router>
         </div>
+
+        <FooterPage />
       </div>
     );
   }
@@ -249,4 +246,4 @@ const mapDispatchToProps = (dispatch) => ({
   getUser: () => dispatch(getUser()),
   logout: () => dispatch(logout()),
 });
-export default connect(mapStateToProps, mapDispatchToProps)(Index);
+export default connect(mapStateToProps, mapDispatchToProps)(Index2);

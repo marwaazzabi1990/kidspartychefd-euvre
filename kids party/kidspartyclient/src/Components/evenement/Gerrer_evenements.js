@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { MDBBtn, MDBIcon } from "mdbreact";
 
-//import { Table } from 'react-bootstrap';
 import {
   getEventsFromApi,
   deleteEventToApi,
@@ -28,19 +27,9 @@ class GererEvent extends Component {
   componentDidMount() {
     this.props.getUser();
     this.props.getAllEvents();
-
-    //   this.setState{ (nom_organzateure = this.props.authetification.nom) }
   }
+
   render() {
-    // this.props.authetification && console.log("xcx", this.props.authetification.n);
-
-    if (this.props.authetification) {
-      console.log("oooooo", this.props.authetification.nom);
-    }
-
-    // const { authetification } = this.props;
-    // console.log("user", authetification, authetification);
-
     const { event } = this.props; // console.log("dfsdsd", this.state.role)
 
     const events = event.filter(
@@ -49,16 +38,13 @@ class GererEvent extends Component {
         el.nom_organzateur === this.props.authetification._id
     );
 
-    console.log("eventwa7ed", events);
+    // console.log("eventwa7ed", events);
     return (
       <div>
         <h1 className="bienveneu-h1">
           Liste <span className="titre-speciale">des evenements</span>
         </h1>
-        {/* <button
-          className="buttonplus"
-          onClick={() => this.setState({ addModelShow: true })}
-        > */}
+
         {this.props.authetification ? (
           <ModalAddevent id={this.props.authetification._id} />
         ) : null}
@@ -106,61 +92,46 @@ class GererEvent extends Component {
           </Table.Header>
 
           <Table.Body>
-            {events /*.filter((el_organizateurs) => this.el_organizateurs === "" ?
-                            el_organizateurs : el_organizateurs === "maazza"
-        )*/
-              .map((el, i) => (
-                <Table.Row>
-                  <Table.Cell>
-                    <Label ribbon>{el.titre}</Label>
-                  </Table.Cell>
-                  <Table.Cell>{el.Adresse}</Table.Cell>
-                  <Table.Cell>
-                    {el.Date_Debut.day}/{el.Date_Debut.month}/
-                    {el.Date_Debut.year}
-                  </Table.Cell>
-                  <Table.Cell>
-                    {el.Date_fin.day}/{el.Date_fin.month}/{el.Date_fin.year}
-                  </Table.Cell>
+            {events.map((el, i) => (
+              <Table.Row>
+                <Table.Cell>
+                  <Label ribbon>{el.titre}</Label>
+                </Table.Cell>
+                <Table.Cell>{el.Adresse}</Table.Cell>
+                <Table.Cell>
+                  {el.Date_Debut.day}/{el.Date_Debut.month}/{el.Date_Debut.year}
+                </Table.Cell>
+                <Table.Cell>
+                  {el.Date_fin.day}/{el.Date_fin.month}/{el.Date_fin.year}
+                </Table.Cell>
 
-                  <Table.Cell>{el.description}</Table.Cell>
-                  <Table.Cell>{el.notes}</Table.Cell>
-                  <Table.Cell>{el.nombre_de_place}</Table.Cell>
-                  <Table.Cell>{el.nombre_de_participant}</Table.Cell>
-                  <Table.Cell>{el.prix}</Table.Cell>
-                  <Table.Cell>{el.nom_categorie}</Table.Cell>
-                  {/*<Table.Cell>{el.nom_organzateur}</Table.Cell>*/}
+                <Table.Cell>{el.description}</Table.Cell>
+                <Table.Cell>{el.notes}</Table.Cell>
+                <Table.Cell>{el.nombre_de_place}</Table.Cell>
+                <Table.Cell>{el.nombre_de_participant}</Table.Cell>
+                <Table.Cell>{el.prix}</Table.Cell>
+                <Table.Cell>{el.nom_categorie}</Table.Cell>
+                {/*<Table.Cell>{el.nom_organzateur}</Table.Cell>*/}
 
-                  <Table.Cell className="pos-Action ">
-                    <ModifEvent el={el} />
+                <Table.Cell className="pos-Action ">
+                  <ModifEvent el={el} />
 
-                    <MDBBtn
-                      color="elegant-color"
-                      className="btn-color_sup-intern"
-                      onClick={() => this.props.deleteEvent(el._id)}
-                    >
-                      <i class="fas fa-trash"></i>
-                    </MDBBtn>
-                  </Table.Cell>
-                </Table.Row>
-              ))}{" "}
+                  <MDBBtn
+                    color="elegant-color"
+                    className="btn-color_sup-intern"
+                    onClick={() => this.props.deleteEvent(el._id)}
+                  >
+                    <i class="fas fa-trash"></i>
+                  </MDBBtn>
+                </Table.Cell>
+              </Table.Row>
+            ))}{" "}
           </Table.Body>
 
           <Table.Footer>
             <Table.Row>
               <Table.HeaderCell colSpan="3">
-                <Menu floated="right" pagination>
-                  {/* <Menu.Item as='a' icon>
-                                        <Icon name='chevron left' />
-                                    </Menu.Item>
-                                    <Menu.Item as='a'>1</Menu.Item>
-                                    <Menu.Item as='a'>2</Menu.Item>
-                                    <Menu.Item as='a'>3</Menu.Item>
-                                    <Menu.Item as='a'>4</Menu.Item>
-                                    <Menu.Item as='a' icon>
-                                        <Icon name='chevron right' /> */}
-                  {/* </Menu>  </Menu.Item> */}
-                </Menu>
+                <Menu floated="right" pagination></Menu>
               </Table.HeaderCell>
             </Table.Row>
           </Table.Footer>

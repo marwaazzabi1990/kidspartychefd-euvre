@@ -27,7 +27,7 @@ export function addUserFromApi(element) {
       dispatch(AddUser(res.data));
       // console.log(res.data);
       //   window.location.reload(false);
-      window.location.pathname = "/connexion";
+      //window.location.pathname = "/log";
     });
 }
 

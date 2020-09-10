@@ -5,9 +5,6 @@ import { getEventsFromApi } from "../../Action/EventAction.js";
 import { getCategorieFromApi } from "../../Action/CategorieAction.js";
 import { getUser } from "../../Action/AuthentificationAction";
 
-import { Facebook, Twitter } from "react-sharingbuttons";
-import SFacebook from "./facebook";
-
 import { MDBBtn, MDBIcon } from "mdbreact";
 import "./Detail_Event.css";
 
@@ -32,110 +29,101 @@ class Detail extends Component {
             <span className="titre-speciale"> {this.props.el.titre}</span>
           </h1>
         </center>
-
-        <div class="container">
-          <div class="row">
-            <div class="col-sm-2 col-md-2">
-              <img
-                className="img-profil"
-                src={"http://localhost:8080/" + this.props.el.affiche}
-                alt=""
-                className="img-profile"
-              />
+        {/* 
+        <div class="container"> */}
+        <div class="row top-detail">
+          <div class="col-sm-2 col-md-2">
+            <img
+              className="img-profil"
+              src={"http://localhost:8080/" + this.props.el.affiche}
+              alt=""
+              className="img-profile"
+            />
+          </div>
+          <div class="col-sm-4 col-md-4 ">
+            <div className="row">
+              <p>
+                {" "}
+                <span className="titre-speciale2">titre : </span>
+                <span>{this.props.el.titre}</span>
+              </p>
             </div>
-            <div class="col-sm-4 col-md-4 ">
-              <div className="row">
-                <p>
-                  {" "}
-                  <span className="titre-speciale2">titre : </span>
-                  <span>{this.props.el.titre}</span>
-                </p>
-              </div>
-              <div className="row">
-                <p>
-                  {" "}
-                  <span className="titre-speciale2">Adresse: </span>{" "}
-                  <i class="glyphicon glyphicon-envelope"></i>{" "}
-                  {this.props.el.Adresse}
-                </p>
-              </div>
-              <div className="row">
-                {/* <p>
-                    {" "}
-                    <span className="titre-speciale2">
-                      établissement:{" "}
-                    </span>{" "}
-                    <i class="glyphicon glyphicon-envelope"></i>{" "}
-                    {el.établissement}
-                  </p> */}
-              </div>
+            <div className="row">
+              <p>
+                {" "}
+                <span className="titre-speciale2">Adresse: </span>{" "}
+                <i class="glyphicon glyphicon-envelope"></i>{" "}
+                {this.props.el.Adresse}
+              </p>
+            </div>
+            <div className="row"></div>
 
-              <div className="row">
-                <p>
-                  {" "}
-                  <span className="titre-speciale2">Description: </span>{" "}
-                  {this.props.el.description}
-                </p>
-              </div>
+            <div className="row">
+              <p>
+                {" "}
+                <span className="titre-speciale2 user">Description: </span>{" "}
+                {this.props.el.description}
+              </p>
+            </div>
 
-              <div className="row">
-                <p>
-                  {" "}
-                  <span className="titre-speciale2 user ">Rating: </span>
-                  {/*rating  */}
-                  {[...Array(5)].map((star, i) => {
-                    const ratingValue = i + 1;
-                    return (
-                      <label>
-                        <input
-                          type="radio"
-                          name="rating"
-                          value={this.props.el.notes}
-                          /*  onClick={(e) => {
+            <div className="row">
+              <p>
+                {" "}
+                <span className="titre-speciale2 user ">Rating: </span>
+                {/*rating  */}
+                {[...Array(5)].map((star, i) => {
+                  const ratingValue = i + 1;
+                  return (
+                    <label>
+                      <input
+                        type="radio"
+                        name="rating"
+                        value={this.props.el.notes}
+                        /*  onClick={(e) => {
 this.setState({ rating: e.target.value });
 this.sendNote(e.target.value);
 }}*/
-                        />{" "}
-                        <FaStar
-                          className="star"
-                          color={
-                            ratingValue <= this.props.el.notes
-                              ? "#ffc107"
-                              : "#e4e5e9"
-                          }
-                          size={20}
-                          onMouseEnter={(e) =>
-                            this.setState({ hover: ratingValue })
-                          }
-                          onMouseLeave={(e) => this.setState({ hover: null })}
-                          //onClick={() => this.sendNote(this.state.rating)}
-                        />
-                      </label>
-                    );
-                  })}
-                </p>{" "}
-                <p>
-                  <div className={this.props.authetification ? "disabled" : ""}>
-                    <Link to="/Registervisiteur">
-                      {" "}
-                      Si vous voulez donnez votre note Inscrivez-vous{" "}
-                    </Link>
-                  </div>
-                  <br></br>
-                  <br></br>
-                  <br></br>
-                  <div className={this.props.authetification ? "" : "disabled"}>
-                    <span className="detail">
-                      Donnez_votre notes
-                      <StartRating el={this.props.el} />
-                    </span>
-                  </div>
-                </p>
-              </div>
+                      />{" "}
+                      <FaStar
+                        className="star"
+                        color={
+                          ratingValue <= this.props.el.notes
+                            ? "#ffc107"
+                            : "#e4e5e9"
+                        }
+                        size={20}
+                        onMouseEnter={(e) =>
+                          this.setState({ hover: ratingValue })
+                        }
+                        onMouseLeave={(e) => this.setState({ hover: null })}
+                        //onClick={() => this.sendNote(this.state.rating)}
+                      />
+                    </label>
+                  );
+                })}
+              </p>{" "}
+              <p>
+                <div className={this.props.authetification ? "disabled" : ""}>
+                  <Link to="/Registervisiteur">
+                    {" "}
+                    Si vous voulez donnez votre note Inscrivez-vous{" "}
+                  </Link>
+                </div>
+                <br></br>
+                <br></br>
+                <br></br>
+                <div className={this.props.authetification ? "" : "disabled"}>
+                  <span className="detail">
+                    Donnez_votre notes
+                    <StartRating el={this.props.el} />
+                  </span>
+                </div>
+              </p>
             </div>
           </div>
+        </div>
 
-          {/* rating 
+        {/* rating 
           {[...Array(5)].map((star, i) => {
             const ratingValue = i + 1;
             return (
@@ -162,7 +150,7 @@ this.sendNote(e.target.value);
               </label>
             );
           })}*/}
-        </div>
+        {/* </div> */}
 
         <div className="div-vide"></div>
         <div className="div-vide"></div>

@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import image2 from "../../contact.jpg";
+import "./contact.css";
+
 import Axios from "axios";
 class Contact extends Component {
   state = {
@@ -14,119 +17,81 @@ class Contact extends Component {
     Axios.post("http://localhost:8080/email", element);
     console.log("RECEVED");
   };
+  // handleSubmit = (element) => {
+  //   console.log(element);
+  //   const form = axios.post("http://localhost:8080/api/form", element);
+  // };
 
   render() {
     return (
-      <div>
-        <h1 class="section-header">CONTACTEZ-NOUS</h1>
+      <div class="contact1">
+        <div class="container-contact1">
+          <div class="contact1-pic js-tilt" data-tilt>
+            <img src={image2} alt="IMG" />
+          </div>
 
-        <div class="contact-wrapper">
-          <form
-            class="form-horizontal"
-            role="form"
-            // method="post"
-            // action="contact.php"
-          >
-            <div class="form-group">
-              <div class="col-sm-12">
-                <input
-                  type="text"
-                  class="form-control"
-                  id="name"
-                  placeholder="Nom"
-                  name="name"
-                  onChange={(e) => this.setState({ name: e.target.value })}
-                />
-              </div>
-            </div>
+          <form class="contact1-form validate-form">
+            <span class="contact1-form-title">Contactez-Nous</span>
 
-            <div class="form-group">
-              <div class="col-sm-12">
-                <input
-                  type="email"
-                  class="form-control"
-                  id="email"
-                  placeholder="EMAIL"
-                  name="email"
-                  onChange={(e) => this.setState({ email: e.target.value })}
-                />
-              </div>
-            </div>
-
-            <textarea
-              class="form-control"
-              rows="10"
-              placeholder="MESSAGE"
-              name="message"
-              onChange={(e) => this.setState({ message: e.target.value })}
-            ></textarea>
-          </form>
-
-          <div>
-            <button
-              onClick={() =>
-                this.handleSubmit({
-                  name: this.state.name,
-                  email: this.state.email,
-                  message: this.state.message,
-                })
-              }
+            <div
+              class="wrap-input1 validate-input"
+              data-validate="Name is required"
             >
-              Envoyer
-            </button>
-          </div>
+              <input
+                class="input1"
+                type="text"
+                name="name"
+                placeholder="Nom"
+                onChange={(e) => this.setState({ name: e.target.value })}
+              />
+              <span class="shadow-input1"></span>
+            </div>
 
-          <div class="direct-contact-container">
-            <ul class="contact-list">
-              <li class="list-item">
-                <i class="fa fa-map-marker fa-2x">
-                  <span class="contact-text place">Tunisie</span>
-                </i>
-              </li>
+            <div
+              class="wrap-input1 validate-input"
+              data-validate="Valid email is required: ex@abc.xyz"
+            >
+              <input
+                class="input1"
+                type="text"
+                name="email"
+                placeholder="Email"
+                onChange={(e) => this.setState({ email: e.target.value })}
+              />
+              <span class="shadow-input1"></span>
+            </div>
 
-              <li class="list-item">
-                <i class="fas fa-phone fa-2x">
-                  <span class="contact-text phone">
-                    <a href="tel:1-212-555-5555" title="Give me a call">
-                      (216) 26 75 88 99
-                    </a>
-                  </span>
-                </i>
-              </li>
+            <div
+              class="wrap-input1 validate-input"
+              data-validate="Message is required"
+            >
+              <textarea
+                class="input1"
+                name="message"
+                placeholder="Message"
+                onChange={(e) => this.setState({ message: e.target.value })}
+              ></textarea>
+              <span class="shadow-input1"></span>
+            </div>
 
-              <li class="list-item">
-                <i class="fas fa-envelope fa-2x">
-                  <span class="contact-text gmail">
-                    <a href="mailto:#" title="Send me an email">
-                      kidsparty@gmail.com
-                    </a>
-                  </span>
-                </i>
-              </li>
-            </ul>
-
-            <hr></hr>
-            <ul class="social-media-list">
-              <li>
-                <a href="#" target="_blank" class="contact-icon">
-                  <i class="fab fa-facebook-square"></i>
-                </a>
-              </li>
-              <li>
-                <a href="#" target="_blank" class="contact-icon">
-                  <i class="fab fa-twitter"></i>
-                </a>
-              </li>
-              <li>
-                <a href="#" target="_blank" class="contact-icon">
-                  <i class="fab fa-instagram"></i>
-                </a>
-              </li>
-            </ul>
-            <hr></hr>
-
-            <div class="copyright">&copy; ALL OF THE RIGHTS RESERVED</div>
-          </div>
+            <div class="container-contact1-form-btn">
+              <button
+                class="contact1-form-btn"
+                onClick={() =>
+                  this.handleSubmit({
+                    name: this.state.name,
+                    email: this.state.email,
+                    message: this.state.message,
+                  })
+                }
+              >
+                <span>
+                  Send Email
+                  <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+                </span>
+              </button>
+            </div>
+          </form>
         </div>
       </div>
     );

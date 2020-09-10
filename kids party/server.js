@@ -106,8 +106,8 @@ app.post("/email", (req, res) => {
       },
     });
     let mailOptions = {
-      from: "marwaazzabisimplon@gmail.com ",
-      to: "marwaazzabisimplon@gmail.com",
+      from: req.body.email,
+      to: "marwaazzabisimplon@gmail.com ",
       Subject: "new message",
       text: req.body.message,
       html: htmlEmail,

@@ -1,7 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { GoogleLogin } from "react-google-login";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  Redirect,
+} from "react-router-dom";
 
 import "./log.css";
 
@@ -102,57 +108,60 @@ class logIn extends Component {
                 <h2>Kids PARTY </h2>
                 <p>platforme des evenements pour les enfants</p>
                 <a class="btn" href="">
-                  Read More
+                  lire plus
                 </a>
               </div>
             </div>
             <div class="col-right">
               <div class="login-form">
-                <h2>Login</h2>
-
-                <p>
-                  <input
-                    type="text"
-                    placeholder="Username"
-                    required
-                    error="wrong"
-                    name="email"
-                    success="right"
-                    onChange={this.handleChange}
-                  />
-                  {formErrors.email.length > 0 && (
-                    <span className="errorMessage">{formErrors.email}</span>
-                  )}
-                </p>
-                <p>
-                  <input
-                    type="password"
-                    placeholder="Password"
-                    name="password"
-                    validate
-                    onChange={this.handleChange}
-                    required
-                  />
-                  {formErrors.password.length > 0 && (
-                    <span className="errorMessage">{formErrors.password}</span>
-                  )}
-                </p>
-                <p>
-                  <button
-                    className="btn btn-outline btn-md btn-rounded btn-navbar waves-effect waves-light btn-color1"
-                    className="btn btn_menu2"
-                    onClick={
-                      (this.handelSubmit,
-                      () =>
+                <h2>Conexion</h2>
+                <form onSubmit={this.handelSubmit}>
+                  <p>
+                    <input
+                      type="text"
+                      placeholder="Email"
+                      required
+                      error="wrong"
+                      name="email"
+                      success="right"
+                      onChange={this.handleChange}
+                      required
+                    />
+                    {formErrors.email.length > 0 && (
+                      <span className="errorMessage">{formErrors.email}</span>
+                    )}
+                  </p>
+                  <p>
+                    <input
+                      type="password"
+                      placeholder="Password"
+                      name="password"
+                      validate
+                      onChange={this.handleChange}
+                      required
+                    />
+                    {formErrors.password.length > 0 && (
+                      <span className="errorMessage">
+                        {formErrors.password}
+                      </span>
+                    )}
+                  </p>
+                  <p>
+                    <button
+                      className="btn btn-outline btn-md btn-rounded btn-navbar waves-effect waves-light btn-color1"
+                      className="btn btn_menu2"
+                      onClick={() =>
                         this.props.login({
                           email: this.state.email,
                           password: this.state.password,
-                        }))
-                    }
-                  >
-                    Connexion
-                  </button>
-                </p>
+                        })
+                      }
+                      type="submit"
+                    >
+                      Connexion
+                    </button>
+                  </p>
+                </form>
                 <p>
                   <Link to="inscription">Create an account</Link>
                 </p>
@@ -167,6 +176,7 @@ class logIn extends Component {
 
 const mapStateToProps = (state) => ({
   users: state.user,
+  authetification: state.authetification,
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -10,7 +10,7 @@ import {
 } from "mdbreact";
 
 import { Col, Row, Button, Form, FormGroup, Label, Input } from "reactstrap";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+
 import { addUserFromApi } from "../../Action/UserAction";
 import axios from "axios";
 
@@ -79,23 +79,7 @@ class ModalRegister extends Component {
       console.log("username", this.state.username);
     }
   };
-  /* validate = e => {
-         e.preventDefault()
- 
-         // let nameError = '';
-         let EmailError = '';
- 
-         //  let passworError = ''
-         if (!this.state.email.includes('@')) {
-             EmailError = 'invalid Email';
-         }
-         if (EmailError) {
-             this.setState({ EmailError });
-             return false;
-         }
-         console.log('DSDSDSD')
- 
-  */
+
   //upload logo
 
   fileSelectedHandler = (event) => {
@@ -260,11 +244,8 @@ class ModalRegister extends Component {
               </FormGroup>
             </MDBModalBody>
             <MDBModalFooter>
-              <MDBBtn color="secondary" onClick={this.toggle(8)}>
-                Close
-              </MDBBtn>
-              <MDBBtn
-                color="primary"
+              <button
+                className="btn btn-outline btn-md btn-rounded btn-navbar waves-effect waves-light btn-color1"
                 onClick={() => {
                   this.props.AddUser({
                     nom: this.state.nom,
@@ -281,7 +262,7 @@ class ModalRegister extends Component {
               >
                 {" "}
                 Envoyer
-              </MDBBtn>
+              </button>
             </MDBModalFooter>
           </Form>
         </MDBModal>

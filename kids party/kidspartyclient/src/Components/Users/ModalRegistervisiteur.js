@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { GoogleLogin } from "react-google-login";
+
 import "../authentification/log.css";
 
 import { login } from "./../../Action/AuthentificationAction";
 import { addUserFromApi } from "../../Action/UserAction";
-//import { addSessionInApi } from "./../../Action/SessionAction";
 
 import {
   MDBContainer,
@@ -24,15 +23,6 @@ var valid = false;
 const formValid = ({ formErrors }) => {
   let valid = true;
 
-  // console.log(formErrors);
-  //validation from errors being empty
-  // Object.values(formErrors).forEach((val) => {
-  //   val.length > 0 && (valid = false);
-  // });
-  // //validation the form was filled out
-  // /*Object.values(rest).forEach((val) => {
-  // val == null && (valid = false);
-  // });*/
   return valid;
 };
 class ModalRegistervisiteur extends Component {
@@ -63,8 +53,7 @@ class ModalRegistervisiteur extends Component {
     e.preventDefault();
     const { name, value } = e.target;
     let formErrors = this.state.formErrors;
-    // console.log("name", name);
-    // console.log("value", value);
+
     switch (name) {
       case "email":
         formErrors.email =
@@ -177,8 +166,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   AddUser: (el) => dispatch(addUserFromApi(el)),
-  // getAllUsers: () => dispatch(getUsersFromApi()),
-  //  AddSession: (session) => dispatch(addSessionInApi(session)),
+
   login: (userInfo) => dispatch(login(userInfo)),
 });
 

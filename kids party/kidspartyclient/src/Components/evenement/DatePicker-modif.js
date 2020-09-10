@@ -13,52 +13,58 @@ import {
 } from "mdbreact";
 
 const App2 = (props) => {
-  const defaultFrom = {
-    year: Number(props.datedebut && props.datedebut.year),
-    month: Number(props.datedebut && props.datedebut.month),
-    day: Number(props.datedebut.day && props.datedebut.day),
-  };
+  const disabledDays = [
+    {
+      year: Number(props.datedebut && props.datedebut.year),
+      month: Number(props.datedebut && props.datedebut.month),
+      day: Number(props.datedebut.day && props.datedebut.day),
+    },
 
-  const defaultTo = {
-    year: Number(props.datefin.year),
-    month: Number(props.datefin.month),
-    day: Number(props.datefin.day),
-  };
+    {
+      year: Number(props.datefin && props.datefin.year),
+      month: Number(props.datefin && props.datefin.month),
+      day: Number(props.datefin && props.datefin.day),
+    },
+  ];
 
   const defaultFromm = "";
 
   const defaultTp = "";
 
-  const defaultRange = {
-    from: defaultFrom,
-    to: defaultTo,
-  };
+  // const defaultRange = {
+  //   from: defaultFrom,
+  //   to: defaultTo,
+  // };
   const defaultRanger = {
     from: defaultFromm,
     to: defaultTp,
   };
 
-  const [selectedDayRange, setSelectedDayRange] = useState(defaultRange);
+  //const [selectedDayRange, setSelectedDayRange] = useState(defaultRange);
   const [selecty, setSelectedDayRange2] = useState(defaultRanger);
 
   // const [finDate] = useState(selectedDayRange.to);
-  console.log("taw ", selecty);
+  console.log("from ", selecty);
+
   return (
     <div className="pos-calendar">
       <Calendar
         className="calender"
-        value={selectedDayRange}
+        value={selecty}
+        selected={disabledDays}
+        disabledDays={disabledDays}
         onChange={setSelectedDayRange2}
         colorPrimary="#59ba4f" // added this
         colorPrimaryLight="rgba(75, 207, 250, 0.4)" // and this
         shouldHighlightWeekends
       />
+
       <button
         color="dark"
-        onClick={() => (
-          props.setDateDebut(selectedDayRange.from),
-          props.setDateFin(selectedDayRange.to)
-        )}
+        onClick={() => {
+          props.setDateDebut(selecty.from);
+          props.setDateFin(selecty.to);
+        }}
         // onClick={() => props.setDate(selectedDayRange)}
       >
         Valider

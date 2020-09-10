@@ -29,8 +29,6 @@ import {
 class Categorie extends Component {
   componentDidMount() {
     this.props.getAllCategorie();
-
-    // localStorage.setItem('nom', this.props.authetification.nom)
   }
   render() {
     return (
