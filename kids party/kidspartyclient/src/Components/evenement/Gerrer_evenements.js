@@ -79,13 +79,7 @@ class GererEvent extends Component {
               <Table.HeaderCell className="Table-HeaderCell">
                 Notes
               </Table.HeaderCell>
-              <Table.HeaderCell className="Table-HeaderCell">
-                {" "}
-                place
-              </Table.HeaderCell>
-              <Table.HeaderCell className="Table-HeaderCell">
-                particiant
-              </Table.HeaderCell>
+
               <Table.HeaderCell className="Table-HeaderCell">
                 Prix
               </Table.HeaderCell>
@@ -115,8 +109,7 @@ class GererEvent extends Component {
 
                   <Table.Cell>{el.description}</Table.Cell>
                   <Table.Cell>{el.notes}</Table.Cell>
-                  <Table.Cell>{el.nombre_de_place}</Table.Cell>
-                  <Table.Cell>{el.nombre_de_participant}</Table.Cell>
+
                   <Table.Cell>{el.prix}</Table.Cell>
                   <Table.Cell>{el.nom_categorie}</Table.Cell>
                   {/*<Table.Cell>{el.nom_organzateur}</Table.Cell>*/}

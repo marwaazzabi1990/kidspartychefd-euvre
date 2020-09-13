@@ -23,7 +23,7 @@ export function modifEventFromApi(data) {
   console.log("modifier", data);
   console.log("action", data);
   let id = data.id;
-  let titre = data.nom;
+  let titre = data.titre;
   let Date_Debut = data.Date_Debut;
   let Date_fin = data.Date_fin;
   let Adresse = data.Adresse;
@@ -31,8 +31,8 @@ export function modifEventFromApi(data) {
   let notes = data.notes;
   let nb_per_note = data.nb_per_note;
   let prix = data.prix;
-  let nombre_de_place = data.nombre_de_place;
-  let nombre_de_participant = data.nombre_de_participant;
+  /*let nombre_de_place = data.nombre_de_place;
+  let nombre_de_participant = data.nombre_de_participant;*/
   let affiche = data.affiche;
   let nom_categorie = data.nom_categorie;
   let nom_organzateur = data.nom_organzateur;
@@ -48,8 +48,8 @@ export function modifEventFromApi(data) {
       notes: notes,
       nb_per_note: nb_per_note,
       prix: prix,
-      nombre_de_place: nombre_de_place,
-      nombre_de_participant: nombre_de_participant,
+      /*  nombre_de_place: nombre_de_place,
+      nombre_de_participant: nombre_de_participant,*/
       affiche: affiche,
       nom_categorie: nom_categorie,
       nom_organzateur: nom_organzateur,

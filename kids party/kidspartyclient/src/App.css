@@ -1914,7 +1914,44 @@ body #cda-remove {
   /* .collapse {
     background-color: black !important;
   }*/
-  ..grid {
+  .pos_glob {
+    display: block;
+    flex-direction: column;
+  }
+  .pos-categorie {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    /*background: linear-gradient(
+      to left top,
+      rgb(117, 115, 112),
+      rgb(170, 192, 171)
+    );*/
+    background-color: rgb(214, 173, 96);
+    opacity: 0.3;
+    height: 100%;
+    /* margin-left: 90px;*/
+
+    margin-bottom: 60px;
+    width: 100%;
+  }
+  .selectt {
+    margin-bottom: 30px !important;
+  }
+  .bienveneu-h2 {
+    margin-top: 35px;
+    padding-left: 10px;
+    font-size: 50px;
+    font-weight: bold;
+    color: #2e2e2e;
+    text-align: start;
+    margin-left: 20px;
+    margin-bottom: 40px;
+    /*text-shadow: 2px 2px black !important;*/
+    border-left: 3px solid #ff8800 !important;
+  }
+  .grid {
     border-color: 1px solid black;
 
     justify-content: flex-start;
@@ -1934,7 +1971,7 @@ body #cda-remove {
     color: black;
 
     line-height: 24px;
-    margin-top: -100px;
+    /* margin-top: -100px;*/
     margin-left: 0px !important;
     margin-right: 100px;
   }

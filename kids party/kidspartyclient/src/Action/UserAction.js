@@ -1,7 +1,7 @@
 import { ADD_USER, DELETE_USER, GET_USER, MODIF_USER } from "./Types";
 import Axios from "axios";
 
-// Get all Product from Api to Store
+// Get user conecte from Api to Store
 export const getAlluser = (payload) => ({
   type: GET_USER,
   payload,
@@ -27,7 +27,7 @@ export function addUserFromApi(element) {
       dispatch(AddUser(res.data));
       // console.log(res.data);
       //   window.location.reload(false);
-      //window.location.pathname = "/log";
+      window.location.pathname = "/log";
     });
 }
 
@@ -40,7 +40,7 @@ export function modifUserFromApi(data) {
   console.log(data);
   let id = data.id;
   let a = data.nom;
-  let b = data.username;
+  /*let b = data.username;*/
   let c = data.email;
   let d = data.password;
   let e = data.role;
@@ -48,7 +48,7 @@ export function modifUserFromApi(data) {
     Axios.put(`http://localhost:8080/user/updatusers/${id}`, {
       nom: a,
 
-      username: b,
+      /* username: b,*/
       email: c,
       password: d,
       role: e,

@@ -137,11 +137,11 @@ class ModalRegisterParticipant extends Component {
                       () =>
                         this.props.AddUser({
                           nom: "visiteur",
-                          prenom: "visiteur",
-                          établissement: "visiteur",
-                          photos: "visiteur",
+                          // prenom: "visiteur",
+                          // établissement: "visiteur",
+                          // photos: "visiteur",
                           email: this.state.email,
-                          username: "visiteur",
+                          // username: "visiteur",
                           password: this.state.password,
                           adresse: "visiteur",
                           role: "visiteur",

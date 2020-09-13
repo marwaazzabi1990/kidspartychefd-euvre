@@ -54,7 +54,10 @@ class Detail extends Component {
               className="img-profile"
             />
           </div>
-          <div class="col-sm-4 col-md-4 ">
+          <div
+            class="col-sm-4 col-md-4 "
+            style={{ fontSize: 12, marginRight: 400 }}
+          >
             <div className="row">
               <p>
                 {" "}
@@ -62,7 +65,7 @@ class Detail extends Component {
                 <span>{this.state.event.titre}</span>
               </p>
             </div>
-            <div className="row">
+            <div className="row" style={{ fontSize: 12, marginRight: 20 }}>
               <p>
                 {" "}
                 <span className="titre-speciale2">Adresse: </span>{" "}
@@ -70,9 +73,24 @@ class Detail extends Component {
                 {this.state.event.Adresse}
               </p>
             </div>
-            <div className="row"></div>
-
+            <div className="row" style={{ fontSize: 12, marginLeft: 10 }}>
+              <p>
+                {" "}
+                <span className="titre-speciale2">Date Debut: </span>{" "}
+                <i class="glyphicon glyphicon-envelope"></i>{" "}
+                {this.state.event.Date_Debut}
+              </p>
+            </div>
             <div className="row">
+              <p>
+                {" "}
+                <span className="titre-speciale2">Date Fin: </span>{" "}
+                <i class="glyphicon glyphicon-envelope"></i>{" "}
+                {this.state.event.Date_fin}
+              </p>
+            </div>
+
+            <div className="row" style={{ fontSize: 12, marginRight: 10 }}>
               <p>
                 {" "}
                 <span className="titre-speciale2 user">Description: </span>{" "}
@@ -80,10 +98,10 @@ class Detail extends Component {
               </p>
             </div>
 
-            <div className="row">
+            <div className="row" style={{ fontSize: 12, marginLeft: 90 }}>
               <p>
                 {" "}
-                <span className="titre-speciale2 user ">Rating: </span>
+                <span className="titre-speciale2 user ">Notes: </span>
                 {/*rating  */}
                 {[...Array(5)].map((star, i) => {
                   const ratingValue = i + 1;
@@ -132,7 +150,8 @@ class Detail extends Component {
               <p>
                 {this.props.authetification ? (
                   <button
-                    className="btn btn-outline btn-md btn-rounded btn-navbar waves-effect waves-light btn-color1"
+                    style={{ fontSize: 12, marginLeft: 600, marginTop: -200 }}
+                    className="btn btn-outline btn-md btn-rounded btn-navbar waves-effect waves-light btn_menu"
                     onClick={() =>
                       this.props.addRservation({
                         idEvent: this.state.event._id,
@@ -145,14 +164,14 @@ class Detail extends Component {
                     }
                   >
                     {" "}
-                    Intéresser
+                    Reserver
                   </button>
                 ) : (
                   <Link to="/Registerparticipant">
                     {" "}
-                    <button className="btn btn-outline btn-md btn-rounded btn-navbar waves-effect waves-light btn-color1">
+                    <button className="btn btn-outline btn-md btn-rounded btn-navbar waves-effect waves-light btn_menu">
                       {" "}
-                      Intéresser
+                      Reserver
                     </button>
                   </Link>
                 )}
@@ -160,8 +179,8 @@ class Detail extends Component {
             </div>
           </div>
         </div>
-        {/* rating */}
-        {[...Array(5)].map((star, i) => {
+        {/* {/* rating */}
+        {/*  {[...Array(5)].map((star, i) => {
           const ratingValue = i + 1;
           return (
             <label>
@@ -186,7 +205,7 @@ class Detail extends Component {
               />
             </label>
           );
-        })}
+        })}*/}
       </div>
     );
   }

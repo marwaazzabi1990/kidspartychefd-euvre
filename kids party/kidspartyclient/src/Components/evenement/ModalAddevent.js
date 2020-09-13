@@ -39,13 +39,13 @@ class ModalAjoutEvent extends Component {
     });
   };
 
-  setDateDebut = (el) => {
-    this.setState({ dateDebut: el });
-  };
+  // setDateDebut = (el) => {
+  //   this.setState({ dateDebut: el });
+  // };
 
-  setDateFin = (el) => {
-    this.setState({ dateFin: el });
-  };
+  // setDateFin = (el) => {
+  //   this.setState({ dateFin: el });
+  // };
 
   //upload logo
 
@@ -81,29 +81,56 @@ class ModalAjoutEvent extends Component {
           <MDBModalHeader toggle={this.toggle(14)}>
             <h2 className="bienveneu-h2.2">
               {" "}
-              Nouvel <span className="titre-speciale">Event</span>
+              Nouveau <span className="titre-speciale">Evenement</span>
             </h2>
           </MDBModalHeader>
-          <MDBModalBody className="despo">
-            <div className="inputdispo1">
+          <MDBModalBody>
+            <div>
               <div className="partleftmodal">
                 <MDBInput
                   onChange={(e) => this.setState({ titre: e.target.value })}
                   outline
                   label="titre"
                 />
+                <div className="inputdispo">
+                  <label>Date debut</label>
+                  &nbsp;&nbsp;&nbsp;&nbsp;
+                  <DatePicker
+                    placeholder="Choisir la date Debut "
+                    onChange={(e) => {
+                      this.setState({
+                        dateDebut: e._d.toString().substr(4, 11),
+                      });
+                    }}
+                  />
+                  {/* <Datepicker
+                  setDateDebut={this.setDateDebut}
+                  setDateFin={this.setDateFin}
+                  event={this.props.event}
+                /> */}
+                </div>
+                <div className="inputdispo">
+                  <labe>Date Fin</labe>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <DatePicker
+                    placeholder="Choisir la date"
+                    onChange={(e) => {
+                      this.setState({ dateFin: e._d.toString().substr(4, 11) });
+                    }}
+                  />
+                </div>
                 <MDBInput
                   onChange={(e) => this.setState({ Adresse: e.target.value })}
                   label="Adresse"
                   outline
                 />
-                <MDBInput
+                {/* <MDBInput
                   onChange={(e) =>
                     this.setState({ nombre_de_place: e.target.value })
                   }
                   label="nombre_de_place"
                   outline
-                />
+                /> */}
                 <MDBInput
                   onChange={(e) => this.setState({ prix: e.target.value })}
                   label="prix"
@@ -147,58 +174,31 @@ class ModalAjoutEvent extends Component {
                   />
                 </div>
               </div>
-              <div className="inputdispo">
-                <label>Date debut</label>
-                <DatePicker
-                  placeholder="Choisir la date Debut "
-                  onChange={(e) => {
-                    this.setState({
-                      dateDebut: e._d.toString().substr(4, 11),
-                    });
-                  }}
-                />
-                {/* <Datepicker
-                  setDateDebut={this.setDateDebut}
-                  setDateFin={this.setDateFin}
-                  event={this.props.event}
-                /> */}
-              </div>
-              <div className="inputdispo">
-                <labe>Date Fin</labe>
-                <DatePicker
-                  placeholder="Choisir la date"
-                  onChange={(e) => {
-                    this.setState({ dateFin: e._d });
-                  }}
-                />
-              </div>
+              <button
+                style={{ fontSize: 12, marginLeft: 200, marginTop: -50 }}
+                className="btn btn-outline btn-md btn-rounded btn-navbar waves-effect waves-light btn_menu1"
+                onClick={() => {
+                  this.uploadHandler();
+                  this.props.addEvent({
+                    titre: this.state.titre,
+                    Date_Debut: this.state.dateDebut,
+                    Date_fin: this.state.dateFin,
+                    Adresse: this.state.Adresse,
+                    description: this.state.description,
+                    notes: 0,
+                    nb_per_note: 0,
+                    prix: this.state.prix,
+                    affiche: this.state.selectedFile.name,
+
+                    nom_categorie: this.state.nom_categorie,
+                    nom_organzateur: this.props.id,
+                  });
+                }}
+              >
+                Save changes
+              </button>
             </div>
           </MDBModalBody>
-          <MDBModalFooter>
-            <button
-              className="btn btn-outline btn-md btn-rounded btn-navbar waves-effect waves-light btn-color1"
-              onClick={() => {
-                this.uploadHandler();
-                this.props.addEvent({
-                  titre: this.state.titre,
-                  Date_Debut: this.state.dateDebut,
-                  Date_fin: this.state.dateFin,
-                  Adresse: this.state.Adresse,
-                  description: this.state.description,
-                  notes: 0,
-                  nb_per_note: 0,
-                  prix: this.state.prix,
-                  affiche: this.state.selectedFile.name,
-                  nombre_de_place: this.state.nombre_de_place,
-                  nombre_de_participant: 0,
-                  nom_categorie: this.state.nom_categorie,
-                  nom_organzateur: this.props.id,
-                });
-              }}
-            >
-              Save changes
-            </button>
-          </MDBModalFooter>
         </MDBModal>
       </MDBContainer>
     );

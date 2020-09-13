@@ -147,7 +147,7 @@ class Event_list extends Component {
           <div>
             <select
               style={{ width: 160, marginTop: 40 }}
-              className="browser-default custom-select"
+              className="browser-default custom-select selectt "
               onChange={(e) => this.setState({ Categorie: e.target.value })}
               name="pets"
               id="Quantity-select"
@@ -219,9 +219,11 @@ class Event_list extends Component {
                       <span> title: </span> {el.titre} <br></br>{" "}
                       <span> Adresse :</span> {el.Adresse}
                       <br></br>
-                      <span> Participant :</span> {el.nombre_de_participant}
+                      <span>Date Debut :</span> {el.Date_Debut}
                       <br></br>
-                      <span> Prix :</span> {el.prix}
+                      <span>Date Fin :</span> {el.Date_fin}
+                      <br></br>
+                      <span> Prix :</span> {el.prix} DT
                     </div>
 
                     {/*rating  */}

@@ -84,11 +84,6 @@ export class Profile extends Component {
                 </div>
 
                 <div className="row">
-                  <p>
-                    {" "}
-                    <span className="titre-speciale2">Username: </span>{" "}
-                    {el.username}
-                  </p>{" "}
                   <div className="pos-btn">
                     <ModifUser el={el} />
                   </div>

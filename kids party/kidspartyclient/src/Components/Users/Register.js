@@ -97,6 +97,7 @@ class Register extends Component {
   render() {
     return (
       <div>
+        <h1 className="bienveneu-h2">Inscription </h1>
         <Form onSubmit={this.handelSubmit}>
           <MDBModalBody>
             <Row form>
@@ -114,49 +115,7 @@ class Register extends Component {
                   <span style={{ color: "red" }}>{this.state.nameError}</span>
                 </FormGroup>
               </Col>
-              <Col md={6}>
-                <FormGroup>
-                  <Label for="exampleEmail">Prenom </Label>
-                  <Input
-                    type="text"
-                    required
-                    name="prenom"
-                    id="prenom"
-                    placeholder="prenom"
-                    onChange={(e) => this.setState({ prenom: e.target.value })}
-                  />
-                </FormGroup>
-              </Col>
-              <Col md={6}>
-                <FormGroup>
-                  <Label for="exampleEmail">Établissement</Label>
-                  <Input
-                    type="text"
-                    requiredname="établissement"
-                    id="établissement"
-                    placeholder="nom d'établissement"
-                    onChange={(e) =>
-                      this.setState({ établissement: e.target.value })
-                    }
-                  />
-                </FormGroup>
-              </Col>
 
-              <Col md={6}>
-                <FormGroup>
-                  <Label for="exampleEmail">logo d'etablissement</Label>
-
-                  <Input
-                    type="file"
-                    name="photos"
-                    id="photos"
-                    onChange={this.fileSelectedHandler}
-                  />
-                  <MDBBtn color="dark" onClick={this.uploadHandler}>
-                    <i class="fas fa-upload"></i>
-                  </MDBBtn>
-                </FormGroup>
-              </Col>
               <Col md={6}>
                 <FormGroup>
                   <Label for="exampleEmail">Email</Label>
@@ -175,19 +134,7 @@ class Register extends Component {
                   ) : null}
                 </FormGroup>
               </Col>
-              <Col md={6}>
-                <FormGroup>
-                  <Label for="exampleEmail">Username</Label>
-                  <Input
-                    type="text"
-                    required
-                    name="username"
-                    id="username"
-                    placeholder="username"
-                    onChange={this.handelChange}
-                  />
-                </FormGroup>
-              </Col>
+
               <Col md={6}>
                 <FormGroup>
                   <Label for="examplePassword">Password</Label>
@@ -214,21 +161,20 @@ class Register extends Component {
                 name="address"
                 required
                 id="exampleAddress"
-                onChange={(e) => this.setState({ address: e.target.value })}
+                onChange={(e) => this.setState({ adresse: e.target.value })}
               />
             </FormGroup>
           </MDBModalBody>
           <MDBModalFooter>
             <button
-              className="btn btn-outline btn-md btn-rounded btn-navbar waves-effect waves-light btn-color1"
+              style={{ fontSize: 12, marginRight: 150 }}
+              className="btn btn-outline btn-md btn-rounded btn-navbar waves-effect waves-light btn_menu11"
               onClick={() => {
                 this.props.AddUser({
                   nom: this.state.nom,
-                  prenom: this.state.prenom,
-                  établissement: this.state.établissement,
-                  photos: this.state.selectedFile.name,
+
                   email: this.state.email,
-                  username: this.state.username,
+
                   password: this.state.password,
                   adresse: this.state.adresse,
                   role: "professionnel",

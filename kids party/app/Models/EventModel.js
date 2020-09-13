@@ -12,8 +12,8 @@ const EventShema = new mongoose.Schema({
   nb_per_note: { type: Number, required: true },
   prix: { type: String, required: true },
   affiche: { type: String, required: true },
-  nombre_de_place: { type: Number, required: true },
-  nombre_de_participant: { type: Number, required: true },
+  // nombre_de_place: { type: Number, required: true },
+  // nombre_de_participant: { type: Number, required: true },
   nom_categorie: { type: String, required: true },
   nom_organzateur: { type: String, required: true },
 });

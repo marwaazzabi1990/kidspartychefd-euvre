@@ -46,7 +46,7 @@ export class UserModalModif extends Component {
           position="right"
         >
           <MDBModalHeader className="titlemodaleditmod" toggle={this.toggle(8)}>
-            Modifier User
+            Modifier votre profil
           </MDBModalHeader>
           <MDBModalBody>
             <form className="form-edit-moderateur">
@@ -57,14 +57,6 @@ export class UserModalModif extends Component {
                 name="title"
                 defaultValue={this.props.el.nom}
                 onChange={(e) => this.setState({ nom: e.target.value })}
-              />
-              <label>Username</label>
-              <input
-                className="input-modif"
-                type="text"
-                defaultValue={this.props.el.username}
-                name="user_name"
-                onChange={(e) => this.setState({ username: e.target.value })}
               />
 
               {/* <input
@@ -97,7 +89,6 @@ export class UserModalModif extends Component {
                 this.props.Modifieruser({
                   id: this.state.id,
                   nom: this.state.nom,
-                  username: this.props.el.username,
 
                   password: this.state.password,
                   email: this.state.email,

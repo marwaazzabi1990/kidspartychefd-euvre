@@ -4,13 +4,14 @@ import { connect } from "react-redux";
 export default class Register extends Component {
   render() {
     return (
-      <div>
-        <div className="bg-register"></div>
-        <div className="grid">
-          <a href="#partenaires">
-            <p className="lien-profesionnel">Apropos</p>
-          </a>
-        </div>
+      <div className="pos_glob">
+        {/* <div className="bg-register">
+          <div className="grid">
+            <a href="#partenaires">
+              <p className="lien-profesionnel">Apropos</p>
+            </a>
+          </div>
+        </div> */}
         <div>
           <div className="this">
             <h2
