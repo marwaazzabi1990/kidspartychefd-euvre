@@ -69,6 +69,7 @@ app.post("/image", (req, res) => {
 var Event = require("./app/Routes/EventsRouter");
 var User = require("./app/Routes/UserRouter");
 var Categorie = require("./app/Routes/CategorieRoutes");
+var Rservation = require("./app/Routes/RservationRoutes");
 // parse requests of content-type - application/json
 app.use(bodyParser.json());
 // parse requests of content-type - application/x-www-form-urlencoded
@@ -79,6 +80,7 @@ app.use(cors());
 app.use("/event", Event);
 app.use("/user", User);
 app.use("/categorie", Categorie);
+app.use("/reservation", Rservation);
 app.use(express.json());
 
 //const db = require("./app/models");

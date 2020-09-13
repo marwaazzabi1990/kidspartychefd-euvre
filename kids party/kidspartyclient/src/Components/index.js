@@ -6,6 +6,7 @@ import {
   Route,
   Link,
   Redirect,
+  useParams,
 } from "react-router-dom";
 import logo from "../logo2.png";
 import Navbar from "../Components/Navbar/navbar";
@@ -36,8 +37,11 @@ import Users from "./Users/users_professionnel";
 import Detail from "./evenement/Detail_Event";
 import { getUser, logout } from "../Action/AuthentificationAction";
 import { getEventsFromApi } from "../Action/EventAction";
+import MesRservation from "../Components/Rservation/Mesresrevation";
 
 import Registervisiteur from "../Components/Users/ModalRegistervisiteur";
+import Registerparticipant from "../Components/Users/ModalRgistreParticipant";
+import Rservation from "../Components/Rservation/rservation";
 import { Eventlist } from "./evenement/ListEvent";
 import { MDBBtn } from "mdbreact";
 //import { LogIn } from "./authentification/LogIn";
@@ -70,7 +74,9 @@ class Index extends Component {
           <Router>
             <MDBNavbar dark expand="md" className="navbar">
               <MDBNavbarBrand>
-                <img src={logo} className="img-lg" />
+                <MDBNavLink className="menu" to="/">
+                  <img src={logo} className="img-lg" />
+                </MDBNavLink>
               </MDBNavbarBrand>
               <MDBNavbarToggler onClick={this.toggleCollapse} className="tt" />
               <MDBCollapse
@@ -85,8 +91,8 @@ class Index extends Component {
                     </MDBNavLink>
                   </MDBNavItem>
                   <MDBNavItem>
-                    <MDBNavLink className="menu" to="/Evenement">
-                      Evenement
+                    <MDBNavLink className="menu" to="/Apropos">
+                      A props
                     </MDBNavLink>
                   </MDBNavItem>
                   <MDBNavItem>
@@ -94,6 +100,19 @@ class Index extends Component {
                     this.props.authetification.role === "admin" ? (
                       <MDBNavLink className="menu" to="/users">
                         Utlisateurs
+                      </MDBNavLink>
+                    ) : (
+                      ""
+                    )}
+                  </MDBNavItem>
+                  <MDBNavItem>
+                    {this.props.authetification &&
+                    this.props.authetification.role === "visiteur" ? (
+                      <MDBNavLink
+                        className="menu"
+                        to={"/mesreservation/" + this.props.authetification._id}
+                      >
+                        Mes Rservation
                       </MDBNavLink>
                     ) : (
                       ""
@@ -141,7 +160,7 @@ class Index extends Component {
                             </div>
                             <div>
                               {this.props.authetification && (
-                                <h5>
+                                <h5 className="titre-speciale">
                                   {" "}
                                   Bienvenu {this.props.authetification.nom}
                                 </h5>
@@ -191,7 +210,7 @@ class Index extends Component {
                 <Route exact path="/">
                   <Event_list />
                 </Route>
-                <Route exact path="/Evenement">
+                <Route exact path="/Apropos">
                   <EventList />
                 </Route>
 
@@ -202,6 +221,14 @@ class Index extends Component {
                 <Route exact path="/Gerer_evenement">
                   <GererEvenement />
                 </Route>
+                <Route
+                  exact
+                  path={"/mesreservation/:id"}
+                  render={(props) => (
+                    <MesRservation {...props} params={useParams} />
+                  )}
+                />
+
                 <Route exacft path="/categorie">
                   <Categorie />
                 </Route>
@@ -217,21 +244,39 @@ class Index extends Component {
                 <Route exact path="/Registervisiteur">
                   <Registervisiteur />
                 </Route>
+                <Route exact path="/Registerparticipant">
+                  <Registerparticipant />
+                </Route>
                 <Route exact path="/log">
                   <LogIn />
                 </Route>
+
+                <Route
+                  exact
+                  path={"/liste/:id"}
+                  render={(props) => (
+                    <Rservation {...props} params={useParams} />
+                  )}
+                />
+
                 <Route exact path="/monprofil">
                   <Profil />
                 </Route>
+                <Route
+                  exact
+                  path={"/detail/:id"}
+                  render={(props) => <Detail {...props} params={useParams} />}
+                ></Route>
 
-                {this.props.event.map((el) => (
+                {/* {this.props.event.map((el) => (
                   <Route exact path={"/detail/" + el._id}>
                     <Detail el={el} />
                   </Route>
-                ))}
+                ))} */}
               </Switch>
             </div>
           </Router>
+          <Footer />
         </div>
       </div>
     );
@@ -241,6 +286,7 @@ const mapStateToProps = (state) => ({
   event: state.event,
   categorie: state.categorie,
   authetification: state.authetification.user,
+  reservation: state.rservation,
 });
 
 const mapDispatchToProps = (dispatch) => ({

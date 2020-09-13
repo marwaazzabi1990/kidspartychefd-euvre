@@ -8,6 +8,7 @@ import {
   MDBModalFooter,
   MDBInputGroup,
 } from "mdbreact";
+import { DatePicker } from "antd";
 import { MDBInput } from "mdbreact";
 import { connect } from "react-redux";
 import { addEventInApi, getEventsFromApi } from "../../Action/EventAction.js";
@@ -68,7 +69,7 @@ class ModalAjoutEvent extends Component {
 
   render() {
     return (
-      <MDBContainer className="container">
+      <MDBContainer>
         <MDBBtn
           color="elegant-color"
           className="btn-color"
@@ -147,10 +148,28 @@ class ModalAjoutEvent extends Component {
                 </div>
               </div>
               <div className="inputdispo">
-                <Datepicker
+                <label>Date debut</label>
+                <DatePicker
+                  placeholder="Choisir la date Debut "
+                  onChange={(e) => {
+                    this.setState({
+                      dateDebut: e._d.toString().substr(4, 11),
+                    });
+                  }}
+                />
+                {/* <Datepicker
                   setDateDebut={this.setDateDebut}
                   setDateFin={this.setDateFin}
                   event={this.props.event}
+                /> */}
+              </div>
+              <div className="inputdispo">
+                <labe>Date Fin</labe>
+                <DatePicker
+                  placeholder="Choisir la date"
+                  onChange={(e) => {
+                    this.setState({ dateFin: e._d });
+                  }}
                 />
               </div>
             </div>

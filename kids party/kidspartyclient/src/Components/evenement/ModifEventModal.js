@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { modifEventFromApi } from "../../Action/EventAction";
 import Datepicker2 from "./DatePicker-modif";
 import { getCategorieFromApi } from "../../Action/CategorieAction";
+import moment from "moment";
 
 import {
   MDBContainer,
@@ -13,6 +14,7 @@ import {
   MDBInput,
   MDBModalFooter,
 } from "mdbreact";
+import { DatePicker } from "antd";
 var newArray = [];
 var categorieArray = [];
 var finalcategorie = [];
@@ -82,39 +84,43 @@ export class EventModalModif extends Component {
               <input
                 className="input-modif"
                 type="text"
-                name="title"
                 defaultValue={this.props.el.titre}
+                style={{ color: "black" }}
+                name="post"
                 onChange={(e) => this.setState({ titre: e.target.value })}
               />
 
-              <labe>Date </labe>
-              <input type="date" defaultVal={this.props.el.Date_Debut}></input>
+              <label>Date Debut</label>
+              <DatePicker
+                placeholder="Choisir la date Debut "
+                defaultValue={moment(this.props.el.Date_Debut)}
+                onChange={(e) => {
+                  this.setState({ Date_Debut: e._d });
+                }}
+              />
+              <label>Date fin</label>
+              <DatePicker
+                type="date"
+                placeholder="Choisir la date fin "
+                style={{ color: "black" }}
+                defaultValue={moment(this.props.el.Date_Fin)}
+                onChange={(e) => {
+                  this.setState({ Date_Fin: e._d });
+                }}
+              />
               {/* <Datepicker2
                 setDateDebut={this.setDateDebut}
                 setDateFin={this.setDateFin}
                 datedebut={this.props.el.Date_Debut}
                 datefin={this.props.el.Date_fin}
               /> */}
-              <input
-                className="input-modif"
-                type="text"
-                defaultValue={this.props.el.Date_Debut}
-                name="user_name"
-                onChange={(e) => this.setState({ Date_Debut: e.target.value })}
-              />
-              <labe>Date fin</labe>
-              <input
-                className="input-modif"
-                type="text"
-                defaultValue={this.props.el.Date_fin}
-                name="email"
-                onChange={(e) => this.setState({ Date_fin: e.target.value })}
-              />
+
               <labe>Adresse</labe>
               <input
                 className="input-modif"
                 type="text"
                 defaultValue={this.props.el.Adresse}
+                style={{ color: "black" }}
                 name="post"
                 onChange={(e) => this.setState({ Adresse: e.target.value })}
               />
@@ -123,6 +129,7 @@ export class EventModalModif extends Component {
                 className="input-modif"
                 type="text"
                 defaultValue={this.props.el.description}
+                style={{ color: "black" }}
                 name="post"
                 onChange={(e) => this.setState({ description: e.target.value })}
               />
@@ -130,6 +137,7 @@ export class EventModalModif extends Component {
               <input
                 type="text"
                 defaultValue={this.props.el.prix}
+                style={{ color: "black" }}
                 name="post"
                 onChange={(e) => this.setState({ prix: e.target.value })}
               />
@@ -138,6 +146,7 @@ export class EventModalModif extends Component {
                 className="input-modif"
                 type="text"
                 defaultValue={this.props.el.nombre_de_place}
+                style={{ color: "black" }}
                 name="post"
                 onChange={(e) =>
                   this.setState({ nombre_de_place: e.target.value })
@@ -148,6 +157,7 @@ export class EventModalModif extends Component {
                 className="input-modif"
                 type="text"
                 defaultValue={this.props.el.nombre_de_participant}
+                style={{ color: "black" }}
                 name="post"
                 onChange={(e) =>
                   this.setState({ nombre_de_participant: e.target.value })
@@ -158,6 +168,7 @@ export class EventModalModif extends Component {
                 className="input-modif"
                 type="text"
                 defaultValue={this.props.el.affiche}
+                style={{ color: "black" }}
                 name="post"
                 onChange={(e) => this.setState({ affiche: e.target.value })}
               />

@@ -1,18 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { GoogleLogin } from "react-google-login";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  Redirect,
-} from "react-router-dom";
 
-import "./log.css";
+import "../authentification/log.css";
 
 import { login } from "./../../Action/AuthentificationAction";
-//import { addSessionInApi } from "./../../Action/SessionAction";
+import { addUserFromApi } from "../../Action/UserAction";
 
 import {
   MDBContainer,
@@ -31,18 +23,9 @@ var valid = false;
 const formValid = ({ formErrors }) => {
   let valid = true;
 
-  // console.log(formErrors);
-  //validation from errors being empty
-  // Object.values(formErrors).forEach((val) => {
-  //   val.length > 0 && (valid = false);
-  // });
-  // //validation the form was filled out
-  // /*Object.values(rest).forEach((val) => {
-  // val == null && (valid = false);
-  // });*/
   return valid;
 };
-class logIn extends Component {
+class ModalRegisterParticipant extends Component {
   state = {
     modal: false,
     // email: null,
@@ -70,8 +53,7 @@ class logIn extends Component {
     e.preventDefault();
     const { name, value } = e.target;
     let formErrors = this.state.formErrors;
-    // console.log("name", name);
-    // console.log("value", value);
+
     switch (name) {
       case "email":
         formErrors.email =
@@ -106,68 +88,68 @@ class logIn extends Component {
             <div class="col-left">
               <div class="login-text">
                 <h2>Kids PARTY </h2>
-                <p>platforme des evenements pour les enfants</p>
+                <p>
+                  Vous etes interreser par notre evenements <br></br>Inscrivez
+                  Vous et participer !!!!
+                </p>
                 <a class="btn" href="">
-                  lire plus
+                  Voir plus
                 </a>
               </div>
             </div>
             <div class="col-right">
               <div class="login-form">
-                <h2
-                  style={{ marginLeft: 220, marginBottom: 30, color: "black" }}
-                >
-                  Conexion
-                </h2>
-                <form onSubmit={this.handelSubmit}>
-                  <p>
-                    <input
-                      type="text"
-                      placeholder="Email"
-                      required
-                      error="wrong"
-                      name="email"
-                      success="right"
-                      onChange={this.handleChange}
-                      required
-                    />
-                    {formErrors.email.length > 0 && (
-                      <span className="errorMessage">{formErrors.email}</span>
-                    )}
-                  </p>
-                  <p>
-                    <input
-                      type="password"
-                      placeholder="Password"
-                      name="password"
-                      validate
-                      onChange={this.handleChange}
-                      required
-                    />
-                    {formErrors.password.length > 0 && (
-                      <span className="errorMessage">
-                        {formErrors.password}
-                      </span>
-                    )}
-                  </p>
-                  <p>
-                    <button
-                      style={{ marginLeft: 220 }}
-                      className="btn btn-outline btn-md btn-rounded btn-navbar waves-effect waves-light btn_menu"
-                      onClick={() =>
-                        this.props.login({
-                          email: this.state.email,
-                          password: this.state.password,
-                        })
-                      }
-                      type="submit"
-                    >
-                      Connexion
-                    </button>
-                  </p>
-                </form>
+                <h2>Inscription</h2>
+
                 <p>
-                  <Link to="inscription">Create an account</Link>
+                  <input
+                    type="text"
+                    placeholder="Username"
+                    required
+                    error="wrong"
+                    name="email"
+                    success="right"
+                    onChange={this.handleChange}
+                  />
+                  {formErrors.email.length > 0 && (
+                    <span className="errorMessage">{formErrors.email}</span>
+                  )}
+                </p>
+                <p>
+                  <input
+                    type="password"
+                    placeholder="Password"
+                    name="password"
+                    validate
+                    onChange={this.handleChange}
+                    required
+                  />
+                  {formErrors.password.length > 0 && (
+                    <span className="errorMessage">{formErrors.password}</span>
+                  )}
+                </p>
+                <p>
+                  <button
+                    className="btn btn-outline btn-md btn-rounded btn-navbar waves-effect waves-light btn-color1"
+                    className="btn btn_menu2"
+                    onClick={
+                      (this.handelSubmit,
+                      () =>
+                        this.props.AddUser({
+                          nom: "visiteur",
+                          prenom: "visiteur",
+                          établissement: "visiteur",
+                          photos: "visiteur",
+                          email: this.state.email,
+                          username: "visiteur",
+                          password: this.state.password,
+                          adresse: "visiteur",
+                          role: "visiteur",
+                        }))
+                    }
+                  >
+                    Inscription
+                  </button>
                 </p>
               </div>
             </div>
@@ -180,16 +162,18 @@ class logIn extends Component {
 
 const mapStateToProps = (state) => ({
   users: state.user,
-  authetification: state.authetification,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  // getAllUsers: () => dispatch(getUsersFromApi()),
-  //  AddSession: (session) => dispatch(addSessionInApi(session)),
+  AddUser: (el) => dispatch(addUserFromApi(el)),
+
   login: (userInfo) => dispatch(login(userInfo)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(logIn);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ModalRegisterParticipant);
 
 /*
   {/* onChange={(e) => this.setState({ email: e.target.value })}*/

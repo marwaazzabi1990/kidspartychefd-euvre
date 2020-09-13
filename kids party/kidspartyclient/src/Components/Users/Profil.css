@@ -147,3 +147,9 @@ div#main-card:hover {
 .pos-btn {
   margin-left: 600px !important;
 }
+.pos-bt {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-evenly !important;
+  margin-top: -30px !important;
+}

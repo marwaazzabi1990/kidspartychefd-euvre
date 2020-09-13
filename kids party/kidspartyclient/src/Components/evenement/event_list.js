@@ -7,36 +7,32 @@ import "./event_list.css";
 import { getEventsFromApi } from "../../Action/EventAction.js";
 import { getCategorieFromApi } from "../../Action/CategorieAction.js";
 import { getUser } from "../../Action/AuthentificationAction";
-import { Carousel, InputGroup, FormControl, Form } from "react-bootstrap";
-import Navbar from "../../Components/Navbar/navbar";
-import {
-  MDBBtn,
-  MDBCard,
-  MDBCardBody,
-  MDBCardImage,
-  MDBCardTitle,
-  MDBCardText,
-  MDBCol,
-} from "mdbreact";
+
 import { Card } from "antd";
-import ModalDetail from "./Detail_Event";
-import FooterPage from "../Footer";
+
+import { AudioOutlined } from "@ant-design/icons";
+import { Pagination } from "antd";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
-import { FaSearch, FaUsers } from "react-icons/fa";
-import RegisterModal from "../Users/ModalRegister";
-import { Select } from "semantic-ui-react";
-import StartRating from "../StartRating";
-import artistique from "../../artistique2.png";
-import culturel from "../../culture.png";
-import sport from "../../sport1.png";
-import { MDBAnimation } from "mdbreact";
+import AppPage from "../evenement/background-image";
+import { Input } from "antd";
+const { Search } = Input;
 
 /*function onChange(a, b, c) {
   console.log(a, b, c);
 }*/
 
+const suffix = (
+  <AudioOutlined
+    style={{
+      fontSize: 16,
+      color: "#1890ff",
+    }}
+  />
+);
 const { Meta } = Card;
+var categorie = [];
+var newArray = [];
 // import Chart from "../shurt";
 // import { Pie } from "react-chartjs-2";
 var categorie = [];
@@ -47,6 +43,9 @@ class Event_list extends Component {
     Categorie: "",
     Adresse: "",
     titre: "",
+    prix: "",
+    pageSize: 4,
+    page: 1,
   };
   // categorie = () => {
   //   this.setState({categorie:})
@@ -57,6 +56,9 @@ class Event_list extends Component {
     this.props.getUser();
     // localStorage.setItem('nom', this.props.authetification.nom)
   }
+  page = (page, pageSize) => {
+    this.setState({ page: page, pageSize: pageSize });
+  };
   filter = (e) => {
     let input = e.target.value;
 
@@ -83,123 +85,120 @@ class Event_list extends Component {
 
     return (
       <div>
-        {/*  crrousel zone */}
-        <Carousel className="carrousel_side">
-          {event.slice(event.length - 10, event.length).map((el, i) => (
-            <Carousel.Item>
-              <img
-                className="image-slider"
-                src={"http://localhost:8080/" + el.affiche}
-                alt="First slide"
-              />
-              <Carousel.Caption className="carrousel-caption">
-                <h1 className="titre-card">{el.titre}</h1>
+        <AppPage />
 
-                <Link to="/inscription">
-                  <button className="btn btn-outline btn-md btn-rounded btn-navbar waves-effect btn_menu">
-                    Devenir partenaire
-                  </button>
-                </Link>
-              </Carousel.Caption>
-            </Carousel.Item>
-          ))}
-        </Carousel>
-        {/*Filtre   zone */}
-        {/* paragraphe Bienvenu */}
+        {/**************************************************************Filtre   zone ***************************************/}
 
-        <div className="bienvenu ">
-          <h2 className="bienveneu-h1 ">
-            {" "}
-            Bienvenu <span className="titre-speciale">Chez Kids</span> Party
-          </h2>
-          <p className="bienveneu-p">
-            Le lorem ipsum est, en imprimerie, une suite de mots sans
-            signification utilisée à titre provisoire pour calibrer une mise en
-            page, le texte définitif venant remplacer le faux-texte dès qu'il
-            est prêt ou que la mise en page est achevée. Généralement, on
-            utilise un texte en faux latin, le Lorem ipsum ou Lipsum.
-          </p>
-        </div>
-        {/* end of bienvenu paragraphe */}
-        {/*zone de icone de categorie*/}
-        <br></br>
-        {/* <div className="classicformpage gradient"> */}
         <div className="pos-categorie ">
-          <div className="pos_categorie_img">
-            <a onClick={(e) => this.setState({ categorie: artistique })}>
-              <div>
-                <MDBAnimation type="bounce" infinite>
-                  <center>
-                    {" "}
-                    <img className="img-categorie" src={artistique} />{" "}
-                  </center>
-                </MDBAnimation>
-                <h3 class="text_h3" style={{ color: "green" }}>
-                  artistique
-                </h3>
-              </div>
-              <div></div>
-            </a>
+          <div>
+            <Search
+              placeholder="input search "
+              onChange={(e) => this.filter(e)}
+              onSearch={(value) => console.log(value)}
+              style={{ width: 160, marginTop: 40 }}
+            />
+          </div>
+          <div>
+            <select
+              style={{ width: 160, marginLeft: 10, marginTop: 40 }}
+              className="browser-default custom-select"
+              onChange={(e) => this.setState({ Adresse: e.target.value })}
+            >
+              <option value="">Lieu</option>
+
+              <option value="Hammamet">Hammamet</option>
+              <option value="Kelibia">kelibia</option>
+              <option value="Sousse">Sousse</option>
+              <option value="Djerba">Djerba</option>
+              <option value="Monastir">Monastir</option>
+
+              <option value="Mahdia">Mahdia</option>
+              <option value="Tabarka">Tabarka</option>
+              <option value="Zarzis">Zarzis</option>
+              <option value="Tunis">Tunis</option>
+              <option value="Sfax">Sfax</option>
+              <option value="Nabeul">Nabeul</option>
+              <option value="Tozeur">Tozeur</option>
+              <option value="Gammarth">Gammarth</option>
+              <option value="Douz">Douz</option>
+              <option value="Bizerte">Bizerte</option>
+              <option value="Ain Draham">Ain Draham</option>
+              <option value="Kairouan">Kairouan</option>
+              <option value="Tataouine">Tataouine</option>
+              <option value="El Jem">El Jem</option>
+            </select>
           </div>
 
           <div>
-            {" "}
-            <a>
-              <MDBAnimation type="bounce" infinite>
-                {" "}
-                <img className="img-categorie" src={sport} />
-              </MDBAnimation>{" "}
-              <center>
-                {" "}
-                <h3 class="text_h3" style={{ color: "green" }}>
-                  sport
-                </h3>
-              </center>
-            </a>
+            <select
+              style={{ width: 160, marginTop: 40 }}
+              className="browser-default custom-select"
+              onChange={(e) => this.setState({ prix: e.target.value })}
+            >
+              <option value="">Prix</option>
+
+              <option value="5">moins 5 DT</option>
+              <option value="30">moins 30 DT</option>
+              <option value="50">mois 50 DT</option>
+              <option value="100">mois 100 DT</option>
+            </select>
           </div>
+
           <div>
-            <a>
-              <MDBAnimation type="bounce" infinite>
-                {" "}
-                <img className="img-categorie" src={culturel} />
-              </MDBAnimation>{" "}
-              <center>
-                {" "}
-                <h3 class="text_h3" style={{ color: "green" }}>
-                  {" "}
-                  culture
-                </h3>{" "}
-              </center>
-            </a>
+            <select
+              style={{ width: 160, marginTop: 40 }}
+              className="browser-default custom-select"
+              onChange={(e) => this.setState({ Categorie: e.target.value })}
+              name="pets"
+              id="Quantity-select"
+            >
+              <option value="">Categorie</option>
+              {this.props.categorie.map((el, i) => (
+                <option value={el.titre}>{el.titre}</option>
+              ))}
+            </select>
           </div>
         </div>
-        {/* </div> */}
 
-        {/*end of zone de categorie */}
-        {/*  zonne Event */}
+        {/* *********************************************** zonne Event******************************************** */}
 
         <h2 className="bienveneu-h2">
           {" "}
-          Événements <span className="titre-speciale">A Venir</span>
+          Événements <span className="titre-speciale">Sur kids Party</span>
         </h2>
         {/*Card Event */}
         <div className="pos_card">
           {event
-            .filter((elcategorie) =>
+            .filter((el) =>
               this.state.Categorie === ""
-                ? elcategorie
-                : elcategorie.nom_categorie === this.state.Categorie
+                ? el
+                : el.nom_categorie === this.state.Categorie
             )
-            .filter((eladresse) =>
+            .filter((el) =>
               this.state.Adresse === ""
-                ? eladresse
-                : eladresse.Adresse.includes(this.state.Adresse)
+                ? el
+                : el.Adresse.includes(this.state.Adresse)
             )
-            .filter((eltitre) =>
-              this.state.titre === ""
-                ? eltitre
-                : eltitre.titre.includes(this.state.titre)
+            .filter((el) =>
+              this.state.titre === "" ? el : el.titre.includes(this.state.titre)
             )
+
+            .filter((el) => {
+              if (this.state.prix) {
+                return el.prix <= Number(this.state.prix);
+              } else if (this.state.prix === "Gratuit") {
+                return el.prix === this.state.prix;
+              } else {
+                return el;
+              }
+            })
+
+            .filter(
+              (el, i) =>
+                (this.state.page - 1) * this.state.pageSize <= i &&
+                i < this.state.page * this.state.pageSize
+            )
+
             // .slice(event.length - 6, event.length)
             .map((el, i) => (
               <div>
@@ -217,8 +216,8 @@ class Event_list extends Component {
                     }
                   >
                     <div className="text">
-                      <span> title: </span> {el.titre} <span> Adresse :</span>{" "}
-                      {el.Adresse}
+                      <span> title: </span> {el.titre} <br></br>{" "}
+                      <span> Adresse :</span> {el.Adresse}
                       <br></br>
                       <span> Participant :</span> {el.nombre_de_participant}
                       <br></br>
@@ -271,12 +270,17 @@ this.sendNote(e.target.value);
               </div>
             ))}
         </div>
+        {/**************************************Pagination********************************* */}
+        <center>
+          <Pagination
+            defaultCurrent={1}
+            pageSize={4}
+            total={this.props.event.length}
+            onChange={this.page}
+          />
+        </center>
 
         <div className="div-vide"></div>
-
-        <div>
-          <FooterPage />
-        </div>
       </div>
     );
   }

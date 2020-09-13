@@ -1,0 +1,80 @@
+#apppage .gradient {
+  background: -moz-linear-gradient(
+    45deg,
+    rgba(163, 211, 156, 0.7),
+    rgba(102, 189, 94, 0.7) 100%
+  );
+  background: -webkit-linear-gradient(
+    45deg,
+    rgba(163, 211, 156, 0.7),
+    rgba(102, 189, 94, 0.7) 100%
+  );
+
+  background: -webkit-gradient(
+    linear,
+    45deg,
+    rgba(163, 211, 156, 0.7),
+    rgba(102, 189, 94, 0.7) 100%
+  );
+  background: -o-linear-gradient(
+    45deg,
+    rgba(141, 155, 139, 0.7),
+    rgba(112, 122, 111, 0.7) 100%
+  );
+  background: linear-gradient(
+    45deg,
+    rgba(107, 112, 106, 0.7),
+    rgba(48, 49, 48, 0.7) 100%
+  );
+}
+.color-text1 {
+  color: white !important;
+}
+
+#apppage .view {
+  background-image: url("https://images.pexels.com/photos/296308/pexels-photo-296308.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  min-height: 100vh;
+}
+
+#apppage h6 {
+  line-height: 1.7;
+}
+.h1-responsive {
+  color: black;
+}
+.img-fluid {
+  background-color: transparent !important;
+  height: 200px;
+}
+@media only screen and (max-width: 400px) {
+  #apppage .animated img {
+    max-height: 50vh;
+    transform: translateX(-50%);
+    left: 50%;
+    position: absolute;
+  }
+}
+@media only screen and (max-width: 767px) {
+  #apppage .animated img {
+    max-height: 35vh;
+    transform: translateX(-50%);
+    left: 50%;
+  }
+}
+
+@media (max-width: 767px) and (orientation: landscape) {
+  #apppage .animated img {
+    max-height: 50vh;
+    transform: translateX(-50%);
+    left: 50%;
+    position: relative;
+  }
+}
+@media (max-width: 1000px) and (orientation: landscape) {
+  #apppage .view {
+    min-height: 150vh;
+  }
+}

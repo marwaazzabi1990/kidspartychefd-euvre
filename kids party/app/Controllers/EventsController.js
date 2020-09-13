@@ -12,6 +12,23 @@ module.exports = {
     // res.send("ali fpu9 chojra")
     res.json(event);
   },
+  getbyeventid: (req, res) => {
+    console.log("éss", req.params.id);
+    Events.findById(req.params.id)
+      .then((event) => {
+        console.log(event);
+        if (!event) {
+          return res.send({
+            message: "event not found",
+          });
+        }
+        return res.json(event);
+      })
+      .catch((err) => {
+        return res.status(500).send({ message: "error to recieve" });
+      });
+    // res.json(stringify(reservation));
+  },
   postEvent: (req, res) => {
     console.log(req.body);
     const event = new Events(req.body);

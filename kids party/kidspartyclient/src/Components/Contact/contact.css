@@ -171,7 +171,7 @@ iframe {
 
 input.input1 {
   height: 50px;
-  border-radius: 25px;
+  border-radius: 7px;
   padding: 0 30px;
 }
 input.input1 + .shadow-input1 {

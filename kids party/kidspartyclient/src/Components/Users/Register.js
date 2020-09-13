@@ -1,42 +1,254 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import RegisterModal from "./ModalRegister";
+import {
+  MDBContainer,
+  MDBBtn,
+  MDBModal,
+  MDBModalBody,
+  MDBModalHeader,
+  MDBModalFooter,
+} from "mdbreact";
 
-export default class Register extends Component {
+import { Col, Row, Button, Form, FormGroup, Label, Input } from "reactstrap";
+
+import { addUserFromApi } from "../../Action/UserAction";
+import axios from "axios";
+
+class Register extends Component {
+  state = {
+    modal8: false,
+    modal9: false,
+    email: "",
+    password: "",
+    nameError: "",
+    EmailError: "",
+
+    passworError: "",
+    mialetat: "true",
+    passetat: "true",
+    selectedFile: null,
+  };
+
+  handelChange = (e) => {
+    /*ajout state emeil et controle de champs*/
+
+    if (e.target.name === "email") {
+      this.setState({
+        email: e.target.value,
+      });
+      //  console.log('email', this.state.email)
+      if (!this.state.email.includes("@")) {
+        this.setState({ EmailError: "invalid Email", emialetat: false });
+
+        //   console.log(this.state.EmailError)
+        console.log("email", this.state.emialetat);
+      } else {
+        this.setState({ EmailError: "" });
+        console.log("emailrroris valid", this.state.EmailError);
+      }
+    } /* ajout password et  controle sur le champs */
+
+    if (e.target.name === "password") {
+      this.setState({
+        password: e.target.value,
+      });
+
+      if (this.state.password.length < 7) {
+        this.setState({
+          passworError: "password must be more 7",
+          passetat: "false",
+        });
+
+        //  console.log('passworError valid', this.state.passworError)
+        console.log("passwetat", this.state.passetat);
+      } else {
+        this.setState({ passworError: "" });
+        console.log("passworError valid", this.state.passworError);
+      }
+    } else if (e.target.name === "username") {
+      /* ajout de username */
+      this.setState({
+        username: e.target.value,
+      });
+      console.log("username", this.state.username);
+    }
+  };
+
+  //upload logo
+
+  fileSelectedHandler = (event) => {
+    this.setState({ selectedFile: event.target.files[0] });
+  };
+  uploadHandler = () => {
+    const fd = new FormData();
+    {
+      /*http://localhost:2000/public*/
+    }
+    fd.append("file", this.state.selectedFile);
+    //console.log("img", Object(fd).length)
+    axios
+      .post("http://localhost:8080/image", fd)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => console.log(err));
+  };
+
   render() {
     return (
       <div>
-        <div className="bg-register"></div>
-        <div className="grid">
-          <a href="#partenaires">
-            <p className="lien-profesionnel">
-              Vous etes organisateurs d'evenements Partagez avec nous vos
-              evenements et devenir partenire
-            </p>
-          </a>
-        </div>
-        <div>
-          <div className="this">
-            <h1 id="partenaires">
-              Espace <span className="titre-speciale2"> proffesionnel</span>
-            </h1>
-            <h3 className="titre-speciale2">
-              Vous etes <span>organisateurs</span> d'evenements
-            </h3>
-            <br></br>
-            <p>
-              Vous etes un organisateurs des evenements pour les enfants .Lancez
-              votre demande de partenariat avec Kids Party ,c'est une platforme
-              qui presente tous les evenements en tunisie.
-              <br></br> -Bien s’identifier et augmenter la visibilité.
-              <br></br> -Aider l’internaute à joindre facilement votre{" "}
-            </p>
-            <div>
-              <RegisterModal />
-            </div>
-          </div>
-        </div>
+        <Form onSubmit={this.handelSubmit}>
+          <MDBModalBody>
+            <Row form>
+              <Col md={6}>
+                <FormGroup>
+                  <Label for="exampleEmail">Nom </Label>
+                  <Input
+                    type="text"
+                    required
+                    name="nom"
+                    id="nom"
+                    placeholder=" nom"
+                    onChange={(e) => this.setState({ nom: e.target.value })}
+                  />
+                  <span style={{ color: "red" }}>{this.state.nameError}</span>
+                </FormGroup>
+              </Col>
+              <Col md={6}>
+                <FormGroup>
+                  <Label for="exampleEmail">Prenom </Label>
+                  <Input
+                    type="text"
+                    required
+                    name="prenom"
+                    id="prenom"
+                    placeholder="prenom"
+                    onChange={(e) => this.setState({ prenom: e.target.value })}
+                  />
+                </FormGroup>
+              </Col>
+              <Col md={6}>
+                <FormGroup>
+                  <Label for="exampleEmail">Établissement</Label>
+                  <Input
+                    type="text"
+                    requiredname="établissement"
+                    id="établissement"
+                    placeholder="nom d'établissement"
+                    onChange={(e) =>
+                      this.setState({ établissement: e.target.value })
+                    }
+                  />
+                </FormGroup>
+              </Col>
+
+              <Col md={6}>
+                <FormGroup>
+                  <Label for="exampleEmail">logo d'etablissement</Label>
+
+                  <Input
+                    type="file"
+                    name="photos"
+                    id="photos"
+                    onChange={this.fileSelectedHandler}
+                  />
+                  <MDBBtn color="dark" onClick={this.uploadHandler}>
+                    <i class="fas fa-upload"></i>
+                  </MDBBtn>
+                </FormGroup>
+              </Col>
+              <Col md={6}>
+                <FormGroup>
+                  <Label for="exampleEmail">Email</Label>
+                  <Input
+                    type="text"
+                    required
+                    name="email"
+                    id="email"
+                    placeholder="email"
+                    onChange={this.handelChange}
+                  />
+                  {this.state.EmailError ? (
+                    <span span style={{ fontSize: 12, color: "red" }}>
+                      {this.state.EmailError}
+                    </span>
+                  ) : null}
+                </FormGroup>
+              </Col>
+              <Col md={6}>
+                <FormGroup>
+                  <Label for="exampleEmail">Username</Label>
+                  <Input
+                    type="text"
+                    required
+                    name="username"
+                    id="username"
+                    placeholder="username"
+                    onChange={this.handelChange}
+                  />
+                </FormGroup>
+              </Col>
+              <Col md={6}>
+                <FormGroup>
+                  <Label for="examplePassword">Password</Label>
+                  <Input
+                    type="password"
+                    required
+                    name="password"
+                    id="examplePassword"
+                    placeholder="password placeholder"
+                    onChange={this.handelChange}
+                  />
+                  {this.state.passworError ? (
+                    <span span style={{ fontSize: 12, color: "red" }}>
+                      {this.state.passworError}
+                    </span>
+                  ) : null}
+                </FormGroup>
+              </Col>
+            </Row>
+            <FormGroup>
+              <Label for="exampleAddress">Address</Label>
+              <Input
+                type="text"
+                name="address"
+                required
+                id="exampleAddress"
+                onChange={(e) => this.setState({ address: e.target.value })}
+              />
+            </FormGroup>
+          </MDBModalBody>
+          <MDBModalFooter>
+            <button
+              className="btn btn-outline btn-md btn-rounded btn-navbar waves-effect waves-light btn-color1"
+              onClick={() => {
+                this.props.AddUser({
+                  nom: this.state.nom,
+                  prenom: this.state.prenom,
+                  établissement: this.state.établissement,
+                  photos: this.state.selectedFile.name,
+                  email: this.state.email,
+                  username: this.state.username,
+                  password: this.state.password,
+                  adresse: this.state.adresse,
+                  role: "professionnel",
+                });
+              }}
+            >
+              {" "}
+              Envoyer
+            </button>
+          </MDBModalFooter>
+        </Form>
       </div>
     );
   }
 }
+const mapStateToProps = (state) => ({
+  event: state.user,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  AddUser: (el) => dispatch(addUserFromApi(el)),
+});
+export default connect(mapStateToProps, mapDispatchToProps)(Register);

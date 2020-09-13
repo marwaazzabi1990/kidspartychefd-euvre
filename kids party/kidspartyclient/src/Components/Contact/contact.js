@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import image2 from "../../contact.jpg";
+import image2 from "../../img-01.png";
 import "./contact.css";
+import { MDBAnimation } from "mdbreact";
 
 import Axios from "axios";
 class Contact extends Component {
@@ -27,11 +28,14 @@ class Contact extends Component {
       <div class="contact1">
         <div class="container-contact1">
           <div class="contact1-pic js-tilt" data-tilt>
-            <img src={image2} alt="IMG" />
+            <MDBAnimation type="fadeInLeft" delay=".3s">
+              {" "}
+              <img src={image2} alt="IMG" />
+            </MDBAnimation>
           </div>
 
           <form class="contact1-form validate-form">
-            <span class="contact1-form-title">Contactez-Nous</span>
+            <span class="contact1-form-title">Contactez Nous</span>
 
             <div
               class="wrap-input1 validate-input"
@@ -76,7 +80,7 @@ class Contact extends Component {
 
             <div class="container-contact1-form-btn">
               <button
-                class="contact1-form-btn"
+                className="btn btn-outline btn-md btn-rounded btn-navbar waves-effect waves-light btn_menu"
                 onClick={() =>
                   this.handleSubmit({
                     name: this.state.name,
@@ -86,7 +90,7 @@ class Contact extends Component {
                 }
               >
                 <span>
-                  Send Email
+                  Envoyer
                   <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
                 </span>
               </button>

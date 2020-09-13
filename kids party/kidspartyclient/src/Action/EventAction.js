@@ -55,7 +55,7 @@ export function modifEventFromApi(data) {
       nom_organzateur: nom_organzateur,
     }).then((res) => {
       dispatch(ModifierEvent(res.data));
-      // window.location.reload();
+      window.location.reload();
     });
 }
 /*delette event */

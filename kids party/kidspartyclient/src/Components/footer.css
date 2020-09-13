@@ -2,9 +2,7 @@ body {
   margin: 0;
   padding: 0;
 }
-.titre-speciale {
-  color: #59ba4f !important;
-}
+
 .main {
   max-height: 550px;
   background-color: #292c2f;

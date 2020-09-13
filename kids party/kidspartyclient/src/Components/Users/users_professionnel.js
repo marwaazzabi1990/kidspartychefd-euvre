@@ -5,15 +5,25 @@ import Register from "./ModalRegister";
 import { Table } from "react-bootstrap";
 import { getUsersFromApi, deleteUserToApi } from "../../Action/UserAction.js";
 import ModamodifUser from "./Modalusermodif";
+import NotFound from "../notFound";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  Redirect,
+  useParams,
+} from "react-router-dom";
 class UsersProffesionnel extends Component {
   state = {
-    Role: "proffesionnel",
+    role: "",
   };
   componentDidMount() {
     this.props.getAllUsers();
   }
   render() {
     const { user } = this.props;
+    console.log("eee", user);
     return (
       <>
         {this.props.authetification &&
@@ -23,6 +33,20 @@ class UsersProffesionnel extends Component {
               Les organieateurs sur{" "}
               <span className="titre-speciale">Kids Party</span>
             </h1>
+            <div>
+              <select
+                style={{ width: 160, marginTop: 40 }}
+                className="browser-default custom-select"
+                onChange={(e) => this.setState({ role: e.target.value })}
+              >
+                <option value="">Role</option>
+
+                <option value="professionnel">professionnel</option>
+                <option value="visiteur">visiteur</option>
+              </select>
+            </div>
+            <br></br>
+
             <Table striped bordered hover size="sm">
               <thead className="th-table">
                 <tr>
@@ -35,14 +59,17 @@ class UsersProffesionnel extends Component {
               </thead>
               <tbody>
                 {user
-                  .filter((elrole) =>
+                  .filter((el) =>
+                    this.state.Role === "" ? el : el.role !== "admin"
+                  )
+                  .filter((el) =>
                     this.state.Role === ""
-                      ? elrole
-                      : elrole.role === "Professionnel"
+                      ? el
+                      : el.role.includes(this.state.role)
                   )
                   .map((el, i) => (
                     <tr>
-                      <td>{el.nom}</td>
+                      <td style={{ color: "black" }}>{el.nom}</td>
                       <td>{el.email}</td>
                       <td>{el.username}</td>
                       <td>{el.role}</td>
@@ -68,7 +95,7 @@ class UsersProffesionnel extends Component {
             </Table>
           </div>
         ) : (
-          <p>Not Found</p>
+          <Redirect to="/NOTFOUND" />
         )}
       </>
     );

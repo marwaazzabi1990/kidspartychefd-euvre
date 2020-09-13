@@ -10,10 +10,13 @@ const {
   postEvent,
   updateEvent,
   deleteEvent,
+  getbyeventid,
 } = require("../Controllers/EventsController");
 
 // get All event
 router.get("/getallevents", listallevents);
+//get one event
+router.get("/findeventbyid/:id", getbyeventid);
 
 // Add event
 router.post("/addevents", postEvent);

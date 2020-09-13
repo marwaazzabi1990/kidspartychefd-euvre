@@ -1,6 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { MDBBtn, MDBIcon } from "mdbreact";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  Redirect,
+} from "react-router-dom";
 
 import {
   getEventsFromApi,
@@ -9,25 +16,24 @@ import {
 import { getUser } from "../../Action/AuthentificationAction";
 import ModifEvent from "./ModifEventModal";
 import ModalAddevent from "./ModalAddevent";
-import {
-  Icon,
-  Label,
-  Menu,
-  Table,
-  Pagination,
-  Button,
-} from "semantic-ui-react";
+import { Icon, Label, Menu, Table, Button } from "semantic-ui-react";
+import { Pagination } from "antd";
 
 class GererEvent extends Component {
   state = {
     nom_organzateure: "",
     role: "",
+    pageSize: 3,
+    page: 1,
   };
 
   componentDidMount() {
     this.props.getUser();
     this.props.getAllEvents();
   }
+  page = (page, pageSize) => {
+    this.setState({ page: page, pageSize: pageSize });
+  };
 
   render() {
     const { event } = this.props; // console.log("dfsdsd", this.state.role)
@@ -41,7 +47,7 @@ class GererEvent extends Component {
     // console.log("eventwa7ed", events);
     return (
       <div>
-        <h1 className="bienveneu-h1">
+        <h1 className="bienveneu-h2">
           Liste <span className="titre-speciale">des evenements</span>
         </h1>
 
@@ -92,46 +98,64 @@ class GererEvent extends Component {
           </Table.Header>
 
           <Table.Body>
-            {events.map((el, i) => (
-              <Table.Row>
-                <Table.Cell>
-                  <Label ribbon>{el.titre}</Label>
-                </Table.Cell>
-                <Table.Cell>{el.Adresse}</Table.Cell>
-                <Table.Cell>
-                  {el.Date_Debut.day}/{el.Date_Debut.month}/{el.Date_Debut.year}
-                </Table.Cell>
-                <Table.Cell>
-                  {el.Date_fin.day}/{el.Date_fin.month}/{el.Date_fin.year}
-                </Table.Cell>
+            {events
+              .filter(
+                (el, i) =>
+                  (this.state.page - 1) * this.state.pageSize <= i &&
+                  i < this.state.page * this.state.pageSize
+              )
+              .map((el, i) => (
+                <Table.Row>
+                  <Table.Cell>
+                    <Label ribbon>{el.titre}</Label>
+                  </Table.Cell>
+                  <Table.Cell>{el.Adresse}</Table.Cell>
+                  <Table.Cell>{el.Date_Debut}</Table.Cell>
+                  <Table.Cell>{el.Date_fin}</Table.Cell>
 
-                <Table.Cell>{el.description}</Table.Cell>
-                <Table.Cell>{el.notes}</Table.Cell>
-                <Table.Cell>{el.nombre_de_place}</Table.Cell>
-                <Table.Cell>{el.nombre_de_participant}</Table.Cell>
-                <Table.Cell>{el.prix}</Table.Cell>
-                <Table.Cell>{el.nom_categorie}</Table.Cell>
-                {/*<Table.Cell>{el.nom_organzateur}</Table.Cell>*/}
+                  <Table.Cell>{el.description}</Table.Cell>
+                  <Table.Cell>{el.notes}</Table.Cell>
+                  <Table.Cell>{el.nombre_de_place}</Table.Cell>
+                  <Table.Cell>{el.nombre_de_participant}</Table.Cell>
+                  <Table.Cell>{el.prix}</Table.Cell>
+                  <Table.Cell>{el.nom_categorie}</Table.Cell>
+                  {/*<Table.Cell>{el.nom_organzateur}</Table.Cell>*/}
 
-                <Table.Cell className="pos-Action ">
-                  <ModifEvent el={el} />
+                  <Table.Cell className="pos-Action ">
+                    <ModifEvent el={el} />
+                    <Link to={"/liste/" + el._id}>
+                      <button
+                        style={{ marginTop: 30 }}
+                        className="btn btn-outline btn-md btn-rounded btn-navbar waves-effect waves-light btn_menu "
+                      >
+                        {" "}
+                        Reservation
+                      </button>
+                    </Link>
 
-                  <MDBBtn
-                    color="elegant-color"
-                    className="btn-color_sup-intern"
-                    onClick={() => this.props.deleteEvent(el._id)}
-                  >
-                    <i class="fas fa-trash"></i>
-                  </MDBBtn>
-                </Table.Cell>
-              </Table.Row>
-            ))}{" "}
+                    <MDBBtn
+                      color="elegant-color"
+                      className="btn-color_sup-intern"
+                      onClick={() => this.props.deleteEvent(el._id)}
+                    >
+                      <i class="fas fa-trash"></i>
+                    </MDBBtn>
+                  </Table.Cell>
+                </Table.Row>
+              ))}{" "}
           </Table.Body>
 
           <Table.Footer>
             <Table.Row>
               <Table.HeaderCell colSpan="3">
-                <Menu floated="right" pagination></Menu>
+                <Menu style={{ marginLeft: 40 }}>
+                  <Pagination
+                    defaultCurrent={1}
+                    pageSize={3}
+                    total={this.props.event.length}
+                    onChange={this.page}
+                  />
+                </Menu>
               </Table.HeaderCell>
             </Table.Row>
           </Table.Footer>

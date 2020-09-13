@@ -1,5 +1,6 @@
 import React from "react";
-import { MDBCol, MDBContainer, MDBRow, MDBFooter } from "mdbreact";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+
 import "./footer.css";
 
 const FooterPage = () => {
@@ -12,21 +13,37 @@ const FooterPage = () => {
           </h3>
           <p class="footer-company-about">
             <span>About the company</span>
-            Web Dev Trick is a blog for web designers, graphic designers, web
-            developers &amp; SEO Learner.
+            Une annaire des evennement en tunisie qui vise tous les enfants
+            &amp;.
           </p>
         </div>
 
         <div class="footer-center">
           <h3>
-            Suivez-<span className="titre-speciale">Nous</span>
+            Suivez-<span className="titre-speciale2">Nous</span>
           </h3>
           <div class="footer-icons">
-            <i class="fab fa-facebook"></i>
-
-            <i class="fab fa-instagram"></i>
-
-            <i class="fab fa-linkedin"></i>
+            <a
+              href="https://www.facebook.com/"
+              style={{ background: "transparent" }}
+            >
+              {" "}
+              <i class="fab fa-facebook"></i>
+            </a>
+            <a
+              href="https://www.instagram.com/"
+              style={{ background: "transparent" }}
+            >
+              {" "}
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a
+              href="https://www.linkedin.com/"
+              style={{ background: "transparent" }}
+            >
+              {" "}
+              <i class="fab fa-linkedin"></i>{" "}
+            </a>
           </div>
           <br></br>
           <div>
@@ -35,13 +52,10 @@ const FooterPage = () => {
         </div>
 
         <div class="footer-right">
-          <h3>
-            Suivez-<span className="titre-speciale">Nous</span>
-          </h3>
           <p class="footer-company-about">
-            <a>Acceuil</a>
+            <Link to="/"> Acceuil</Link>
             <br></br>
-            <a>evenement</a>
+            <a>A propos</a>
             <br></br>
             <a>Contact</a>
             <br></br>
