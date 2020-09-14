@@ -14,41 +14,53 @@ import {
   Redirect,
   useParams,
 } from "react-router-dom";
+import { Pagination } from "antd";
 class UsersProffesionnel extends Component {
   state = {
     role: "",
+    pageSize: 4,
+    page: 1,
+  };
+  page = (page, pageSize) => {
+    this.setState({ page: page, pageSize: pageSize });
   };
   componentDidMount() {
     this.props.getAllUsers();
   }
   render() {
+    if (
+      this.props.authetification &&
+      this.props.authetification.role !== "admin"
+    ) {
+      return <Redirect to="/NOTFOUND" />;
+    }
+
     const { user } = this.props;
-    console.log("eee", user);
+    /*console.log("eee", user);*/
     return (
       <>
-        {this.props.authetification &&
-        this.props.authetification.role === "admin" ? (
+        <div>
+          <h1 className="bienveneu-h2">
+            Les utlisateurs de{" "}
+            <span className="titre-speciale">Kids Party</span>
+          </h1>
           <div>
-            <h1 className=" marg-top">
-              Les organieateurs sur{" "}
-              <span className="titre-speciale">Kids Party</span>
-            </h1>
-            <div>
-              <select
-                style={{ width: 160, marginTop: 40 }}
-                className="browser-default custom-select"
-                onChange={(e) => this.setState({ role: e.target.value })}
-              >
-                <option value="">Role</option>
+            <select
+              style={{ width: 160, marginTop: 40 }}
+              className="browser-default custom-select"
+              onChange={(e) => this.setState({ role: e.target.value })}
+            >
+              <option value="">Role</option>
 
-                <option value="professionnel">professionnel</option>
-                <option value="visiteur">visiteur</option>
-              </select>
-            </div>
-            <br></br>
+              <option value="professionnel">professionnel</option>
+              <option value="visiteur">visiteur</option>
+            </select>
+          </div>
+          <br></br>
 
-            <Table striped bordered hover size="sm">
-              <thead className="th-table">
+          <div className="table-responsive">
+            <table className="table">
+              <thead>
                 <tr>
                   <th>Name </th>
                   <th>Email</th>
@@ -61,6 +73,11 @@ class UsersProffesionnel extends Component {
                 {user
                   .filter((el) =>
                     this.state.Role === "" ? el : el.role !== "admin"
+                  )
+                  .filter(
+                    (el, i) =>
+                      (this.state.page - 1) * this.state.pageSize <= i &&
+                      i < this.state.page * this.state.pageSize
                   )
                   .filter((el) =>
                     this.state.Role === ""
@@ -81,22 +98,22 @@ class UsersProffesionnel extends Component {
                         >
                           <MDBIcon icon="user-alt-slash" />
                         </MDBBtn>
-                        {/*<MDBBtn color="elegant-color" className="modif-event2">
-                      <MDBIcon className="detai_icon" icon="search-plus" />
-                    </MDBBtn>
-                    <button>
-                    {" "}
-                    <ModamodifUser el={el} />
-                  </button> */}
                       </td>
                     </tr>
                   ))}
               </tbody>
-            </Table>
+            </table>
           </div>
-        ) : (
-          <Redirect to="/NOTFOUND" />
-        )}
+          {/**************************************Pagination********************************* */}
+          <center>
+            <Pagination
+              defaultCurrent={1}
+              pageSize={4}
+              total={user.length}
+              onChange={this.page}
+            />
+          </center>
+        </div>
       </>
     );
   }

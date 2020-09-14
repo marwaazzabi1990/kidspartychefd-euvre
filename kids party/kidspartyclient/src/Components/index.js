@@ -51,6 +51,7 @@ import Categorie from "./Categorie/Categorie";
 import Contact from "./Contact/contact";
 
 import Profil from "./Users/Profil";
+import NotFOUND from "./notFound";
 /*import Conecte from "./Modal-persone conecte";*/
 class Index extends Component {
   state = {
@@ -92,7 +93,7 @@ class Index extends Component {
                   </MDBNavItem>
                   <MDBNavItem>
                     <MDBNavLink className="menu" to="/Apropos">
-                      A props
+                      Apropos
                     </MDBNavLink>
                   </MDBNavItem>
                   <MDBNavItem>
@@ -267,6 +268,9 @@ class Index extends Component {
                   path={"/detail/:id"}
                   render={(props) => <Detail {...props} params={useParams} />}
                 ></Route>
+                <Route to="/NOTFOUND">
+                  <NotFOUND />
+                </Route>
 
                 {/* {this.props.event.map((el) => (
                   <Route exact path={"/detail/" + el._id}>
@@ -274,6 +278,7 @@ class Index extends Component {
                   </Route>
                 ))} */}
               </Switch>
+              }
             </div>
           </Router>
           <Footer />

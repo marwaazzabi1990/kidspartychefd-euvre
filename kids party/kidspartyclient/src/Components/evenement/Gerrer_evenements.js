@@ -56,103 +56,73 @@ class GererEvent extends Component {
         ) : null}
         {/* </button> */}
 
-        <Table celled className="table">
-          <Table.Header className="th-table">
-            <Table.Row>
-              <Table.HeaderCell className="Table-HeaderCell">
-                Titre
-              </Table.HeaderCell>
-              <Table.HeaderCell className="Table-HeaderCell">
-                Adresse
-              </Table.HeaderCell>
-              <Table.HeaderCell className="Table-HeaderCell">
-                {" "}
-                Debut
-              </Table.HeaderCell>
-              <Table.HeaderCell className="Table-HeaderCell">
-                {" "}
-                Fin
-              </Table.HeaderCell>
-              <Table.HeaderCell className="Table-HeaderCell">
-                Description
-              </Table.HeaderCell>
-              <Table.HeaderCell className="Table-HeaderCell">
-                Notes
-              </Table.HeaderCell>
+        <div className="table-responsive">
+          <table className="table">
+            <thead>
+              <tr>
+                <th scope="col"> Titre</th>
+                <th scope="col"> Adresse</th>
+                <th scope="col">Debut</th>
+                <th scope="col">Fin</th>
+                <th scope="col">Description</th>
+                <th scope="col">Notes</th>
+                <th scope="col">Prix</th>
+                <th scope="col">nom_categorie</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
 
-              <Table.HeaderCell className="Table-HeaderCell">
-                Prix
-              </Table.HeaderCell>
-              <Table.HeaderCell className="Table-HeaderCell">
-                nom_categorie
-              </Table.HeaderCell>
-              {/* <Table.HeaderCell>nom_organzateur</Table.HeaderCell> */}
-              <Table.HeaderCell>Action</Table.HeaderCell>
-            </Table.Row>
-          </Table.Header>
+            <tbody>
+              {events
+                .filter(
+                  (el, i) =>
+                    (this.state.page - 1) * this.state.pageSize <= i &&
+                    i < this.state.page * this.state.pageSize
+                )
+                .map((el, i) => (
+                  <tr>
+                    <td>{el.titre}</td>
+                    <td>{el.Adresse}</td>
+                    <td>{el.Date_Debut}</td>
+                    <td>{el.Date_fin}</td>
+                    <td>{el.description}</td>
+                    <td>{el.notes}</td>
+                    <td>{el.prix}</td>
+                    <td>{el.nom_categorie}</td>
+                    <td className="pos-Action ">
+                      <Link to={"/liste/" + el._id}>
+                        <button
+                          style={{ marginTop: 30 }}
+                          className="btn btn-outline btn-md btn-rounded btn-navbar waves-effect waves-light btn_menu "
+                        >
+                          {" "}
+                          Reservation
+                        </button>
+                      </Link>
+                      <ModifEvent el={el} />
 
-          <Table.Body>
-            {events
-              .filter(
-                (el, i) =>
-                  (this.state.page - 1) * this.state.pageSize <= i &&
-                  i < this.state.page * this.state.pageSize
-              )
-              .map((el, i) => (
-                <Table.Row>
-                  <Table.Cell>
-                    <Label ribbon>{el.titre}</Label>
-                  </Table.Cell>
-                  <Table.Cell>{el.Adresse}</Table.Cell>
-                  <Table.Cell>{el.Date_Debut}</Table.Cell>
-                  <Table.Cell>{el.Date_fin}</Table.Cell>
-
-                  <Table.Cell>{el.description}</Table.Cell>
-                  <Table.Cell>{el.notes}</Table.Cell>
-
-                  <Table.Cell>{el.prix}</Table.Cell>
-                  <Table.Cell>{el.nom_categorie}</Table.Cell>
-                  {/*<Table.Cell>{el.nom_organzateur}</Table.Cell>*/}
-
-                  <Table.Cell className="pos-Action ">
-                    <ModifEvent el={el} />
-                    <Link to={"/liste/" + el._id}>
-                      <button
-                        style={{ marginTop: 30 }}
-                        className="btn btn-outline btn-md btn-rounded btn-navbar waves-effect waves-light btn_menu "
+                      <MDBBtn
+                        color="elegant-color"
+                        className="btn-color_sup-intern"
+                        onClick={() => this.props.deleteEvent(el._id)}
                       >
-                        {" "}
-                        Reservation
-                      </button>
-                    </Link>
-
-                    <MDBBtn
-                      color="elegant-color"
-                      className="btn-color_sup-intern"
-                      onClick={() => this.props.deleteEvent(el._id)}
-                    >
-                      <i class="fas fa-trash"></i>
-                    </MDBBtn>
-                  </Table.Cell>
-                </Table.Row>
-              ))}{" "}
-          </Table.Body>
-
-          <Table.Footer>
-            <Table.Row>
-              <Table.HeaderCell colSpan="3">
-                <Menu style={{ marginLeft: 40 }}>
-                  <Pagination
-                    defaultCurrent={1}
-                    pageSize={3}
-                    total={this.props.event.length}
-                    onChange={this.page}
-                  />
-                </Menu>
-              </Table.HeaderCell>
-            </Table.Row>
-          </Table.Footer>
-        </Table>
+                        <i class="fas fa-trash"></i>
+                      </MDBBtn>
+                    </td>
+                  </tr>
+                ))}
+            </tbody>
+          </table>
+        </div>
+        {/**************************************Pagination********************************* */}
+        <center>
+          <Pagination
+            defaultCurrent={1}
+            pageSize={4}
+            total={this.props.event.length}
+            onChange={this.page}
+          />
+        </center>
       </div>
     );
   }
@@ -169,43 +139,3 @@ const mapDispatchToProps = (dispatch) => ({
   getUser: () => dispatch(getUser()),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(GererEvent);
-
-/*<Table striped bordered hover size="sm">
-    <thead>
-        <tr>
-            <th>Titre </th>
-            <th>Adresse</th>
-            <th>Date </th>
-            <th>Date Fin</th>
-
-            <th> Description</th>
-            <th>Nombre de place</th>
-            <th>Les participant</th>
-            <th>Prix</th>
-            <th>nom_categorie</th>
-            <th>nom_organzateur</th>
-
-            <th> Action</th >
-        </tr>
-    </thead>
-    <tbody>
-        {event/*.filter((el_organizateurs) => this.el_organizateurs === "" ?
-        el_organizateurs : el_organizateurs === "maazza"
-)*/
-/*    .map((el, i) => (<tr>
-<td>{el.titre}</td>
-<td>{el.Adresse}</td>
-<td>{el.Date_Debut}</td>
-<td>{el.Date_fin}</td>
-<td>{el.description}</td>
-<td>{el.nombre_de_place}</td>
-<td>{el.nombre_de_participant}</td>
-<td>{el.prix}</td>
-<td>{el.nom_categorie}</td>
-<td>{el.nom_organzateur}</td>
-<td className="pos-Action " ><button outline size="sm" onClick={() => this.props.deleteEvent(el._id)}><i class="fas fa-trash"></i></button>
-    <button> <ModifEvent el={el} /></button></td>
-</tr>))}
-
-</tbody>
-</Table >*/

@@ -1,5 +1,24 @@
 import { ADD_USER, DELETE_USER, GET_USER, MODIF_USER } from "./Types";
 import Axios from "axios";
+import Swal from "sweetalert2";
+function AcceptUser() {
+  Swal.fire({
+    text: "vous etes bien enregistrer",
+    icon: "success",
+    confirmButtonText: "Fermer",
+    confirmButtonColor: "#008000",
+    animation: true,
+  });
+}
+function refuseUser() {
+  Swal.fire({
+    text: "verifier vous donnees",
+    icon: "ok",
+    confirmButtonText: "Fermer",
+    confirmButtonColor: "#DD6B55",
+    animation: true,
+  });
+}
 
 // Get user conecte from Api to Store
 export const getAlluser = (payload) => ({
@@ -20,14 +39,18 @@ export const AddUser = (payload) => ({
 });
 
 export function addUserFromApi(element) {
-  console.log(element);
-
   return (dispatch) =>
     Axios.post(`http://localhost:8080/user/adduser`, element).then((res) => {
       dispatch(AddUser(res.data));
+      console.log(res.data);
+      if (res.data.msg == "accepter") {
+        AcceptUser();
+        window.location.pathname = "/log";
+      } else {
+        refuseUser();
+      }
       // console.log(res.data);
       //   window.location.reload(false);
-      window.location.pathname = "/log";
     });
 }
 

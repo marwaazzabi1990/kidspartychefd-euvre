@@ -5,6 +5,14 @@ import { ModifRservationFromApi } from "../../Action/RservationAction";
 import { Icon, Label, Menu, Table, Button } from "semantic-ui-react";
 import { Pagination } from "antd";
 import { MDBBtn, MDBIcon } from "mdbreact";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  Redirect,
+  useParams,
+} from "react-router-dom";
 
 var url = "";
 var shareText = "";
@@ -31,94 +39,87 @@ class Reservation extends Component {
   render() {
     const reserver = this.state.rservation && this.state.rservation;
     return (
-      <div>
-        <h2> Les Reservation</h2>
-        <Table celled>
-          <Table.Header className="cat-table">
-            <Table.Row>
-              <Table.HeaderCell className="Table-HeaderCell">
-                Titre
-              </Table.HeaderCell>
-              <Table.HeaderCell className="Table-HeaderCell">
-                Email
-              </Table.HeaderCell>
-              <Table.HeaderCell className="Table-HeaderCell">
-                Status
-              </Table.HeaderCell>
+      <>
+        {this.props.authetification &&
+        this.props.authetification.role === "admin" ? (
+          <div>
+            <h2> Les Reservation</h2>
+            <div className="table-responsive">
+              <table className="table">
+                <thead className="th-table">
+                  <tr>
+                    <th>Titre</th>
+                    <th>Email</th>
 
-              {/* <Table.HeaderCell>nom_organzateur</Table.HeaderCell> */}
-              <Table.HeaderCell>Action</Table.HeaderCell>
-            </Table.Row>
-          </Table.Header>
-          <Table.Body>
-            {reserver
-              .filter((el) =>
-                this.state.show !== true ? el : el.show === this.state.show
-              )
-              .filter(
-                (el, i) =>
-                  (this.state.page - 1) * this.state.pageSize <= i &&
-                  i < this.state.page * this.state.pageSize
-              )
-              .map((el, i) => (
-                <Table.Row>
-                  <Table.Cell style={{ marginTop: 0 }}>
-                    <Label style={{ marginTop: 0 }}>{el.titreEvent}</Label>
-                  </Table.Cell>
-                  <Table.Cell style={{ marginTop: 40 }}>
-                    {el.EmailUser}
-                  </Table.Cell>
-                  <Table.Cell style={{ marginTop: 40 }}>{el.status}</Table.Cell>
+                    <th className="actcategorie">Status</th>
+                    <th className="actcategorie">Action</th>
+                  </tr>
+                </thead>
 
-                  {/*<Table.Cell>{el.nom_organzateur}</Table.Cell>*/}
+                <tbody>
+                  {reserver
+                    .filter((el) =>
+                      this.state.show !== true
+                        ? el
+                        : el.show === this.state.show
+                    )
+                    .filter(
+                      (el, i) =>
+                        (this.state.page - 1) * this.state.pageSize <= i &&
+                        i < this.state.page * this.state.pageSize
+                    )
+                    .map((el, i) => (
+                      <tr>
+                        <td>{el.titreEvent}</td>
+                        <td> {el.EmailUser}</td>
+                        <td> {el.status}</td>
 
-                  <Table.Cell className="pos-bt">
-                    <button
-                      className="btn  btn_menu11"
-                      onClick={() =>
-                        this.props.Modifierresrvation({
-                          id: el._id,
-                          idEvent: el.idEvent,
-                          titreEvent: el.titreEvent,
-                          IdUser: el.IdUser,
-                          status: "confirmer",
-                          show: true,
-                        })
-                      }
-                    >
-                      <MDBIcon icon="check" />
-                    </button>
+                        <td className="pos-Action ">
+                          {/* <ModifEvent el={el} /> */}
 
-                    <button
-                      className="btn  btn-color_sup-intern "
-                      style={{ marginBottom: 40 }}
-                      onClick={() =>
-                        this.props.Modifierresrvation({
-                          id: el._id,
-                          idEvent: el.idEvent,
-                          titreEvent: el.titreEvent,
-                          IdUser: el.IdUser,
-                          status: "Annuler",
-                          show: true,
-                        })
-                      }
-                    >
-                      <MDBIcon icon="times" />
-                    </button>
-                  </Table.Cell>
-                </Table.Row>
-              ))}{" "}
-          </Table.Body>
+                          <button
+                            className="btn  btn_menu11"
+                            onClick={() =>
+                              this.props.Modifierresrvation({
+                                id: el._id,
+                                idEvent: el.idEvent,
+                                titreEvent: el.titreEvent,
+                                IdUser: el.IdUser,
+                                status: "confirmer",
+                                show: true,
+                              })
+                            }
+                          >
+                            <MDBIcon icon="check" />
+                          </button>
 
-          <Table.Footer>
-            <Table.Row>
-              <Table.HeaderCell colSpan="3">
-                <Menu style={{ marginLeft: 40 }}></Menu>
-              </Table.HeaderCell>
-            </Table.Row>
-          </Table.Footer>
-        </Table>
-      </div>
+                          <button
+                            className="btn  btn-color_sup-intern "
+                            style={{ marginBottom: 40 }}
+                            onClick={() =>
+                              this.props.Modifierresrvation({
+                                id: el._id,
+                                idEvent: el.idEvent,
+                                titreEvent: el.titreEvent,
+                                IdUser: el.IdUser,
+                                status: "Annuler",
+                                show: true,
+                              })
+                            }
+                          >
+                            <MDBIcon icon="times" />
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        ) : (
+          <Redirect to="/NOTFOUND" />
+        )}
+      </>
     );
   }
 }

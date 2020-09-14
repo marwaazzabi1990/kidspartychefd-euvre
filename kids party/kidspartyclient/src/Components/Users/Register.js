@@ -98,7 +98,7 @@ class Register extends Component {
     return (
       <div>
         <h1 className="bienveneu-h2">Inscription </h1>
-        <Form onSubmit={this.handelSubmit}>
+        <div>
           <MDBModalBody>
             <Row form>
               <Col md={6}>
@@ -108,6 +108,7 @@ class Register extends Component {
                     type="text"
                     required
                     name="nom"
+                    style={{ fontSize: 12, width: 400 }}
                     id="nom"
                     placeholder=" nom"
                     onChange={(e) => this.setState({ nom: e.target.value })}
@@ -122,6 +123,7 @@ class Register extends Component {
                   <Input
                     type="text"
                     required
+                    style={{ fontSize: 12, width: 400 }}
                     name="email"
                     id="email"
                     placeholder="email"
@@ -137,13 +139,14 @@ class Register extends Component {
 
               <Col md={6}>
                 <FormGroup>
-                  <Label for="examplePassword">Password</Label>
+                  <Label for="examplePassword">Mot de passe</Label>
                   <Input
                     type="password"
                     required
+                    style={{ fontSize: 12, width: 400 }}
                     name="password"
                     id="examplePassword"
-                    placeholder="password placeholder"
+                    placeholder="mot de passe"
                     onChange={this.handelChange}
                   />
                   {this.state.passworError ? (
@@ -153,21 +156,25 @@ class Register extends Component {
                   ) : null}
                 </FormGroup>
               </Col>
+              <Col>
+                <FormGroup>
+                  <Label for="exampleAddress">Address</Label>
+                  <Input
+                    type="text"
+                    style={{ fontSize: 12, width: 400 }}
+                    name="address"
+                    required
+                    id="exampleAddress"
+                    placeholder="Adresse"
+                    onChange={(e) => this.setState({ adresse: e.target.value })}
+                  />
+                </FormGroup>
+              </Col>
             </Row>
-            <FormGroup>
-              <Label for="exampleAddress">Address</Label>
-              <Input
-                type="text"
-                name="address"
-                required
-                id="exampleAddress"
-                onChange={(e) => this.setState({ adresse: e.target.value })}
-              />
-            </FormGroup>
           </MDBModalBody>
           <MDBModalFooter>
             <button
-              style={{ fontSize: 12, marginRight: 150 }}
+              style={{ fontSize: 12, marginRight: 400 }}
               className="btn btn-outline btn-md btn-rounded btn-navbar waves-effect waves-light btn_menu11"
               onClick={() => {
                 this.props.AddUser({
@@ -185,7 +192,7 @@ class Register extends Component {
               Envoyer
             </button>
           </MDBModalFooter>
-        </Form>
+        </div>
       </div>
     );
   }

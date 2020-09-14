@@ -13,19 +13,7 @@ import {
   Button,
 } from "semantic-ui-react";
 import AddCategorie from "./ModalAddCategorie";
-import {
-  MDBCardGroup,
-  MDBIcon,
-  MDBBtn,
-  MDBCard,
-  MDBCardBody,
-  MDBCardImage,
-  MDBCardTitle,
-  MDBCardText,
-  MDBCol,
-  MDBRow,
-  MDBView,
-} from "mdbreact";
+import { MDBBtn } from "mdbreact";
 class Categorie extends Component {
   componentDidMount() {
     this.props.getAllCategorie();
@@ -33,13 +21,13 @@ class Categorie extends Component {
   render() {
     return (
       <div>
-        <h1 className=" marg-top">
+        <h1 className="bienveneu-h2">
           Listes des <span className="titre-speciale"> Categories</span>
         </h1>
         <AddCategorie />
         <br></br>
-        <div className="containerr">
-          <Table striped bordered hover size="sm">
+        <div className="table-responsive">
+          <table className="table">
             <thead className="th-table">
               <tr>
                 <th>Titre</th>
@@ -67,10 +55,10 @@ class Categorie extends Component {
                     </MDBBtn>
                   </td>
                 </tr>
-              ))}{" "}
+              ))}
             </tbody>
-          </Table>
-        </div>{" "}
+          </table>
+        </div>
       </div>
     );
   }

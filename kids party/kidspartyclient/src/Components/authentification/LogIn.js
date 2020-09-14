@@ -154,12 +154,23 @@ class logIn extends Component {
                     <button
                       style={{ marginLeft: 220 }}
                       className="btn btn-outline btn-md btn-rounded btn-navbar waves-effect waves-light btn_menu"
-                      onClick={() =>
-                        this.props.login({
-                          email: this.state.email,
-                          password: this.state.password,
-                        })
-                      }
+                      onClick={() => {
+                        if (this.state.email == "") {
+                          alert("email vide");
+                        } else if (
+                          this.state.email !== "" &&
+                          !emailRegex.test(this.state.email)
+                        ) {
+                          alert("format email invalid");
+                        } else if (this.state.password.length < 4) {
+                          alert("mot de passe  invalid");
+                        } else {
+                          this.props.login({
+                            email: this.state.email,
+                            password: this.state.password,
+                          });
+                        }
+                      }}
                       type="submit"
                     >
                       Connexion

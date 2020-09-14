@@ -34,9 +34,12 @@ module.exports = {
     const event = new Events(req.body);
     event
       .save()
-
-      .then(res.json("event added !"))
-      .catch((err) => console.log(err));
+      .then((data) => {
+        res.send({ msg: "event ajouter" });
+      })
+      .catch((err) => {
+        res.send({ msg: "verfier l'evenement" }), console.log(err);
+      });
   },
   updateEvent: (req, res) => {
     // console.log(`${req.body} updated`)

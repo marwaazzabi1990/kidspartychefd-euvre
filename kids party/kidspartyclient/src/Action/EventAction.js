@@ -1,5 +1,24 @@
 import { GET_ALL_EVENT, ADD_EVENT, DELETE_EVENT, MODIF_EVENT } from "./Types";
 import Axios from "axios";
+import Swal from "sweetalert2";
+function AcceptEvent() {
+  Swal.fire({
+    text: "votre evenements est bien ajouter",
+    icon: "success",
+    confirmButtonText: "Fermer",
+    confirmButtonColor: "#008000",
+    animation: true,
+  });
+}
+function refuseEvent() {
+  Swal.fire({
+    text: "evenements n'est pas ajouter",
+    icon: "ok",
+    confirmButtonText: "Fermer",
+    confirmButtonColor: "#DD6B55",
+    animation: true,
+  });
+}
 
 // Get all Product from Api to Store
 export const getAllevents = (payload) => ({
@@ -84,9 +103,16 @@ export function addEventInApi(element) {
   return (dispatch) =>
     Axios.post(`http://localhost:8080/event/addevents`, element).then((res) => {
       dispatch(AddEvent(res.data));
-      // console.log(res.data);
-      window.location.reload(false);
+      console.log(res.data);
+      if (res.data.msg === "event ajouter") {
+        AcceptEvent();
+        window.location.reload(false);
+      } else {
+        refuseEvent();
+      }
     });
+  // console.log(res.data);
+  //   window.location.reload(false);
 }
 /*
 http://localhost:8080/event/getallevents" */

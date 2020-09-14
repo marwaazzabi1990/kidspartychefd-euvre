@@ -132,9 +132,17 @@ class ModalRegisterParticipant extends Component {
                   <button
                     className="btn btn-outline btn-md btn-rounded btn-navbar waves-effect waves-light btn-color1"
                     className="btn btn_menu2"
-                    onClick={
-                      (this.handelSubmit,
-                      () =>
+                    onClick={() => {
+                      if (this.state.email == "") {
+                        alert("email vide");
+                      } else if (
+                        this.state.email !== "" &&
+                        !emailRegex.test(this.state.email)
+                      ) {
+                        alert("format email invalid");
+                      } else if (this.state.password.length < 4) {
+                        alert("mot de passe  invalid");
+                      } else {
                         this.props.AddUser({
                           nom: "visiteur",
                           // prenom: "visiteur",
@@ -145,8 +153,9 @@ class ModalRegisterParticipant extends Component {
                           password: this.state.password,
                           adresse: "visiteur",
                           role: "visiteur",
-                        }))
-                    }
+                        });
+                      }
+                    }}
                   >
                     Inscription
                   </button>
