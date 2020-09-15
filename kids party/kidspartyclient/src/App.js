@@ -19,7 +19,6 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App ">
-        {/*} <Navbar />*/}
         <Index />
         <Router>
           <Route exact path="/NOTFOUND">

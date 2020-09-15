@@ -8,9 +8,10 @@ class StartRating extends Component {
     rating: null,
     hover: null,
   };
+  /***********************calcul note***************** */
 
   sendNote = (e, el) => {
-    console.log("zz", Number(e));
+    // console.log("zz", Number(e));
 
     console.log("le nombre de notes de base ", Number(el));
     /*  console.log(

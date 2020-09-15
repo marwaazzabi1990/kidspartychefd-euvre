@@ -12,6 +12,7 @@ module.exports = {
     // res.send("ali fpu9 chojra")
     res.json(event);
   },
+
   getbyeventid: (req, res) => {
     console.log("éss", req.params.id);
     Events.findById(req.params.id)
@@ -29,6 +30,7 @@ module.exports = {
       });
     // res.json(stringify(reservation));
   },
+  /****************add event  */
   postEvent: (req, res) => {
     console.log(req.body);
     const event = new Events(req.body);
@@ -44,18 +46,19 @@ module.exports = {
   updateEvent: (req, res) => {
     // console.log(`${req.body} updated`)
     Events.findByIdAndUpdate(req.params.id, req.body)
-      .then(() => {
-        () => res.json(req.body);
-        console.log(req.body);
+      .then((data) => {
+        res.send({ msg: "event modier!" });
       })
       .catch((err) => console.log(err))
-      .then(() => res.json("event updated!"))
+      .then((data) => {
+        res.send({ msg: "event modier!" });
+      })
       .catch((err) => res.status(400).json("Error: " + err));
   },
   deleteEvent: (req, res) => {
     console.log(`${req.body}deleted`);
     Events.findByIdAndDelete(req.params.id)
-      .then(res.json("delete event"))
+      .then(() => res.send("delete event"))
       .catch((err) => console.log(err));
   },
 };

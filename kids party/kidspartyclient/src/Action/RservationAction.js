@@ -6,7 +6,7 @@ import {
 } from "./Types";
 import Axios from "axios";
 
-// Get all Product from Api to Store
+// Get rservation*********************************/
 export const getAllrservation = (payload) => ({
   type: GET_RESERVATION,
   payload,
@@ -20,7 +20,7 @@ export function getRservationFromApi() {
       }
     );
 }
-/* add  categorie*/
+/******************* add rservation *********************************/
 export const AddRservation = (payload) => ({
   type: ADD_RSERVATION,
   payload,
@@ -38,7 +38,7 @@ export function addRservationInApi(element) {
     );
 }
 
-/* delete rservation*/
+/******************************delete rservation*************************** */
 export const deleteRservation = (payload) => ({
   type: DELETE_RSERVATION,
   payload,
@@ -53,7 +53,7 @@ export function deleteRservationToApi(id) {
     );
 }
 
-/* moifier reservation*/
+/*****************moifier reservation****************** */
 export const ModifierRservation = (payload) => ({
   type: MODIF_RSERVATION,
   payload,
@@ -77,6 +77,6 @@ export function ModifRservationFromApi(data) {
       show: show,
     }).then((res) => {
       dispatch(ModifierRservation(res.data));
-      // window.location.reload();
+      window.location.reload();
     });
 }

@@ -34,18 +34,17 @@ export class Profile extends Component {
     console.log("user modifier", users);
     return (
       <div>
-        <center>
-          <h1 className="bienveneu-h1">
-            Mon <span className="titre-speciale">Profil</span>
-          </h1>
-        </center>{" "}
-        <div class="container">
+        <h1 className="bienveneu-h2">
+          Mon <span className="titre-speciale">Profil</span>
+        </h1>
+
+        <div>
           {users.map((el, i) => (
             <div class="row">
               <div class="col-sm-2 col-md-2">
                 <img
                   className="img-profil"
-                  src={"http://localhost:8080/" + el.photos}
+                  src="https://t4.ftcdn.net/jpg/03/02/47/35/240_F_302473550_lDL13a98S1Hz0jDWJXOznW29iZmrPW80.jpg"
                   alt=""
                   className="img-profile"
                 />
@@ -61,8 +60,8 @@ export class Profile extends Component {
                 <div className="row">
                   <p>
                     {" "}
-                    <span className="titre-speciale2">Prenom: </span>{" "}
-                    <i class="glyphicon glyphicon-envelope"></i> {el.prenom}
+                    <span className="titre-speciale2">Email: </span>{" "}
+                    <i class="glyphicon glyphicon-envelope"></i> {el.email}
                   </p>
                 </div>
                 <div className="row">
@@ -79,7 +78,8 @@ export class Profile extends Component {
                 <div className="row">
                   <p>
                     {" "}
-                    <span className="titre-speciale2">Email: </span> {el.email}
+                    <span className="titre-speciale2">Adresse: </span>{" "}
+                    {el.adresse}
                   </p>
                 </div>
 

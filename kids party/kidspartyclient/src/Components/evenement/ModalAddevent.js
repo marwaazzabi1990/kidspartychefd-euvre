@@ -176,7 +176,7 @@ class ModalAjoutEvent extends Component {
               </div>
               <button
                 style={{ fontSize: 12, marginLeft: 200, marginTop: -50 }}
-                className="btn btn-outline btn-md btn-rounded btn-navbar waves-effect waves-light btn_menu1"
+                className="btn btn-outline btn-md btn-rounded btn-navbar waves-effect waves-light btn_menu11"
                 onClick={() => {
                   this.uploadHandler();
                   this.props.addEvent({

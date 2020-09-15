@@ -6,7 +6,7 @@ import {
 } from "./Types";
 import Axios from "axios";
 
-// Get all Product from Api to Store
+/***********************get categorie***************** */
 export const getAllcategorie = (payload) => ({
   type: GET_CATEGORIE,
   payload,
@@ -20,7 +20,7 @@ export function getCategorieFromApi() {
       }
     );
 }
-/* add  categorie*/
+/*************************************** add  categorie*****************************/
 export const AddCategorie = (payload) => ({
   type: ADD_CATEGORIE,
   payload,
@@ -38,7 +38,7 @@ export function addCategorieInApi(element) {
     );
 }
 
-/* delete categorie*/
+/* **************************delete categorie*************************************/
 export const deleteCategorie = (payload) => ({
   type: DELETE_CATEGORIE,
   payload,
@@ -52,6 +52,8 @@ export function deleteCategorieToApi(id) {
       }
     );
 }
+
+/****************************Modifier categorie************************************ */
 export const ModifierCategorie = (payload) => ({
   type: MODIF_CATEGORIE,
   payload,

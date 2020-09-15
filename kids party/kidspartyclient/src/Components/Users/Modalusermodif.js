@@ -22,11 +22,11 @@ export class UserModalModif extends Component {
     role: this.props.el.role,
     modal8: false,
     modal9: false,
+    modal: false,
   };
-  toggle = (nr) => () => {
-    let modalNumber = "modal" + nr;
+  toggle = () => {
     this.setState({
-      [modalNumber]: !this.state[modalNumber],
+      modal: !this.state.modal,
     });
   };
 
@@ -34,20 +34,14 @@ export class UserModalModif extends Component {
     return (
       <div>
         <button
-          className="btn  btn-md btn-rounded btn-navbar   btn_menu222 "
-          onClick={this.toggle(8)}
+          className="btn  btn-md btn-rounded btn-navbar btn_menu11"
+          onClick={this.toggle}
         >
           Editer
         </button>
-        <MDBModal
-          isOpen={this.state.modal8}
-          toggle={this.toggle(8)}
-          fullHeight
-          position="right"
-        >
-          <MDBModalHeader className="titlemodaleditmod" toggle={this.toggle(8)}>
-            Modifier votre profil
-          </MDBModalHeader>
+
+        <MDBModal isOpen={this.state.modal} toggle={this.toggle}>
+          <MDBModalHeader toggle={this.toggle}>Modifier Profil</MDBModalHeader>
           <MDBModalBody>
             <form className="form-edit-moderateur">
               <labe>Nom:</labe>
@@ -84,7 +78,7 @@ export class UserModalModif extends Component {
           <MDBModalFooter>
             <MDBBtn
               color="elegant-color"
-              className="btn btn-outline btn-md btn-rounded btn-navbar waves-effect waves-light btn-color1"
+              className="btn btn-outline btn-md btn-rounded btn-navbar waves-effect waves-light btn_menu11"
               onClick={() =>
                 this.props.Modifieruser({
                   id: this.state.id,

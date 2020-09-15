@@ -278,7 +278,6 @@ class Index extends Component {
                   </Route>
                 ))} */}
               </Switch>
-              }
             </div>
           </Router>
           <Footer />

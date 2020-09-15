@@ -57,9 +57,8 @@ class AppPage extends React.Component {
                     </h1>
                     <hr className="hr-light" />
                     <h6 className="mb-4 color-text1">
-                      Kids party est un annuaire des evanements qui vise les
-                      évenements des enfants . Trouvez tous ce que vous
-                      evenements qui sont proch de toi!!!!!!
+                      Kids party est un annuaire des evenements qui vise les
+                      enfants .
                     </h6>
                     <Link to="/inscription">
                       <button className="btn btn-outline btn-md btn-rounded btn-navbar waves-effect waves-light btn_menu ">

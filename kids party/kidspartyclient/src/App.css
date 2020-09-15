@@ -39,7 +39,7 @@
 
   width: 100%;
 }
-.grid {
+/*.grid {
   border-color: 1px solid black;
 
   justify-content: flex-start;
@@ -53,7 +53,7 @@
   text-align: start;
 
   opacity: 0.9;
-}
+}*/
 .lien-profesionnel {
   color: black;
   text-decoration: none;
@@ -395,6 +395,7 @@ input[type="radio"] {
 .top-detail {
   margin-top: 100px;
 }
+
 .bienveneu-h2 {
   margin-top: 35px;
   padding-left: 10px;
@@ -402,6 +403,19 @@ input[type="radio"] {
   font-weight: bold;
   color: #2e2e2e;
   text-align: start;
+  margin-left: 170px;
+  margin-bottom: 40px;
+  /*text-shadow: 2px 2px black !important;*/
+  border-left: 3px solid #ff8800 !important;
+}
+.bienveneu-h22 {
+  margin-top: 35px;
+  padding-left: 10px;
+  font-size: 50px;
+  font-weight: bold;
+  color: #2e2e2e;
+  text-align: start;
+  margin-top: 100px;
   margin-left: 170px;
   margin-bottom: 40px;
   /*text-shadow: 2px 2px black !important;*/
@@ -1891,12 +1905,6 @@ body #cda-remove {
 }
 .overflow {
   overflow: hidden;
-  /*background-color: rgb(231, 230, 227) !important;
-  /* background-image: radial-gradient(
-    circle at center,
-    rgb(50, 175, 56),
-    rgb(38, 216, 192)
-  ) !important; */
 
   border-radius: 0;
 }
@@ -1909,13 +1917,37 @@ body #cda-remove {
 .img:hover {
   transform: scale(1.2);
 }
-/**responsive personnel*/
+/**responsive personnel galaxy s5*/
 @media only screen and (max-width: 767px) {
   /* .collapse {
     background-color: black !important;
   }*/
+  .bg-register {
+    background-image: url(https://images.pexels.com/photos/4593876/pexels-photo-4593876.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500);
+
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin-top: 80px;
+    margin-top: -10px;
+
+    height: 200px;
+
+    width: 100%;
+  }
+  .bienveneu-h22 {
+    margin-top: 35px;
+    padding-left: -300px !important;
+    font-size: 10px;
+    font-weight: bold;
+    color: #2e2e2e;
+    text-align: start;
+
+    /*  margin-bottom: 40px;
+    /*text-shadow: 2px 2px black !important;*/
+    border-left: 3px solid #ff8800 !important;
+  }
   .pos_glob {
-    display: block;
+    display: flex;
     flex-direction: column;
   }
   .pos-categorie {
@@ -2132,12 +2164,13 @@ body #cda-remove {
 }
 /*profile.js*/
 .img-profile {
-  height: 250px;
-  width: 400px;
+  height: 200px;
+  width: 350px;
+  background-color: transparent !important;
 }
 .row {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   flex-direction: row;
 }
 .detail {

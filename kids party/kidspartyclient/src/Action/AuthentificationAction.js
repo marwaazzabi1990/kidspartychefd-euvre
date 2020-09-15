@@ -2,6 +2,7 @@ import axios from "axios";
 import { USER_LOADED, LOGIN_SUCCESS, LOGOUT } from "../Action/Types";
 import setAuthToken from "./setToken";
 
+/****************************envoyer de donnes personne demande connexion******************************* */
 export function login(el) {
   return (dispatch) =>
     axios
@@ -17,6 +18,7 @@ export function login(el) {
 
       .catch((err) => alert("Créez un compte"));
 }
+/************************ cordonnes utlisateur conecte *************************** */
 export const getUser = () => async (dispatch) => {
   if (localStorage.token) {
     setAuthToken(localStorage.token);

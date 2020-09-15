@@ -2,7 +2,7 @@ const Categories = require("../Models/CategorieModel");
 const express = require("express");
 var router = express.Router();
 
-// get all event
+// *****get all categorie****/
 
 module.exports = {
   listallCategorie: async (req, res) => {
@@ -12,6 +12,7 @@ module.exports = {
     // res.send("ali fpu9 chojra")
     res.json(categorie);
   },
+  //******post  categorie***/
   postCategorie: (req, res) => {
     console.log(req.body);
     const newCategorie = new Categories(req.body);
@@ -20,6 +21,7 @@ module.exports = {
       .then(res.json("categorie added !"))
       .catch((err) => console.log(err));
   },
+  /***********************update */
   updateCategorie: (req, res) => {
     // console.log(`${req.body} updated`)
     Categories.findByIdAndUpdate(req.params.id, req.body)
@@ -31,6 +33,7 @@ module.exports = {
       .then(() => res.json("categorie updated!"))
       .catch((err) => res.status(400).json("Error: " + err));
   },
+  /***************delete ******************** */
   deleteCategorie: (req, res) => {
     console.log(`${req.body}deleted`);
     Categories.findByIdAndDelete(req.params.id)

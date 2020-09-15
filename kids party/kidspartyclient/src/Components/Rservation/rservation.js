@@ -40,85 +40,86 @@ class Reservation extends Component {
     const reserver = this.state.rservation && this.state.rservation;
     return (
       <>
-        {this.props.authetification &&
-        this.props.authetification.role === "admin" ? (
-          <div>
-            <h2> Les Reservation</h2>
-            <div className="table-responsive">
-              <table className="table">
-                <thead className="th-table">
-                  <tr>
-                    <th>Titre</th>
-                    <th>Email</th>
+        {/* {this.props.authetification &&
+        this.props.authetification.role === "professionnel" ? (*/}
+        <div>
+          <h2 className="bienveneu-h2"> Les Reservation</h2>
+          <div className="table-responsive">
+            <table className="table">
+              <thead className="th-table">
+                <tr>
+                  <th>Titre</th>
+                  <th>Email</th>
 
-                    <th className="actcategorie">Status</th>
-                    <th className="actcategorie">Action</th>
-                  </tr>
-                </thead>
+                  <th className="actcategorie">Status</th>
+                  <th className="actcategorie">Action</th>
+                </tr>
+              </thead>
 
-                <tbody>
-                  {reserver
-                    .filter((el) =>
-                      this.state.show !== true
-                        ? el
-                        : el.show === this.state.show
-                    )
-                    .filter(
-                      (el, i) =>
-                        (this.state.page - 1) * this.state.pageSize <= i &&
-                        i < this.state.page * this.state.pageSize
-                    )
-                    .map((el, i) => (
-                      <tr>
-                        <td>{el.titreEvent}</td>
-                        <td> {el.EmailUser}</td>
-                        <td> {el.status}</td>
+              <tbody>
+                {reserver
+                  .filter((el) =>
+                    this.state.show !== true ? el : el.show === this.state.show
+                  )
+                  .filter(
+                    (el, i) =>
+                      (this.state.page - 1) * this.state.pageSize <= i &&
+                      i < this.state.page * this.state.pageSize
+                  )
+                  .map((el, i) => (
+                    <tr>
+                      <td>{el.titreEvent}</td>
+                      <td> {el.EmailUser}</td>
+                      <td> {el.status}</td>
 
-                        <td className="pos-Action ">
-                          {/* <ModifEvent el={el} /> */}
+                      <td className="pos-Action ">
+                        {/* <ModifEvent el={el} /> */}
 
-                          <button
-                            className="btn  btn_menu11"
-                            onClick={() =>
-                              this.props.Modifierresrvation({
-                                id: el._id,
-                                idEvent: el.idEvent,
-                                titreEvent: el.titreEvent,
-                                IdUser: el.IdUser,
-                                status: "confirmer",
-                                show: true,
-                              })
-                            }
-                          >
-                            <MDBIcon icon="check" />
-                          </button>
+                        <button
+                          style={{
+                            height: 90,
+                          }}
+                          className="btn  btn_menu1"
+                          onClick={() =>
+                            this.props.Modifierresrvation({
+                              id: el._id,
+                              idEvent: el.idEvent,
+                              titreEvent: el.titreEvent,
+                              IdUser: el.IdUser,
+                              status: "confirmer",
+                              show: true,
+                            })
+                          }
+                        >
+                          <MDBIcon icon="check" />
+                        </button>
 
-                          <button
-                            className="btn  btn-color_sup-intern "
-                            style={{ marginBottom: 40 }}
-                            onClick={() =>
-                              this.props.Modifierresrvation({
-                                id: el._id,
-                                idEvent: el.idEvent,
-                                titreEvent: el.titreEvent,
-                                IdUser: el.IdUser,
-                                status: "Annuler",
-                                show: true,
-                              })
-                            }
-                          >
-                            <MDBIcon icon="times" />
-                          </button>
-                        </td>
-                      </tr>
-                    ))}
-                </tbody>
-              </table>
-            </div>
+                        <button
+                          className="btn  btn-color_sup-intern "
+                          style={{ marginBottom: 40 }}
+                          onClick={() =>
+                            this.props.Modifierresrvation({
+                              id: el._id,
+                              idEvent: el.idEvent,
+                              titreEvent: el.titreEvent,
+                              IdUser: el.IdUser,
+                              status: "Annuler",
+                              show: true,
+                            })
+                          }
+                        >
+                          <MDBIcon icon="times" />
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
           </div>
-        ) : (
+        </div>
+        {/*  ) : (
           <Redirect to="/NOTFOUND" />
-        )}
+        )}*/}
       </>
     );
   }

@@ -20,7 +20,7 @@ function refuseUser() {
   });
 }
 
-// Get user conecte from Api to Store
+// Get user conecte from Api to Store************************/
 export const getAlluser = (payload) => ({
   type: GET_USER,
   payload,
@@ -32,7 +32,7 @@ export function getUsersFromApi() {
       dispatch(getAlluser(res.data));
     });
 }
-/* add  User */
+/***************************** add  User******************************** */
 export const AddUser = (payload) => ({
   type: ADD_USER,
   payload,
@@ -54,7 +54,7 @@ export function addUserFromApi(element) {
     });
 }
 
-/*modif user*/
+/*************************************modif user****************************************/
 export const ModifierUser = (payload) => ({
   type: MODIF_USER,
   payload,
@@ -80,7 +80,7 @@ export function modifUserFromApi(data) {
       window.location.reload();
     });
 }
-/*delette USER */
+/*********************************delette USER****************************** */
 
 export const deleteUser = (payload) => ({
   type: DELETE_USER,

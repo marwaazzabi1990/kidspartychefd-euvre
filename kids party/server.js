@@ -12,7 +12,7 @@ var nodemailer = require("nodemailer");
 const multer = require("multer");
 const path = require("path");
 
-/*upload image*/
+/***********************************upload image***********************/
 app.use(express.static("./public"));
 
 app.get("/", (req, res) => res.send("index"));
@@ -40,7 +40,7 @@ function checkFileType(file, cb) {
   }
 }
 
-// Init Upload
+//*************************** */ Init Upload**********************/
 const upload = multer({
   storage: storage,
   limits: { fileSize: 3000000 },
@@ -64,7 +64,7 @@ app.post("/image", (req, res) => {
     }
   });
 });
-
+/*************************end of upload image*********************** */
 //importing route Event
 var Event = require("./app/Routes/EventsRouter");
 var User = require("./app/Routes/UserRouter");
@@ -76,7 +76,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
-// Use routers
+// **************************Use routers
 app.use("/event", Event);
 app.use("/user", User);
 app.use("/categorie", Categorie);
@@ -85,7 +85,7 @@ app.use(express.json());
 
 //const db = require("./app/models");
 
-/*nodemailer*/
+/*******************************nodemailer****************************************************/
 app.post("/email", (req, res) => {
   console.log("zzzzz", req.body);
   nodemailer.createTestAccount((err, acount) => {

@@ -30,7 +30,9 @@
 .color-text1 {
   color: white !important;
 }
-
+.color-text2 {
+  color: black !important;
+}
 #apppage .view {
   background-image: url("https://images.pexels.com/photos/296308/pexels-photo-296308.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500");
   background-repeat: no-repeat;

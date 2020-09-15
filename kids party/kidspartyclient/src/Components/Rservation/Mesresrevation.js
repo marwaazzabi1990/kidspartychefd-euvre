@@ -23,16 +23,29 @@ class MesReservation extends Component {
     const Mesreserver = this.state.MesRservation && this.state.MesRservation;
     return (
       <div>
-        <h2> Mes rservation</h2>
-        {Mesreserver.map((el, i) => (
-          <div>
-            <span>{el.titreEvent}</span>
-            <span>{el.IdUser}</span>
-            <span>{el.EmailUser}</span>
-            <span>{el.status}</span>
-            <span>{el.show}</span>
-          </div>
-        ))}
+        <h2 className="bienveneu-h2"> Mes rservation</h2>
+
+        <div className="table-responsive">
+          <table className="table">
+            <thead className="th-table">
+              <tr>
+                <th>Titre</th>
+                <th>Email</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {Mesreserver.map((el, i) => (
+                <tr>
+                  <td>{el.titreEvent}</td>
+
+                  <td>{el.EmailUser}</td>
+                  <td>{el.status}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
         <div className="div-vide"></div>
         <div className="div-vide"></div>
       </div>

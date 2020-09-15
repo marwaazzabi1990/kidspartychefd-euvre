@@ -211,7 +211,7 @@ export class EventModalModif extends Component {
           </MDBModalBody>
           <MDBModalFooter>
             <button
-              className="btn btn-outline btn-md btn-rounded btn-navbar waves-effect waves-light btn_menu1"
+              className="btn btn-outline btn-md btn-rounded btn-navbar waves-effect waves-light btn_menu11"
               onClick={() => {
                 this.uploadHandler();
                 this.props.Modifierevent({

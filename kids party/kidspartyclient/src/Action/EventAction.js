@@ -19,8 +19,26 @@ function refuseEvent() {
     animation: true,
   });
 }
+function ModifiedEvent() {
+  Swal.fire({
+    text: "votre evenements est bien modifier",
+    icon: "success",
+    confirmButtonText: "Fermer",
+    confirmButtonColor: "#008000",
+    animation: true,
+  });
+}
+function DeleteEvent() {
+  Swal.fire({
+    text: "evenements est bien supprimer",
+    icon: "ok",
+    confirmButtonText: "Fermer",
+    confirmButtonColor: "#DD6B55",
+    animation: true,
+  });
+}
 
-// Get all Product from Api to Store
+/***********************Get event from Api to Store***********************/
 export const getAllevents = (payload) => ({
   type: GET_ALL_EVENT,
   payload,
@@ -31,7 +49,7 @@ export function getEventsFromApi() {
       dispatch(getAllevents(res.data));
     });
 }
-/*modifEvent*/
+/*********************************modifEvent**********************************/
 export const ModifierEvent = (payload) => ({
   type: MODIF_EVENT,
   payload,
@@ -74,10 +92,15 @@ export function modifEventFromApi(data) {
       nom_organzateur: nom_organzateur,
     }).then((res) => {
       dispatch(ModifierEvent(res.data));
+      if (res.data.msg === " event modier!") {
+        ModifiedEvent();
+        window.location.reload(false);
+      }
+
       window.location.reload();
     });
 }
-/*delette event */
+/**************************************delette event******************************* */
 
 export const deleteEvent = (payload) => ({
   type: DELETE_EVENT,
@@ -88,11 +111,16 @@ export function deleteEventToApi(id) {
     Axios.delete(`http://localhost:8080/event/deleteevnts/${id}`).then(
       (res) => {
         dispatch(deleteEvent(res.data));
-        window.location.reload(false);
+        if (res.data.msg === " delete event!") {
+          ModifiedEvent();
+          window.location.reload(false);
+        }
+
+        window.location.reload();
       }
     );
 }
-/* add  Event */
+/* ****************************add  Event*********************************** */
 export const AddEvent = (payload) => ({
   type: ADD_EVENT,
   payload,
